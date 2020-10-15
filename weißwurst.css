@@ -1,0 +1,193 @@
+body{
+    width: 648px;
+    margin: auto
+}
+
+h1{
+    /*position: absolute;*/
+    /*height: 158px;*/
+    left: 18.6%;
+    right: 18.6%;
+    top: calc(50% - 158px/2 - 2095px);
+
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 110%;
+    /* or 79px */
+
+    color: #000000;
+}
+
+h2{
+    /*position: absolute;*/
+    /*width: 332px;*/
+    /*height: 35px;*/
+    /*left: 192px;*/
+    /*top: 983px;*/
+
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 110%;
+    /* or 35px */
+
+    color: #000000;
+}
+
+.font18{
+    /*position: absolute;*/
+    /*height: 147px;*/
+    left: 18.8%;
+    right: 18.6%;
+    top: calc(50% - 147px/2 - 1801.5px);
+
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    /* or 27px */
+
+    color: #000000;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    width: 648px;
+
+    color: #000000;
+
+}
+
+.containerForInput{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: black;
+
+}
+
+ul{
+    all: unset;
+    list-style-type: none;
+}
+
+.buttons{
+    /*position: absolute;*/
+    left: 18.6%;
+    right: 51.16%;
+    top: 26.8%;
+    bottom: 72.07%;
+
+    width: 312px;
+    height: 56px;
+
+    background: rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 19px;
+    text-align: left;
+    border: 0px
+}
+
+.name-input{
+    left: 18.6%;
+    right: 51.16%;
+    top: 33.72%;
+    bottom: 65.15%;
+
+    background: rgba(0, 0, 0, 0.1);
+
+    text-align: left;
+    padding-bottom: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 19px;
+    width: 288px;
+    height: 18px;
+
+    border: 0px
+}
+
+.email-input{
+    left: 18.6%;
+    right: 51.16%;
+    top: 33.72%;
+    bottom: 65.15%;
+
+    background: rgba(220, 5, 45, 0.1);
+
+    text-align: left;
+    padding-bottom: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 19px;
+    width: 288px;
+    height: 18px;
+
+    border: 0px;
+
+    /*height: 15px;
+    left: 540px;
+    right: 204px;
+    top: calc(50% - 15px/2 - 785.5px);*/
+
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 110%;
+    /* or 15px */
+
+    color: #DC052D;
+}
+
+.email-index{
+    color: #DC052D;
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 110%;
+
+    margin-top: 0px;
+    height: 30px;
+    width: 288px
+}
+
+.button{
+    all:unset;
+    width: 35px;
+    height: 36px;
+    background: rgba(196,196,196,0.2);
+    border-radius: 3px;
+
+    left: 75.58%;
+    right: 23.55%;
+    top: 40.08%;
+    bottom: 59.62%;
+
+    font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 15px;
+    margin: 1px;
+    /* or 15px */
+
+    text-align: center;
+
+    color: #000000;
+}
