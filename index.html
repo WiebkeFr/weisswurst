@@ -21,12 +21,12 @@
     <h1>1 Bestellung</h1>
     <h2>Aktuelle Bestellungen</h2>
     <ul id="orderList">
-        <li class="container">
+        <li class="orderContainer">
             <p class="name-element">Name</p>
             <p>Bestellung</p>
             <p>Bearbeiten oder Löschen</p>
         </li>
-        <li class="container">
+        <li class="orderContainer">
             <p class="name-element">Name</p>
             <p>Bestellung</p>
             <p>Bearbeiten oder Löschen</p>
@@ -34,7 +34,7 @@
     </ul>
 
     <form action="#newOrder">
-        <input type="submit" class="buttons" value="Neue Bestellung hinzufügen" onClick="openNewOrder()"/>
+        <button type="submit" class="buttons" onClick="openNewOrder()">Neue Bestellung hinzufügen</button>
     </form>
 
     <div id="addingNewOrder" class="addingNewOrder">
@@ -56,32 +56,40 @@
             <label for="vegetarisch/vegan">Vegetarisch/Vegan</label>
         </div>
 
-        <ul id="mealList1" class="mealList1">
-            <li id="list1W" class="container">
-                <p class="">Weißwürste</p>
+        <ul id="mealList" class="mealList">
+            <div class="meatList" id="meatList">
+                <li id="list1W" class="orderContainer">
+                    <p class="">Weißwürste</p>
+                    <div>
+                        <button class="button" id="button-sub-0" onClick="handleChange(id)">-</button>
+                        <button class="button" id="button-number-1" onClick="handleChange(id)">0</button>
+                        <button class="button" id="button-add-2" onClick="handleChange(id)">+</button>
+                    </div>
+                </li>
+                <li id="list1D" class="orderContainer">
+                    <p class="name-element">Debreziner</p>
+                    <div>
+                        <button class="button" id="button-sub-3" onClick="handleChange(id)">-</button>
+                        <button class="button" id="button-number-4" onClick="handleChange(id)">0</button>
+                        <button class="button" id="button-add-5" onClick="handleChange(id)">+</button>
+                    </div>
+                </li>
+            </div>
+            <li id="list1K" class="orderContainer">
+                <p class="name-element">Karottensalat</p>
                 <div>
-                    <button class="button" id="button-sub" onClick="handleChange(id)">-</button>
-                    <button class="button" id="button-number" onClick="handleChange(id)">0</button>
-                    <button class="button" id="button-add" onClick="handleChange(id)">+</button>
+                    <button class="button" id="button-sub-6" onClick="handleChange(id)">-</button>
+                    <button class="button" id="button-number-7" onClick="handleChange(id)">0</button>
+                    <button class="button" id="button-add-8" onClick="handleChange(id)">+</button>
                 </div>
             </li>
-            <li id="list1D" class="container">
-                <p class="name-element">Debreziner</p>
-            </li>
-            <li id="list1K" class="container">
-                <p class="name-element">Karottensalat</p>
-            </li>
-            <li id="list1B" class="container">
+            <li id="list1B" class="orderContainer">
                 <p class="name-element">Brezeln</p>
-            </li>
-        </ul>
-
-        <ul id="mealList2" class="mealList2">
-            <li class="container">
-                <p class="name-element">Karottensalat</p>
-            </li>
-            <li class="container">
-                <p class="name-element">Brezeln</p>
+                <div>
+                    <button class="button" id="button-sub-9" onClick="handleChange(id)">-</button>
+                    <button class="button" id="button-number-10" onClick="handleChange(id)">0</button>
+                    <button class="button" id="button-add-11" onClick="handleChange(id)">+</button>
+                </div>
             </li>
         </ul>
 
