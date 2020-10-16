@@ -1,26 +1,41 @@
 import React, {useState} from "react";
 import './createOrder';
 import App from 'App'
+import CreateOrder from "./createOrder";
 
 const createOrder = () => {
     document.getElementById("order").style.display = "block"
 }
 
-
-
 function Order(){
     const [orderItems, setOrderItems] = useState([])
 
-    const appendItem = (props) => {
-        setOrderItems(props.item)
+    const appendOrderItem = (name, items) => {
+        /**
+         * orderItems = [{
+         *     name: "Georgios",
+         *     items: "2x Brezn",
+         * }, {
+         *     name: "Eric",
+         *     items: "2x Würste",
+         * }]
+         *
+         * orderItems.map((order) => {
+         *     return (<li>
+         *          {order.name}
+         *          {order.items}
+         *         <li>)
+         * })
+         */
     }
 
     return(
+    <>
         <div>
             <h1>1 Bestellung</h1>
             <h2>Aktuelle Bestellungen</h2>
             <ul id="orderList">
-                {orderItems}
+                {orderItems.map(() => <li>{order}</li>)}
                 <li className="orderContainer">
                     <p className="name-element">Name</p>
                     <p>Bestellung</p>
@@ -37,6 +52,8 @@ function Order(){
                 <button type="submit" className="buttons" onClick={createOrder}>Neue Bestellung hinzufügen</button>
             </form>
         </div>
+        <CreateOrder class="createOrder" appendItem={appendItem} />
+    </>
     )
 }
 

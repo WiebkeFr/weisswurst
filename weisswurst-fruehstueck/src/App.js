@@ -4,6 +4,26 @@ import Intro from './Intro.js';
 import Order from './order.js'
 import CreateOrder from './createOrder.js'
 
+/**
+ *
+ *
+ * App
+ *    - Order
+ *    - Create Order
+ *
+ * Props:
+ * Component -> Child Component
+ *
+ * React State:
+ * Innerhalb Component
+ *
+ * Globaler State:
+ * Redux
+ * React Context
+ *
+ *
+ *
+ */
 function App() {
   return (
     <div className="App">
@@ -16,7 +36,7 @@ function App() {
 
         <Order id="order"/>
 
-        <CreateOrder class="createOrder"/>
+
 
         <h1>2 Wer darf holen?</h1>
         <h2>Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.</h2>

@@ -59,8 +59,10 @@ const determinateList = (props) => {
 }
 
 const placeOrder = () => {
+    const name = document.getElementById("name-input");
+
     let item = {
-        name: document.getElementById("name-input"),
+        name: name,
         email: document.getElementById("email-input"),
         weisswurst: document.getElementById("button-number0"),
         debrezinnger: document.getElementById("button-number1"),
@@ -73,7 +75,11 @@ const placeOrder = () => {
 }
 
 function CreateOrder(){
-    const [eatingHabit, setEatingHabit] = useState("Wurstliebhaber")
+    const [order, setOrder] = useState({
+        name: '',
+        eatingHabit: '',
+        items: '',
+    })
 
     return(
         <div id="addingNewOrder" className="addingNewOrder">
@@ -90,7 +96,7 @@ function CreateOrder(){
             <h3>Was möchte derjenige essen?</h3>
             <div style={{marginTop: 10, marginBottom: 10}}>
                 <input type="radio" name="meal" style={{margin: 0}} id="Wurstliebhaber"
-                       onChange={() => setEatingHabit("Wurstliebhaber")} />
+                       onChange={() => setOrder({ eatingHabit: 'Wurstliebhaber' })} />
                 <label htmlFor="wurstliebhaber">Wurstliebhaber</label>
                 <input type="radio" name="meal" id="Vegetarisch/Vegan"
                        onChange={() => setEatingHabit("Vegetarisch/Vegan")}/>
@@ -100,7 +106,7 @@ function CreateOrder(){
             {determinateList({eatingHabit: eatingHabit})}
 
             <form action="#orderList">
-                <button type="submit" className="buttons" onClick={placeOrder}>Zur Bestellung hinzufügen</button>
+                <button type="submit" className="buttons" onClick={() => { console.log(order) }}>Zur Bestellung hinzufügen</button>
             </form>
         </div>
 
