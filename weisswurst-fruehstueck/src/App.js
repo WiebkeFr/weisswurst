@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Intro from './Intro.js';
 import Order from './order/order.js'
-import CreateOrder from './order/createOrder.js'
 
 /**
  *
@@ -35,8 +34,6 @@ function App() {
         <Intro />
 
         <Order id="order"/>
-
-
 
         <h1>2 Wer darf holen?</h1>
         <h2>Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.</h2>

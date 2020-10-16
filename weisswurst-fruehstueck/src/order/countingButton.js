@@ -20,6 +20,7 @@ const handleChange=(event)=>{
 function CountingButton(props){
     const id1 = "button-sub" + props.id
     const id2 = "button-number" + props.id
+    console.log(id2)
     const id3 = "button-add" + props.id
     return(
         <div>
