@@ -95,15 +95,16 @@ function CreateOrder(){
             </div>
             <h3>Was möchte derjenige essen?</h3>
             <div style={{marginTop: 10, marginBottom: 10}}>
+                { /** https://wiki.selfhtml.org/wiki/HTML/Formulare/input/Radio-Buttons_und_Checkboxen */ }
                 <input type="radio" name="meal" style={{margin: 0}} id="Wurstliebhaber"
                        onChange={() => setOrder({ eatingHabit: 'Wurstliebhaber' })} />
                 <label htmlFor="wurstliebhaber">Wurstliebhaber</label>
                 <input type="radio" name="meal" id="Vegetarisch/Vegan"
-                       onChange={() => setEatingHabit("Vegetarisch/Vegan")}/>
+                       onChange={() => {}/*setEatingHabit("Vegetarisch/Vegan")*/}/>
                 <label htmlFor="vegetarisch/vegan">Vegetarisch/Vegan</label>
             </div>
 
-            {determinateList({eatingHabit: eatingHabit})}
+            {/*determinateList({eatingHabit: eatingHabit})*/}
 
             <form action="#orderList">
                 <button type="submit" className="buttons" onClick={() => { console.log(order) }}>Zur Bestellung hinzufügen</button>

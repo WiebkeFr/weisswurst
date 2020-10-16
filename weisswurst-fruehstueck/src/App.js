@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Intro from './Intro.js';
-import Order from './order.js'
-import CreateOrder from './createOrder.js'
+import Order from './order/order.js'
+import CreateOrder from './order/createOrder.js'
 
 /**
  *

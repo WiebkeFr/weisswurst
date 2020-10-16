@@ -1,14 +1,19 @@
 import React, {useState} from "react";
 import './createOrder';
-import App from 'App'
 import CreateOrder from "./createOrder";
 
 const createOrder = () => {
     document.getElementById("order").style.display = "block"
 }
 
-function Order(){
-    const [orderItems, setOrderItems] = useState([])
+function Order() {
+    const [orderItems, setOrderItems] = useState([{
+        name: "Georgios",
+        items: "2x Brezn",
+    }, {
+        name: "Eric",
+        items: "2x Würste",
+    }])
 
     const appendOrderItem = (name, items) => {
         /**
@@ -29,31 +34,31 @@ function Order(){
          */
     }
 
-    return(
-    <>
-        <div>
-            <h1>1 Bestellung</h1>
-            <h2>Aktuelle Bestellungen</h2>
-            <ul id="orderList">
-                {orderItems.map(() => <li>{order}</li>)}
-                <li className="orderContainer">
-                    <p className="name-element">Name</p>
-                    <p>Bestellung</p>
-                    <p>Bearbeiten oder Löschen</p>
-                </li>
-                <li className="orderContainer">
-                    <p className="name-element">Name</p>
-                    <p>Bestellung</p>
-                    <p>Bearbeiten oder Löschen</p>
-                </li>
-            </ul>
+    return (
+        <>
+            <div>
+                <h1>1 Bestellung</h1>
+                <h2>Aktuelle Bestellungen</h2>
+                <ul id="orderList">
+                    {orderItems.map((order) => <li>{order}</li>)}
+                    <li className="orderContainer">
+                        <p className="name-element">Name</p>
+                        <p>Bestellung</p>
+                        <p>Bearbeiten oder Löschen</p>
+                    </li>
+                    <li className="orderContainer">
+                        <p className="name-element">Name</p>
+                        <p>Bestellung</p>
+                        <p>Bearbeiten oder Löschen</p>
+                    </li>
+                </ul>
 
-            <form action="#createOrder">
-                <button type="submit" className="buttons" onClick={createOrder}>Neue Bestellung hinzufügen</button>
-            </form>
-        </div>
-        <CreateOrder class="createOrder" appendItem={appendItem} />
-    </>
+                <form action="#createOrder">
+                    <button type="submit" className="buttons" onClick={createOrder}>Neue Bestellung hinzufügen</button>
+                </form>
+            </div>
+            <CreateOrder class="createOrder" appendItem={appendOrderItem}/>
+        </>
     )
 }
 
