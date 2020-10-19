@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import './createOrder';
 import CreateOrder from "./createOrder";
-
-const createOrderMenu = () => {
-    document.getElementById("createOrder").style.display = "block"
-}
+import Delivery from "./delivery.js"
+import ShoppingList from "./shoppingList.js"
 
 function Order() {
     const [orderItems, setOrderItems] = useState([{
@@ -22,30 +20,19 @@ function Order() {
     const appendOrderItem = (order) => {
         const name = order.name.toString()
         const email = order.email.toString()
+        const items = [Number.parseInt(order.items[0]), Number.parseInt(order.items[1]), Number.parseInt(order.items[2]), Number.parseInt(order.items[3])]
+        const id = orderItems.length.toString()
 
-        const items = order.items
-        const prevState = orderItems
-        const id = prevState.length
+        const prevState = []
+        orderItems.forEach(item => prevState.push(item))
+        prevState.push({id, name, email, items})
 
-        prevState.push({name, id, email, items})
         setOrderItems(prevState)
-        console.log(orderItems)
-        /**
-         * orderItems = [{
-         *     name: "Georgios",
-         *     items: [1, 2, 3, 4],
-         * }, {
-         *     name: "Eric",
-         *     items: "2x Würste",
-         * }]
-         *
-         * orderItems.map((order) => {
-         *     return (<li>
-         *          {order.name}
-         *          {order.items}
-         *         <li>)
-         * })
-         */
+
+    }
+
+    const createOrderMenu = () => {
+        /*document.getElementById("createOrder").style.display = "block"*/
     }
 
     return (
@@ -55,7 +42,6 @@ function Order() {
                 <h2>Aktuelle Bestellungen</h2>
                 <ul id="orderList" >
                     {orderItems.map((order) => {
-                        console.log("Done")
                         return(
                             <li className="orderContainer" key={order.id}>
                                 <p className="name-element">{order.name}</p>
@@ -69,11 +55,16 @@ function Order() {
                     })}
                 </ul>
 
-                <form action="#createOrder">
-                    <button type="submit" className="buttons" /*onClick={createOrderMenu}*/>Neue Bestellung hinzufügen</button>
+                <form >
+                    <button type="submit" className="buttons" onClick={createOrderMenu}>Neue Bestellung hinzufügen</button>
                 </form>
             </div>
-            <CreateOrder id="createOrder" class="createOrder" appendItem={appendOrderItem}/>
+            <CreateOrder id="createOrder" class="createOrder" style={{display: null}} appendItem={appendOrderItem}/>
+
+            <Delivery />
+
+            <ShoppingList orderItems={orderItems}/>
+
         </>
     )
 }

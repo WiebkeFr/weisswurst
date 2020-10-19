@@ -38,16 +38,22 @@ const vegList = () => {
 
 
 
-const makeOrder = () => {
+const makeOrder = (props) => {
+    console.log("in make Order")
     const name = document.getElementById("name-input").value.toString();
-    console.log(name)
-    console.log(document.getElementById("button-number0"))
     const email = document.getElementById("email-input").value.toString();
-    const ww = Number.parseInt(document.getElementById("button-number0").innerText)
-    const db = Number.parseInt(document.getElementById("button-number1").innerText)
+    let ww
+    let db
+    console.log(props)
+    if(props === "Wurstliebhaber"){
+        ww = Number.parseInt(document.getElementById("button-number0").innerText)
+        db = Number.parseInt(document.getElementById("button-number1").innerText)
+    }else{
+        ww = 0
+        db = 0
+    }
     const ks = Number.parseInt(document.getElementById("button-number2").innerText)
     const bz = Number.parseInt(document.getElementById("button-number3").innerText)
-    console.log(ww)
 
     return ({
         name: name,
@@ -60,29 +66,25 @@ const makeOrder = () => {
 function CreateOrder(props){
     const [order, setOrder] = useState({
         name: '',
-        eatingHabit: '',
+        eatingHabit: 'Wurstliebhaber',
         items: '',
     })
 
     const printMeatList = () => {
-        /*console.log("meat")*/
         return(
                 <ul id="mealList" className="mealList">
                     {meatList()}
                     {vegList()}
                 </ul>
             )
-
     }
 
     const printVegList = () => {
-        /*console.log("veg")*/
         return(
                 <ul id="mealList" className="mealList">
                     {vegList()}
                 </ul>
             )
-
     }
 
     return(
@@ -104,7 +106,7 @@ function CreateOrder(props){
             <h3>Was möchte derjenige essen?</h3>
             <div style={{marginTop: 10, marginBottom: 10}}>
                 { /** https://wiki.selfhtml.org/wiki/HTML/Formulare/input/Radio-Buttons_und_Checkboxen */ }
-                <input type="radio" name="meal" style={{margin: 0}} id="Wurstliebhaber"
+                <input type="radio" name="meal" style={{marginLeft: 0}} id="Wurstliebhaber" defaultChecked
                        onChange={() => setOrder({ ...order, eatingHabit: 'Wurstliebhaber' })} />
                 <label htmlFor="wurstliebhaber">Wurstliebhaber</label>
                 <input type="radio" name="meal" id="Vegetarisch/Vegan"
@@ -112,10 +114,11 @@ function CreateOrder(props){
                 <label htmlFor="vegetarisch/vegan">Vegetarisch/Vegan</label>
             </div>
 
-            {order.eatingHabit === "Wurstliebhaber"? printMeatList() : printVegList()}
+            {order.eatingHabit === "Vegetarisch/Vegan"? printVegList() : printMeatList()}
 
             <form action="#orderList">
-                <button type="submit" className="buttons" onClick={() => props.appendItem(makeOrder())}>Zur Bestellung hinzufügen</button>
+                <button type="submit" className="buttons"
+                        onClick={() => props.appendItem(makeOrder(order.eatingHabit))}>Zur Bestellung hinzufügen</button>
             </form>
         </div>
 
