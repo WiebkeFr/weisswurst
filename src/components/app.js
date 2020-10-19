@@ -1,6 +1,6 @@
 import React from 'react';
-import '/Users/wiebkefreitag/Documents/Weißwurst/src/style/App.css';
-import Intro from './Intro.js';
+import '../style/app.css';
+import Intro from './intro.js';
 import Order from './order.js'
 
 
@@ -55,7 +55,9 @@ function App() {
                 name:"Brezeln",
                 price:"0.68",
                 veg: true
-            }]}/>
+            }]}
+           names={["name1", "name2", "name3"]}
+        />
 
       </div>
     </div>

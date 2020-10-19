@@ -1,12 +1,10 @@
 import React, {useState} from "react"
 
-function Delivery(){
+function Delivery(props){
     const [name, setName] = useState("")
 
-    const arr = ["name1", "name2", "name3"]
-
     const chooseName = () => {
-        const name = arr[Math.floor(Math.random() * arr.length)]
+        const name = props.names[Math.floor(Math.random() * props.names.length)]
         setName(name)
     }
 

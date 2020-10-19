@@ -1,36 +1,35 @@
 import React, {useState} from "react";
 import CountingButton from "./counting-button";
 
-const meatList = () => {
+const meatList = (props) => {
+    console.log(props)
     return(
         <div className="meatList" id="meatList">
-            <li id="list1W" className="orderContainer">
-                <p className="">Weißwürste</p>
-                <CountingButton id="0"/>
-            </li>
-            <li id="list1D" className="orderContainer">
-                <p className="name-element">Debreziner</p>
-                <CountingButton id="1"/>
-            </li>
+            {props.filter(meal => !meal.veg)
+                    .map(meal => {
+                        return(
+                            <li className="orderContainer" key={meal.id}>
+                                <p className="">{meal.name}</p>
+                                <CountingButton id={meal.id}/>
+                            </li>
+                        )
+            })}
         </div>
     )
 }
 
-const vegList = () => {
+const vegList = (props) => {
     return(
         <div className="vegList" id="vegList">
-            <li id="list1K" className="orderContainer">
-                <p className="name-element">Karottensalat</p>
-                <div>
-                    <CountingButton id="2"/>
-                </div>
-            </li>
-            <li id="list1B" className="orderContainer">
-                <p className="name-element">Brezeln</p>
-                <div>
-                    <CountingButton id="3"/>
-                </div>
-            </li>
+            {props.filter(meal => meal.veg)
+                .map(meal => {
+                    return(
+                        <li className="orderContainer" key={meal.id}>
+                            <p className="">{meal.name}</p>
+                            <CountingButton id={meal.id}/>
+                        </li>
+                    )
+                })}
         </div>
     )
 }
@@ -42,21 +41,23 @@ function CreateOrder(props){
         email: '',
         eatingHabit: 'Wurstliebhaber',
         items: '',
+        show: false
     })
 
-    const printMeatList = () => {
+    const printMeatList = (props) => {
+        console.log(props)
         return(
                 <ul >
-                    {meatList()}
-                    {vegList()}
+                    {meatList(props)}
+                    {vegList(props)}
                 </ul>
             )
     }
 
-    const printVegList = () => {
+    const printVegList = (props) => {
         return(
                 <ul >
-                    {vegList()}
+                    {vegList(props)}
                 </ul>
             )
     }
@@ -69,12 +70,14 @@ function CreateOrder(props){
             document.getElementById("button-number3").innerText = "0"
         }
         document.getElementById("Wurstliebhaber").click()
+        document.getElementById("addingNewOrder").style.display = "none"
 
         setOrder({
             name: '',
             email: '',
             eatingHabit: 'Wurstliebhaber',
             items: '',
+            show: false
         })
     }
 
@@ -105,7 +108,7 @@ function CreateOrder(props){
 
     return(
 
-        <div id="addingNewOrder" className="addingNewOrder">
+        <div id="addingNewOrder" className="addingNewOrder" style={{display: (order.show ? "block" : "none")}}>
             <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
             <h3>Für wen ist die Bestellung?</h3>
             <div className="containerForInput">
@@ -133,7 +136,7 @@ function CreateOrder(props){
                 <label htmlFor="vegetarisch/vegan">Vegetarisch/Vegan</label>
             </div>
 
-            {order.eatingHabit === "Vegetarisch/Vegan"? printVegList() : printMeatList()}
+            {order.eatingHabit === "Vegetarisch/Vegan"? printVegList(props.meals) : printMeatList(props.meals)}
 
             <form action="#orderList">
                 <button type="submit" className="buttons"
@@ -143,6 +146,5 @@ function CreateOrder(props){
 
     )
 }
-
 
 export default CreateOrder

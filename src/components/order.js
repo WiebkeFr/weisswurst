@@ -10,29 +10,37 @@ function Order(props) {
         name: "Georgios",
         email: "hjhj",
         items: [0, 2, 0, 1],
+        price: 3
     }, {
         id: "1",
         name: "Eric",
         emil: "bbnb",
         items: [3, 5, 2, 1],
+        price: 5
     }])
 
     const appendOrderItem = (order) => {
+
         const name = order.name.toString()
         const email = order.email.toString()
         const items = [Number.parseInt(order.items[0]), Number.parseInt(order.items[1]),
             Number.parseInt(order.items[2]), Number.parseInt(order.items[3])]
         const id = orderItems.length.toString()
+        let price = 0
+
+        props.meals.forEach(meal =>
+            price += items[meal.id] * Number.parseFloat(meal.price)
+        )
 
         const prevState = []
         orderItems.forEach(item => prevState.push(item))
-        prevState.push({id, name, email, items})
+        prevState.push({id, name, email, items, price})
 
         setOrderItems(prevState)
     }
 
-    const createOrderMenu = () => {
-        /*document.getElementById("createOrder").style.display = "block"*/
+    const showOrderMenu = () => {
+        document.getElementById("addingNewOrder").style.display = "block"
     }
 
     return (
@@ -66,15 +74,16 @@ function Order(props) {
                     </tbody>
                 </table>
 
-                <form >
-                    <button type="submit" className="buttons" onClick={createOrderMenu}>Neue Bestellung hinzufügen</button>
+                <form>
+                    <button type="submit" className="buttons" onClick={showOrderMenu}>Neue Bestellung hinzufügen
+                        <span style={{wordSpacing: "7em"}}> +</span></button>
                 </form>
             </div>
-            <CreateOrder id="createOrder" class="createOrder" style={{display: null}} appendItem={appendOrderItem}/>
+            <CreateOrder id="createOrder" class="createOrder" meals={props.meals} appendItem={appendOrderItem}/>
 
-            <Delivery />
+            <Delivery names={props.names}/>
 
-            <ShoppingList orderItems={orderItems} meals={props.meals}/>
+            <ShoppingList orderItems={orderItems} meals={props.meals} names={props.names}/>
 
         </>
     )

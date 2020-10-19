@@ -2,9 +2,11 @@ import React from "react"
 
 function ShoppingList(props){
     let mealNumber = [0,0,0,0]
+    let total = 0
     props.orderItems.forEach( order => {
         for(let i = 0; i < props.meals.length; i++){
             mealNumber[i] += order.items[i]
+            total += order.items[i] * props.meals[i].price
         }
         }
     )
@@ -13,8 +15,8 @@ function ShoppingList(props){
         <div >
             <h1>3 Einkaufszettel</h1>
             <h3>Zur Erinnerung: Gewinner darf heute das Weißwurstfrühstück holen.</h3>
-            <div className="shoppingList">
-                <div style={{border: "solid", borderWidth: "1px", padding: "15px"}}>
+            <div className="shoppingList" style={{border: "solid", borderWidth: "1px", padding: "15px"}}>
+                <div>
                     <h3>Gesamtbestellung</h3>
                     <table className="totalOrder" style={{maxWidth: "615px"}}>
                         <tbody>
@@ -32,20 +34,39 @@ function ShoppingList(props){
                                 )
                             })
                         }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td style={{columnSpan : "all"}}>Wert der gesamten Bestellung</td>
+                            <td> {total.toString().replace(".", ",")} Euro</td>
+                        </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>Wert der gesamten Bestellung</td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <div className="paymentList">
                     <h3>Wer muss wie viel bezahlen?</h3>
-                    <ul>
-                        <li>
-                        </li>
-                    </ul>
+                    <table>
+                        <tbody>
+                            {props.orderItems.map(order => {
+                                return (
+                                    <tr>
+                                        <td>{order.name}</td>
+                                        <td>
+                                            {props.meals.map(meal => {
+                                                return (
+                                                    <React.Fragment key={meal.id}>
+                                                        {Number.parseInt(order.items[meal.id]) > 0 ?
+                                                            order.items[meal.id] + "x " + meal.name + " " : ""}
+                                                    </React.Fragment>
+                                                )
+                                            })}
+                                        </td>
+                                        <td>{order.price} €</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
