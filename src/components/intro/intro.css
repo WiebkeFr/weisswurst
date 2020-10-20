@@ -1,0 +1,31 @@
+h1{
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 110%;
+    /* or 79px */
+
+    color: #000000;
+}
+
+h2{
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 110%;
+    /* or 35px */
+
+    color: #000000;
+}
+
+.font18 {
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    /* or 27px */
+    color: #000000;
+}

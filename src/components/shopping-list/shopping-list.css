@@ -1,0 +1,36 @@
+h1{
+    font-family: Coco Gothic;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
+    line-height: 110%;
+    /* or 79px */
+
+    color: #000000;
+}
+
+table{
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.2);
+    width: 648px;
+    border-collapse: collapse;
+}
+
+tr{
+    height: 68px;
+}
+
+.buttons{
+    width: 312px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 19px;
+    text-align: left;
+    border: 0px
+}
