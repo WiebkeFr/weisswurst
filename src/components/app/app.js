@@ -13,7 +13,7 @@ function App() {
 
         <Intro />
 
-        <Order id="order" meals={[
+        <Order id="order" menu={[
             {id: "0",
                 name:"Weißwürste",
                 price:"1.20",

@@ -7,6 +7,7 @@ function Delivery(props){
     const chooseName = () => {
         const name = props.names[Math.floor(Math.random() * props.names.length)]
         setName(name)
+        props.setDeliverer(name)
     }
 
     return(

@@ -1,47 +1,57 @@
 import React, {useState} from "react";
-import '../create-order/create-order';
+import './create-order/create-order';
 import './order.css'
-import CreateOrder from "../create-order/create-order";
+import CreateOrder from "./create-order/create-order";
 import Delivery from "../delivery/delivery.js"
 import ShoppingList from "../shopping-list/shopping-list.js"
+import OrderItem from './orderItem.js'
 
 function Order(props) {
 
-    const [show, setShow] = useState(false)
+    let initMeals = []
+    for(let i = 0; i < props.menu.length; i++){
+        initMeals[i] = {id: props.menu[i].id, name: props.menu[i].name, amount: 0}
+    }
 
+    const INITIAL_STATE = {
+        name: '',
+        email: '',
+        eatingHabit: 'Wurstliebhaber',
+        meals: initMeals
+    }
+
+    const [show, setShow] = useState(false)
+    const [deliverer, setDeliverer] = useState('')
+    const [initialOrder, setInitialOrder] = useState(INITIAL_STATE)
     const [orderItems, setOrderItems] = useState([{
         id: "0",
         name: "Georgios",
         email: "hjhj",
-        items: [0, 2, 0, 1],
+        meals: [{id: "0", name: "Weißwürste", amount:1},
+            {id:"1", name: "Debrezinger", amount:2},
+            {id:"2", name: "Karottensalat", amount:6},
+            {id:"3", name:"brezeln", amount:3}],
         price: 3
-    }, {
-        id: "1",
-        name: "Eric",
-        emil: "bbnb",
-        items: [3, 5, 2, 1],
-        price: 5
     }])
 
     const appendOrderItem = (props) => {
         const name = props.order.name.toString()
         const email = props.order.email.toString()
 
-        const items = []
-        props.order.items.forEach(item => items.push(item))
+        let meals = []
+        meals = props.order.meals
+        meals.sort((a,b) => {return a.id - b.id})
 
         let price = 0
-        props.meals.forEach(meal =>
-            price += items[meal.id] * Number.parseFloat(meal.price)
+        props.menu.forEach(menuItem =>
+            price += meals[menuItem.id].amount * Number.parseFloat(menuItem.price)
         )
 
         const id = orderItems.length.toString()
 
-        const prevState = []
-        orderItems.forEach(item => prevState.push(item))
-        prevState.push({id, name, email, items, price})
+        const newItem = {id, name, email, meals, price}
 
-        setOrderItems(prevState)
+        setOrderItems((prevState) => [...prevState, newItem])
         setShow(false)
     }
 
@@ -49,49 +59,39 @@ function Order(props) {
         setShow(true)
     }
 
+    const editOrder = (props) => {
+        console.log(props)
+        setShow(true);
+        setInitialOrder(props)
+    }
+
     return (
         <>
             <div>
                 <h1>1 Bestellung</h1>
                 <h2>Aktuelle Bestellungen</h2>
-
                 <table>
                     <tbody>
                     {
                         orderItems.map(order => {
-                            return (
-                                <tr className="orderItem" key={order.id}>
-                                    <td style={{width: "50%"}}>{order.name}</td>
-                                    <td>
-                                        {props.meals.map(meal => {
-                                            return (
-                                                <React.Fragment key={meal.id}>
-                                                {Number.parseInt(order.items[meal.id]) > 0 ?
-                                                        order.items[meal.id] + "x " + meal.name + " " : ""}
-                                                </React.Fragment>
-                                            )
-                                        })}
-                                    </td>
-                                    <td>B/L</td>
-                                </tr>
-                            )
+                            return <OrderItem order={order} menu={props.menu} key={order.id}
+                                              editOrder={editOrder}></OrderItem>
                         })
                     }
                     </tbody>
                 </table>
 
-                <form>
-                    <button type="submit" className="buttons" onClick={showOrderMenu}>Neue Bestellung hinzufügen
-                        <span style={{wordSpacing: "7em"}}> +</span></button>
-                </form>
+                <button className="buttons" onClick={showOrderMenu}>Neue Bestellung hinzufügen
+                    <span style={{wordSpacing: "7em"}}> +</span></button>
+
             </div>
 
-            <CreateOrder id="createOrder" class="createOrder" meals={props.meals}
+            <CreateOrder id="createOrder" class="createOrder" menu={props.menu} initialOrder={initialOrder}
                          show={show} appendItem={appendOrderItem}/>
 
-            <Delivery names={props.names}/>
+            <Delivery names={props.names} setDeliverer={(props) => setDeliverer(props)}/>
 
-            <ShoppingList orderItems={orderItems} meals={props.meals} names={props.names}/>
+            <ShoppingList orderItems={orderItems} menu={props.menu} names={props.names} deliverer={deliverer}/>
 
         </>
     )

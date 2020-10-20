@@ -4,6 +4,10 @@ function CountingButton(props){
 
     const [amount, setAmount] = useState(props.initialAmount)
 
+    if(props.initialAmount === -1 && amount !== 0){
+        setAmount(0)
+    }
+
     const increase = () => {
         let newAmount = amount + 1
         setAmount(newAmount)

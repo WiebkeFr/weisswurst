@@ -10,11 +10,16 @@ h1{
 }
 
 table{
-    border-bottom: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.2);
-    width: 648px;
+    all: unset;
+    width: 130%;
+
     border-collapse: collapse;
+}
+
+.lastRow{
+    border-top: solid;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-width: 1px
 }
 
 tr{

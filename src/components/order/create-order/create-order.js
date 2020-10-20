@@ -4,68 +4,81 @@ import CountingButton from "./counting-button";
 
 function CreateOrder(props){
 
-    let initItems = []
-    initItems[props.meals.length-1] = 0
-    initItems.fill(0, 0, initItems.length-1)
+    const [initialAmount, setInitialAmount] = useState(0)
+    const [show, setShow] = useState(false)
+    const [order, setOrder] = useState(props.initialOrder)
 
-    const INITIAL_STATE = {
-        name: '',
-        email: '',
-        eatingHabit: 'Wurstliebhaber',
-        items: initItems,
-        show: false
+
+    if(props.show === true && show === false){
+        setShow(true)
+        setInitialAmount(0)
     }
 
-    const [order, setOrder] = useState(INITIAL_STATE)
-
-    if(props.show && props.show !== order.show){
-        setOrder({...order, show: true})
+    if(props.initialOrder.email !== '' && order.email === ''){
+        setOrder(props.initialOrder)
+        setShow(true)
     }
 
     const setAmount = (props) => {
-        let newItems = []
-        order.items.forEach(item => newItems.push(item))
-        newItems[props.id] = props.amount
-        setOrder({...order, items: newItems})
+        let newMeals = []
+        order.meals.forEach(meal => {
+            if (meal.id !== props.id){
+                newMeals.push(meal)
+            }
+        })
+        const name = order.meals.filter(meal => meal.id === props.id)[0].name
+
+        setOrder((prevState) =>({
+            ...prevState,
+            meals: [...newMeals, {id: props.id, name, amount: props.amount}]
+        }))
+
     }
 
     const reset = () => {
+        let initMeals = []
+        for(let i = 0; i < props.menu.length; i++){
+            initMeals[i] = {id: props.menu[i].id, name: props.menu[i].name, amount: 0}
+        }
+
         setOrder({
-            name: 'hj',
+            name: '',
             email: '',
             eatingHabit: 'Wurstliebhaber',
-            items: initItems,
-            show: false
+            meals: initMeals,
         })
+        setShow(false)
+        setInitialAmount(-1)
     }
 
     const makeOrder = () => {
         const name = order.name
         const email = order.email
-        const items = order.items
+        const meals = order.meals
 
         reset()
 
         return ({
-        order: {
-            name,
-            email,
-            items
-        },
-        meals: props.meals
-        }
+            order: {
+                name,
+                email,
+                meals
+            },
+            menu: props.menu
+            }
         )
     }
 
     const printList = () => {
         return(
             <div className="mealList" id="mealList">
-                {props.meals.map(meal => {
+                {props.menu.map(menuItem => {
                         return(
-                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !meal.veg ?
-                                "orderNotShown": "orderContainer"} key={meal.id}>
-                                <p>{meal.name}</p>
-                                <CountingButton id={meal.id} initialAmount={0} setNewAmount={(props) => setAmount(props)}/>
+                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !menuItem.veg ?
+                                "orderNotShown": "orderContainer"} key={menuItem.id}>
+                                <p>{menuItem.name}</p>
+                                <CountingButton id={menuItem.id} initialAmount={initialAmount}
+                                                setNewAmount={setAmount}/>
                             </li>
                         )
                     })}
@@ -75,7 +88,7 @@ function CreateOrder(props){
 
     return(
 
-        <div id="addingNewOrder" className="addingNewOrder" style={{display: order.show ? "block" : "none"}}>
+        <div id="addingNewOrder" className="addingNewOrder" style={{display: show ? "block" : "none"}}>
             <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
             <h3>Für wen ist die Bestellung?</h3>
             <div className="containerForInput">
@@ -85,10 +98,10 @@ function CreateOrder(props){
                            setOrder({ ...order, name: event.target.value })
                        }/>
                 <div>
-                    <input type="text" id="email-input" className="email-input" placeholder="E-Mail" required
+                    <input type="text" id="email-input" className="email-input" placeholder="email@xx" required
                            value={order.email}
                         onChange={(event) => setOrder({ ...order, email: event.target.value })}/>
-                    <p className="email-index">Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                    <p className="email-index">E-Mail-Adresse: Bei dieser Adresse scheint etwas nicht zu stimmen.</p>
                 </div>
 
             </div>
@@ -104,10 +117,9 @@ function CreateOrder(props){
 
             {printList()}
 
-            <form action="#orderList">
-                <button type="submit" className="buttons"
+                <button className="buttons"
                         onClick={() => props.appendItem(makeOrder())}>Zur Bestellung hinzufügen</button>
-            </form>
+
         </div>
 
     )
