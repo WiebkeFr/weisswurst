@@ -7,22 +7,23 @@ function CreateOrder({menu, initialOrder, saveItem}){
     const [order, setOrder] = useState(initialOrder)
 
     const setAmount = (amount, meal) => {
-        let newMeals = []
+        const hasMeal = Boolean(order.meals.find(existingMeal => existingMeal.id === meal.id))
+        const newMeal = {...meal, amount}
 
-        for(let i = 0; i < order.meals.length - 1; i++){
-            if (order.meals[i].id !== meal.id){
-                newMeals.push(order.meals[i])
-            }else{
-                newMeals.push({id: meal.id, name: meal.name, amount})
-            }
-        }
+        const newMeals = hasMeal ?
+            order.meals.map(existingMeal => {
+                if(existingMeal.id === meal.id){
+                    return newMeal;
+                }else{
+                    return existingMeal
+                }
+            }) :
+            [...order.meals, newMeal];
 
-        setOrder((prevState) =>({
+        setOrder((prevState) => ({
             ...prevState,
-            meals: [...newMeals, {...order.meals[order.meals.length-1], amount:
-            (meal.id === order.meals[order.meals.length - 1].id
-                ? amount : order.meals[order.meals.length - 1].amount)}]
-        }))
+            meals: [...newMeals]
+        }));
     }
 
     const makeOrder = () => {

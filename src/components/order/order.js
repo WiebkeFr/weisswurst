@@ -8,6 +8,7 @@ import OrderItem from './orderItem.js'
 
 function Order({menu}) {
 
+    console.log("render...")
     let initMeals = []
     for(let i = 0; i < menu.length; i++){
         initMeals[i] = {id: menu[i].id, name: menu[i].name, amount: 0}
@@ -34,14 +35,15 @@ function Order({menu}) {
     }])
 
     const saveOrderItem = ({order}) => {
-        const orderNames = orderItems.map( orderItem => orderItem.name.toString()).filter(name => order.name === name)
-        if(orderNames.length === 1){
-            orderItems.map(orderItem => {
+        const hasOrder = orderItems.find(orderItems => orderItems.name === order.name)
+        if(hasOrder){
+            const newOrderItems = orderItems.map(orderItem => {
                 if(orderItem.name === order.name){
-                    orderItem.meals = order.meals
+                    return {...orderItem, meals: order.meals}
                 }
+                return orderItem
             })
-            setOrderItems(orderItems)
+            setOrderItems(newOrderItems)
         }else{
             const name = order.name.toString()
             const email = order.email.toString()
@@ -64,7 +66,7 @@ function Order({menu}) {
     }
 
     const deleteOrder = (order) => {
-        const newOrderItems = orderItems.filter(orderItem => orderItems !== order)
+        const newOrderItems = orderItems.filter(orderItem => orderItem !== order)
         setOrderItems(newOrderItems)
     }
 

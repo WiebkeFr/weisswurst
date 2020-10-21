@@ -14,6 +14,11 @@ function ShoppingList({orderItems, menu, deliverer}){
         }
     })
 
+    const calculatePrice = (order) => {
+        return order.meals.map( meal => meal.amount * menu[meal.id].price)
+            .reduce((a, b) => a + b)
+    }
+
     return(
         <div >
             <h1>3 Einkaufszettel</h1>
@@ -65,7 +70,7 @@ function ShoppingList({orderItems, menu, deliverer}){
                                                 )
                                             })}
                                         </td>
-                                        <td>{Number.parseFloat(order.price)
+                                        <td>{Number.parseFloat(calculatePrice(order))
                                             .toFixed(2).replace(".", ",")} €</td>
                                     </tr>
                                 )

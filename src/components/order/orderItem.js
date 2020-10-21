@@ -1,6 +1,6 @@
 import React from 'react'
 
-function OrderItem({order, menu, key, editOrder, deleteOrder}){
+function OrderItem({order, menu, editOrder, deleteOrder}){
 
     return(
         <tr className="orderItem" >
