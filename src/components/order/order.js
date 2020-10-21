@@ -6,11 +6,11 @@ import Delivery from "../delivery/delivery.js"
 import ShoppingList from "../shopping-list/shopping-list.js"
 import OrderItem from './orderItem.js'
 
-function Order(props) {
+function Order({menu}) {
 
     let initMeals = []
-    for(let i = 0; i < props.menu.length; i++){
-        initMeals[i] = {id: props.menu[i].id, name: props.menu[i].name, amount: 0}
+    for(let i = 0; i < menu.length; i++){
+        initMeals[i] = {id: menu[i].id, name: menu[i].name, amount: 0}
     }
 
     const INITIAL_STATE = {
@@ -22,7 +22,7 @@ function Order(props) {
 
     const [show, setShow] = useState(false)
     const [deliverer, setDeliverer] = useState('')
-    const [initialOrder, setInitialOrder] = useState(INITIAL_STATE)
+    const [editOrder, setEditOrder] = useState(INITIAL_STATE)
     const [orderItems, setOrderItems] = useState([{
         id: "0",
         name: "Georgios",
@@ -30,39 +30,43 @@ function Order(props) {
         meals: [{id: "0", name: "Weißwürste", amount:1},
             {id:"1", name: "Debrezinger", amount:2},
             {id:"2", name: "Karottensalat", amount:6},
-            {id:"3", name:"brezeln", amount:3}],
-        price: 3
+            {id:"3", name:"brezeln", amount:3}]
     }])
 
-    const appendOrderItem = (props) => {
-        const name = props.order.name.toString()
-        const email = props.order.email.toString()
+    const saveOrderItem = (props) => {
+        const orderNames = orderItems.map(order => order.name.toString()).filter(name => props.order.name === name)
+        if(orderNames.length === 1){
+            orderItems.map(order => {
+                if(order.name === props.order.name){
+                    order.meals = props.order.meals
+                }
+            })
+            setOrderItems(orderItems)
+        }else{
+            const name = props.order.name.toString()
+            const email = props.order.email.toString()
 
-        let meals = []
-        meals = props.order.meals
-        meals.sort((a,b) => {return a.id - b.id})
+            let meals = props.order.meals
 
-        let price = 0
-        props.menu.forEach(menuItem =>
-            price += meals[menuItem.id].amount * Number.parseFloat(menuItem.price)
-        )
+            const id = orderItems.length.toString()
 
-        const id = orderItems.length.toString()
+            const newItem = {id, name, email, meals}
 
-        const newItem = {id, name, email, meals, price}
-
-        setOrderItems((prevState) => [...prevState, newItem])
+            setOrderItems((prevState) => [...prevState, newItem])
+            setShow(false)
+        }
         setShow(false)
+
     }
 
     const showOrderMenu = () => {
         setShow(true)
     }
 
-    const editOrder = (props) => {
+    const editExistingOrder = (props) => {
         console.log(props)
         setShow(true);
-        setInitialOrder(props)
+        setEditOrder(props)
     }
 
     return (
@@ -74,8 +78,8 @@ function Order(props) {
                     <tbody>
                     {
                         orderItems.map(order => {
-                            return <OrderItem order={order} menu={props.menu} key={order.id}
-                                              editOrder={editOrder}></OrderItem>
+                            return <OrderItem order={order} menu={menu} key={order.id}
+                                              editOrder={editExistingOrder}></OrderItem>
                         })
                     }
                     </tbody>
@@ -86,12 +90,14 @@ function Order(props) {
 
             </div>
 
-            <CreateOrder id="createOrder" class="createOrder" menu={props.menu} initialOrder={initialOrder}
-                         show={show} appendItem={appendOrderItem}/>
+            {
+                show && <CreateOrder id="createOrder" class="createOrder" menu={menu} initialOrder={editOrder}
+                                     saveItem={saveOrderItem}/>
+            }
 
-            <Delivery names={props.names} setDeliverer={(props) => setDeliverer(props)}/>
+            <Delivery orderItems={orderItems} setDeliverer={(name) => setDeliverer(name)}/>
 
-            <ShoppingList orderItems={orderItems} menu={props.menu} names={props.names} deliverer={deliverer}/>
+            <ShoppingList orderItems={orderItems} menu={menu} deliverer={deliverer}/>
 
         </>
     )

@@ -4,51 +4,25 @@ import CountingButton from "./counting-button";
 
 function CreateOrder(props){
 
-    const [initialAmount, setInitialAmount] = useState(0)
-    const [show, setShow] = useState(false)
     const [order, setOrder] = useState(props.initialOrder)
 
-
-    if(props.show === true && show === false){
-        setShow(true)
-        setInitialAmount(0)
-    }
-
-    if(props.initialOrder.email !== '' && order.email === ''){
-        setOrder(props.initialOrder)
-        setShow(true)
-    }
-
-    const setAmount = (props) => {
+    const setAmount = (amount, meal) => {
         let newMeals = []
-        order.meals.forEach(meal => {
-            if (meal.id !== props.id){
-                newMeals.push(meal)
+
+        for(let i = 0; i < order.meals.length - 1; i++){
+            if (order.meals[i].id !== meal.id){
+                newMeals.push(order.meals[i])
+            }else{
+                newMeals.push({id: meal.id, name: meal.name, amount})
             }
-        })
-        const name = order.meals.filter(meal => meal.id === props.id)[0].name
+        }
 
         setOrder((prevState) =>({
             ...prevState,
-            meals: [...newMeals, {id: props.id, name, amount: props.amount}]
+            meals: [...newMeals, {...order.meals[order.meals.length-1], amount:
+            (meal.id === order.meals[order.meals.length - 1].id
+                ? amount : order.meals[order.meals.length - 1].amount)}]
         }))
-
-    }
-
-    const reset = () => {
-        let initMeals = []
-        for(let i = 0; i < props.menu.length; i++){
-            initMeals[i] = {id: props.menu[i].id, name: props.menu[i].name, amount: 0}
-        }
-
-        setOrder({
-            name: '',
-            email: '',
-            eatingHabit: 'Wurstliebhaber',
-            meals: initMeals,
-        })
-        setShow(false)
-        setInitialAmount(-1)
     }
 
     const makeOrder = () => {
@@ -56,29 +30,28 @@ function CreateOrder(props){
         const email = order.email
         const meals = order.meals
 
-        reset()
-
         return ({
-            order: {
-                name,
-                email,
-                meals
-            },
-            menu: props.menu
+                order: {
+                    name,
+                    email,
+                    meals
+                },
+                menu: props.menu
             }
         )
+
     }
 
     const printList = () => {
         return(
             <div className="mealList" id="mealList">
-                {props.menu.map(menuItem => {
+                {order.meals.map(meal => {
                         return(
-                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !menuItem.veg ?
-                                "orderNotShown": "orderContainer"} key={menuItem.id}>
-                                <p>{menuItem.name}</p>
-                                <CountingButton id={menuItem.id} initialAmount={initialAmount}
-                                                setNewAmount={setAmount}/>
+                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !meal.veg ?
+                                "orderNotShown": "orderContainer"} key={meal.id}>
+                                <p>{meal.name}</p>
+                                <CountingButton meal={meal} initialAmount={meal.amount}
+                                                setNewAmount={(amount) => setAmount(amount, meal)}/>
                             </li>
                         )
                     })}
@@ -88,7 +61,7 @@ function CreateOrder(props){
 
     return(
 
-        <div id="addingNewOrder" className="addingNewOrder" style={{display: show ? "block" : "none"}}>
+        <div id="addingNewOrder" className="addingNewOrder" /*style={{display: show ? "block" : "none"}}*/>
             <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
             <h3>Für wen ist die Bestellung?</h3>
             <div className="containerForInput">
@@ -107,10 +80,12 @@ function CreateOrder(props){
             </div>
             <h3>Was möchte derjenige essen?</h3>
             <div style={{marginTop: 10, marginBottom: 10}}>
-                <input type="radio" name="meal" style={{marginLeft: 0}} id="Wurstliebhaber" defaultChecked
+                <input type="radio" name="meal" style={{marginLeft: 0}} id="Wurstliebhaber"
+                       checked={order.eatingHabit === "Wurstliebhaber"}
                        onChange={() => setOrder({ ...order, eatingHabit: 'Wurstliebhaber' })} />
                 <label htmlFor="wurstliebhaber">Wurstliebhaber</label>
                 <input type="radio" name="meal" id="Vegetarisch/Vegan"
+                       checked={order.eatingHabit === "Vegetarisch/Vegan"}
                        onChange={() => setOrder({ ...order, eatingHabit: 'Vegetarisch/Vegan' })}/>
                 <label htmlFor="vegetarisch/vegan">Vegetarisch/Vegan</label>
             </div>
@@ -118,7 +93,7 @@ function CreateOrder(props){
             {printList()}
 
                 <button className="buttons"
-                        onClick={() => props.appendItem(makeOrder())}>Zur Bestellung hinzufügen</button>
+                        onClick={() => props.saveItem(makeOrder())}>Zur Bestellung hinzufügen</button>
 
         </div>
 

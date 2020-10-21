@@ -3,7 +3,6 @@ import React from 'react'
 function OrderItem(props){
 
     const editOrder = () => {
-        console.log("edit")
         props.editOrder(props.order)
     }
 

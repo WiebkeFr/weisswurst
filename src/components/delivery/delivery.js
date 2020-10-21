@@ -1,13 +1,14 @@
 import React, {useState} from "react"
 import './delivery.css'
 
-function Delivery(props){
+function Delivery({orderItems, setDeliverer}){
     const [name, setName] = useState("")
 
     const chooseName = () => {
-        const name = props.names[Math.floor(Math.random() * props.names.length)]
+        const names = orderItems.map(order => order.name)
+        const name = names[Math.floor(Math.random() * names.length)]
         setName(name)
-        props.setDeliverer(name)
+        setDeliverer(name)
     }
 
     return(
