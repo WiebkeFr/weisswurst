@@ -1,30 +1,30 @@
 import React from "react"
 import './shopping-list.css'
-function ShoppingList(props){
+function ShoppingList({orderItems, menu, deliverer}){
     let mealNumber = []
-    for(let i = 0; i < props.menu.length; i++){
+    for(let i = 0; i < menu.length; i++){
         mealNumber[i] = 0
     }
     let total = 0
 
-    props.orderItems.forEach( order => {
-        for(let i = 0; i < props.menu.length; i++){
+    orderItems.forEach( order => {
+        for(let i = 0; i < menu.length; i++){
             mealNumber[i] += order.meals[i].amount
-            total += order.meals[i].amount * props.menu[i].price
+            total += order.meals[i].amount * menu[i].price
         }
     })
 
     return(
         <div >
             <h1>3 Einkaufszettel</h1>
-            <h3>Zur Erinnerung: {props.deliverer} darf heute das Weißwurstfrühstück holen.</h3>
+            <h3>Zur Erinnerung: {deliverer} darf heute das Weißwurstfrühstück holen.</h3>
             <div className="shoppingList" style={{border: "solid", borderWidth: "1px", padding: "15px"}}>
                 <div>
                     <h3>Gesamtbestellung</h3>
                     <table className="totalOrder" style={{maxWidth: "700px"}}>
                         <tbody>
                         {
-                            props.menu.map(menuItem => {
+                            menu.map(menuItem => {
                                 return(
                                     <tr key={menuItem.id}>
                                         <td>{menuItem.name}</td>
@@ -51,12 +51,12 @@ function ShoppingList(props){
                     <h3>Wer muss wie viel bezahlen?</h3>
                     <table>
                         <tbody>
-                            {props.orderItems.map(order => {
+                            {orderItems.map(order => {
                                 return (
                                     <tr key={order.id}>
                                         <td>{order.name}</td>
                                         <td>
-                                            {props.menu.map(menuItem => {
+                                            {menu.map(menuItem => {
                                                 return (
                                                     <React.Fragment key={menuItem.id}>
                                                         {Number.parseInt(order.meals[menuItem.id]) > 0 ?

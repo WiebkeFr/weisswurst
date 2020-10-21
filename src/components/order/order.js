@@ -33,40 +33,39 @@ function Order({menu}) {
             {id:"3", name:"brezeln", amount:3}]
     }])
 
-    const saveOrderItem = (props) => {
-        const orderNames = orderItems.map(order => order.name.toString()).filter(name => props.order.name === name)
+    const saveOrderItem = ({order}) => {
+        const orderNames = orderItems.map( orderItem => orderItem.name.toString()).filter(name => order.name === name)
         if(orderNames.length === 1){
-            orderItems.map(order => {
-                if(order.name === props.order.name){
-                    order.meals = props.order.meals
+            orderItems.map(orderItem => {
+                if(orderItem.name === order.name){
+                    orderItem.meals = order.meals
                 }
             })
             setOrderItems(orderItems)
         }else{
-            const name = props.order.name.toString()
-            const email = props.order.email.toString()
-
-            let meals = props.order.meals
-
+            const name = order.name.toString()
+            const email = order.email.toString()
+            let meals = order.meals
             const id = orderItems.length.toString()
-
             const newItem = {id, name, email, meals}
-
             setOrderItems((prevState) => [...prevState, newItem])
-            setShow(false)
         }
         setShow(false)
-
+        setEditOrder(INITIAL_STATE)
     }
 
     const showOrderMenu = () => {
         setShow(true)
     }
 
-    const editExistingOrder = (props) => {
-        console.log(props)
+    const editExistingOrder = (order) => {
         setShow(true);
-        setEditOrder(props)
+        setEditOrder(order)
+    }
+
+    const deleteOrder = (order) => {
+        const newOrderItems = orderItems.filter(orderItem => orderItems !== order)
+        setOrderItems(newOrderItems)
     }
 
     return (
@@ -78,8 +77,13 @@ function Order({menu}) {
                     <tbody>
                     {
                         orderItems.map(order => {
-                            return <OrderItem order={order} menu={menu} key={order.id}
-                                              editOrder={editExistingOrder}></OrderItem>
+                            return <OrderItem
+                                order={order}
+                                menu={menu}
+                                key={order.id}
+                                editOrder={editExistingOrder}
+                                deleteOrder={deleteOrder}
+                                ></OrderItem>
                         })
                     }
                     </tbody>
@@ -95,7 +99,7 @@ function Order({menu}) {
                                      saveItem={saveOrderItem}/>
             }
 
-            <Delivery orderItems={orderItems} setDeliverer={(name) => setDeliverer(name)}/>
+            <Delivery orderItems={orderItems}  setDeliverer={(name) => setDeliverer(name)}/>
 
             <ShoppingList orderItems={orderItems} menu={menu} deliverer={deliverer}/>
 

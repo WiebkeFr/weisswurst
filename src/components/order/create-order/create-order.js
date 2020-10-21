@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import './create-order.css'
 import CountingButton from "./counting-button";
 
-function CreateOrder(props){
+function CreateOrder({menu, initialOrder, saveItem}){
 
-    const [order, setOrder] = useState(props.initialOrder)
+    const [order, setOrder] = useState(initialOrder)
 
     const setAmount = (amount, meal) => {
         let newMeals = []
@@ -35,8 +35,7 @@ function CreateOrder(props){
                     name,
                     email,
                     meals
-                },
-                menu: props.menu
+                }
             }
         )
 
@@ -47,7 +46,7 @@ function CreateOrder(props){
             <div className="mealList" id="mealList">
                 {order.meals.map(meal => {
                         return(
-                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !meal.veg ?
+                            <li className={order.eatingHabit === "Vegetarisch/Vegan" && !menu[meal.id].veg ?
                                 "orderNotShown": "orderContainer"} key={meal.id}>
                                 <p>{meal.name}</p>
                                 <CountingButton meal={meal} initialAmount={meal.amount}
@@ -93,7 +92,7 @@ function CreateOrder(props){
             {printList()}
 
                 <button className="buttons"
-                        onClick={() => props.saveItem(makeOrder())}>Zur Bestellung hinzufügen</button>
+                        onClick={() => saveItem(makeOrder())}>Zur Bestellung hinzufügen</button>
 
         </div>
 
