@@ -1,66 +1,87 @@
-h1{
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 72px;
-    line-height: 110%;
-    /* or 79px */
+.h1--Order {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 72px;
+  line-height: 110%;
+  /* or 79px */
 
-    color: #000000;
+  color: #202840;
 }
 
-h2{
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 110%;
-    /* or 35px */
+.h2--Order {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 110%;
+  /* or 35px */
 
-    color: #000000;
+  color: #202840;
 }
 
-table{
-    border-bottom: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.2);
-    width: 648px;
-    border-collapse: collapse;
+table {
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  width: 648px;
+  border-collapse: collapse;
 }
 
-tr{
-    height: 68px;
+tr {
+  height: 68px;
 }
 
-.buttons{
-    width: 312px;
-    height: 56px;
-    background: rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 19px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 19px;
-    text-align: left;
-    border: 0px
+td {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 110%;
+  color: #202840;
+
+  border-radius: 10px;
 }
 
-.button{
-    all:unset;
-    width: 35px;
-    height: 36px;
-    background: rgba(196,196,196,0.2);
-    border-radius: 3px;
+.button--submit {
+  background: #668cff;
+  border-radius: 28px;
+  color: white;
 
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 15px;
-    margin: 1px;
-    /* or 15px */
+  width: 312px;
+  height: 48px;
 
-    text-align: center;
-    color: #000000;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 13px;
+  text-align: left;
+  border: 0px;
+
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 110%;
+  /* identical to box height, or 22px */
+}
+
+.button {
+  all: unset;
+  width: 35px;
+  height: 36px;
+  border-radius: 3px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  margin: 1px;
+  /* or 15px */
+  color: #668cff;
+
+  text-align: center;
 }

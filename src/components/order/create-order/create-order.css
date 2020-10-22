@@ -1,117 +1,187 @@
-h2{
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 110%;
-    /* or 35px */
+h2 {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 110%;
+  /* or 35px */
 
-    color: #000000;
+  color: #000000;
 }
 
-.containerForInput{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    color: black;
+.containerForInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: black;
 }
 
-.name-input{
-    background: rgba(0, 0, 0, 0.1);
-    text-align: left;
-    padding-bottom: 19px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 19px;
-    width: 288px;
-    height: 18px;
-    border: 0px
+.name-input {
+  background: rgba(0, 0, 0, 0.1);
+  text-align: left;
+  padding-bottom: 19px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 19px;
+  width: 288px;
+  height: 18px;
+  border: 0px;
 }
 
-.email-input{
-    background: rgba(220, 5, 45, 0.1);
-    text-align: left;
-    padding-bottom: 19px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 19px;
-    width: 288px;
-    height: 18px;
+.email-input {
+  background: rgba(220, 5, 45, 0.1);
+  text-align: left;
+  padding-bottom: 19px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 19px;
+  width: 288px;
+  height: 18px;
 
-    border: 0px;
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 110%;
-    /* or 15px */
+  border: 0px;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 110%;
+  /* or 15px */
 
-    color: #DC052D;
+  color: #dc052d;
 }
 
-.email-index{
-    color: #DC052D;
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 110%;
-    margin-top: 0px;
-    height: 30px;
-    width: 288px
+.email-index {
+  color: #dc052d;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 110%;
+  margin-top: 0px;
+  height: 30px;
+  width: 288px;
 }
 
-.buttons{
-    width: 312px;
-    height: 56px;
-    background: rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-bottom: 19px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 19px;
-    text-align: left;
-    border: 0px
+.buttons {
+  width: 312px;
+  height: 56px;
+  background: rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-bottom: 19px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 19px;
+  text-align: left;
+  border: 0px;
 }
 
-.button{
-    all:unset;
-    width: 35px;
-    height: 36px;
-    background: rgba(196,196,196,0.2);
-    border-radius: 3px;
+.button {
+  all: unset;
+  width: 35px;
+  height: 36px;
+  background: rgba(196, 196, 196, 0.2);
+  border-radius: 3px;
 
-    font-family: Lato;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 15px;
-    margin: 1px;
-    /* or 15px */
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  margin: 1px;
+  /* or 15px */
 
-    text-align: center;
-    color: #000000;
+  text-align: center;
+  color: #000000;
 }
 
-.mealList{
-    all: unset
+.mealList {
+  all: unset;
 }
 
-.orderContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.orderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    border-bottom: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.2);
-    width: 648px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  width: 648px;
 
-    color: #000000;
-
+  color: #000000;
 }
 
-.orderNotShown{
-    display: none
+.orderNotShown {
+  display: none;
+}
+
+.button--counting {
+  all: unset;
+  width: 35px;
+  height: 36px;
+  border-radius: 3px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  margin: 1px;
+  /* or 15px */
+  color: #668cff;
+
+  text-align: center;
+  border: 0px;
+}
+
+.button--number {
+  all: unset;
+  width: 35px;
+  height: 36px;
+  border-radius: 3px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 15px;
+  margin: 1px;
+  /* or 15px */
+  color: #668cff;
+
+  text-align: center;
+  background: rgba(32, 40, 64, 0.05);
+  border-radius: 3px;
+}
+
+.button--radio {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+
+  color: #000000;
+
+  background: #668cff;
+}
+
+.font24 {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 110%;
+
+  color: #202840;
+}
+
+h3 {
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
+
+  color: #202840;
 }
