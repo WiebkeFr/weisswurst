@@ -16,7 +16,7 @@ h2 {
   color: black;
 }
 
-.name-input {
+.input--normal {
   background: rgba(0, 0, 0, 0.1);
   text-align: left;
   padding-bottom: 19px;
@@ -28,7 +28,7 @@ h2 {
   border: 0px;
 }
 
-.email-input {
+.input--error{
   background: rgba(220, 5, 45, 0.1);
   text-align: left;
   padding-bottom: 19px;
@@ -49,7 +49,7 @@ h2 {
   color: #dc052d;
 }
 
-.email-index {
+.email--index {
   color: #dc052d;
   font-family: Coco Gothic;
   font-style: normal;
@@ -96,6 +96,17 @@ h2 {
 
 .mealList {
   all: unset;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 110%;
+  /* or 26px */
+
+  /* Text-L/DefaultText-100 */
+
+  color: #202840;
+  border-radius: 10px;
 }
 
 .orderContainer {
@@ -155,15 +166,18 @@ h2 {
 }
 
 .button--radio {
+  color: #000000;
+  background: #668cff;
+}
+
+label{
   font-family: Coco Gothic;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-
+  /* identical to box height, or 18px */
   color: #000000;
-
-  background: #668cff;
 }
 
 .font24 {

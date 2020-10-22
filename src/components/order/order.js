@@ -109,7 +109,7 @@ function Order({ menu }) {
           class="createOrder"
           menu={menu}
           initialOrder={editOrder}
-          saveItem={saveOrder}
+          saveOrder={saveOrder}
         />
       )}
 

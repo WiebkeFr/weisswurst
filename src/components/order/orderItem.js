@@ -1,10 +1,11 @@
 import React from "react";
+import './orderItem.css'
 
 function OrderItem({ order, menu, editOrder, deleteOrder }) {
   return (
     <tr className="orderItem">
-      <td style={{ width: "50%" }}>{order.name}</td>
-      <td>
+      <td className="orderItem--name">{order.name}</td>
+      <td className="orderItem--order">
         {menu.map((menuItem) => {
           return (
             <React.Fragment key={menuItem.id}>

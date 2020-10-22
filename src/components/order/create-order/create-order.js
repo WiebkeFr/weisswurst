@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import "./create-order.css";
 import Meals from "./meals.js";
 
-function CreateOrder({ menu, initialOrder, saveItem }) {
+function CreateOrder({ menu, initialOrder, saveOrder }) {
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: "Wurstliebhaber",
   });
+  const [error, setError] = useState(false);
+
+  const reg = /\w+@\w+\.\w+/;
+  if (error && reg.test(order.email)) {
+    setError(false);
+  }
 
   const setAmount = (amount, meal) => {
     const hasMeal = Boolean(
@@ -30,6 +36,15 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
     }));
   };
 
+  const testEmail = () => {
+    const reg = /\w+@\w+\.\w+/;
+    if (!reg.test(order.email)) {
+      setError(true);
+    } else {
+      saveOrder(order);
+    }
+  };
+
   return (
     <div id="addingNewOrder" className="addingNewOrder">
       <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
@@ -38,7 +53,7 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
         <input
           type="text"
           id="name-input"
-          className="name-input"
+          className="input--normal"
           name="name-input"
           placeholder="Name"
           value={order.name}
@@ -47,8 +62,8 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
         <div>
           <input
             type="text"
-            id="email-input"
-            className="email-input"
+            id="input"
+            className={error ? "input--error" : "input--normal"}
             placeholder="email@xx"
             required
             value={order.email}
@@ -56,9 +71,13 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
               setOrder({ ...order, email: event.target.value })
             }
           />
-          <p className="email-index">
-            E-Mail-Adresse: Bei dieser Adresse scheint etwas nicht zu stimmen.
-          </p>
+          {error ? (
+            <p className="email--index">
+              E-Mail-Adresse: Bei dieser Adresse scheint etwas nicht zu stimmen.
+            </p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <h3>Was möchte derjenige essen?</h3>
@@ -71,7 +90,7 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
           checked={order.eatingHabit === "Wurstliebhaber"}
           onChange={() => setOrder({ ...order, eatingHabit: "Wurstliebhaber" })}
         />
-        <label htmlFor="wurstliebhaber">Wurstliebhaber</label>
+        <label htmlFor="Wurstliebhaber">Wurstliebhaber</label>
         <input
           className="button--radio"
           type="radio"
@@ -82,12 +101,12 @@ function CreateOrder({ menu, initialOrder, saveItem }) {
             setOrder({ ...order, eatingHabit: "Vegetarisch/Vegan" })
           }
         />
-        <label htmlFor="vegetarisch/vegan">Vegetarisch/Vegan</label>
+        <label htmlFor="Vegetarisch/Vegan">Vegetarisch/Vegan</label>
       </div>
 
       <Meals order={order} menu={menu} setAmount={setAmount} />
 
-      <button className="button--submit" onClick={() => saveItem(order)}>
+      <button className="button--submit" onClick={testEmail}>
         Zur Bestellung hinzufügen
       </button>
     </div>

@@ -14,6 +14,7 @@ h1 {
   border-radius: 4px;
   border: solid;
   padding: 40px;
+  max-width: 648px;
 }
 
 .h3--table-header {
@@ -25,14 +26,70 @@ table {
   border-collapse: collapse;
 }
 
-.td--shoppingList{
-  width: 25%
+.td--shoppingList {
+  width: 25%;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 110%;
+
+  color: #202840;
 }
 
-.lastRow {
-  border-top: solid;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-width: 1px;
+.td--sum {
+  width: 20%;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+
+  text-align: right;
+  color: #668cff;
+}
+
+.td--shoppingList--right {
+  width: 20%;
+  text-align: right;
+}
+
+.td--middle {
+  width: 5%;
+}
+
+.td--paymentList--name{
+  width: 35%;
+}
+
+.td--paymentList--order{
+  width: 40%;
+}
+
+.td--paymentList--sum{
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+
+  text-align: right;
+  color: #668cff;
+
+}
+
+.lastRow--text{
+  column-span: all;
+}
+
+.lastRow--sum {
+  ext-align: right;
+  color: #668cff;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
 }
 
 .lastColumn {

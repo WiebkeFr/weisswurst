@@ -35,17 +35,20 @@ function ShoppingList({ orderItems, menu, deliverer }) {
       <div className="shoppingList">
         <div>
           <h3 className="h3--table-header">Gesamtbestellung</h3>
-          <table className="totalOrder" style={{ maxWidth: "700px" }}>
+          <table className="totalOrder">
             <tbody>
               {menu.map((menuItem) => {
                 return (
                   <tr key={menuItem.id}>
                     <td className="td--shoppingList"> {menuItem.name}</td>
-                    <td className="td--shoppingList">
+                    <td className="td--shoppingList--right">
                       <b>{mealNumber[menuItem.id]} Stück</b>
                     </td>
-                    <td className="td--shoppingList">pro Stück {menuItem.price.replace(".", ",")} €</td>
+                    <td className="td--middle"></td>
                     <td className="td--shoppingList">
+                      pro Stück {menuItem.price.replace(".", ",")} €
+                    </td>
+                    <td className="td--sum">
                       {(
                         mealNumber[menuItem.id] *
                         Number.parseFloat(menuItem.price)
@@ -58,17 +61,19 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                   </tr>
                 );
               })}
-              <tr className="lastRow">
+              <tr>
                 <td></td>
                 <td></td>
-                <td style={{ columnSpan: "all" }}>
+                <td></td>
+                <td className="lastRow--text">
                   Wert der gesamten Bestellung
                 </td>
-                <td> {total.toFixed(2).toString().replace(".", ",")} Euro</td>
+                <td className="lastRow--sum">{total.toFixed(2).toString().replace(".", ",")} Euro</td>
               </tr>
             </tbody>
           </table>
         </div>
+
         <div className="paymentList">
           <h3>Wer muss wie viel bezahlen?</h3>
           <table>
@@ -76,13 +81,14 @@ function ShoppingList({ orderItems, menu, deliverer }) {
               {orderItems.map((order) => {
                 return (
                   <tr key={order.id}>
-                    <td>{order.name}</td>
-                    <td>
+                    <td className="td--paymentList--name">{order.name}</td>
+                    <td className="td--paymentList--order">
                       {menu.map((menuItem) => {
                         return (
                           <React.Fragment key={menuItem.id}>
-                            {Number.parseInt(order.meals[menuItem.id]) > 0
-                              ? order.meals[menuItem.id] +
+                            {Number.parseInt(order.meals[menuItem.id].amount) >
+                            0
+                              ? order.meals[menuItem.id].amount +
                                 "x " +
                                 menuItem.name +
                                 " "
@@ -91,12 +97,13 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                         );
                       })}
                     </td>
-                    <td>
+                    <td className="td--paymentList--sum">
                       {Number.parseFloat(calculatePrice(order))
                         .toFixed(2)
                         .replace(".", ",")}{" "}
                       €
                     </td>
+                    <td style={{textAlign: "right"}}><b>O</b></td>
                   </tr>
                 );
               })}
