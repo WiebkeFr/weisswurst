@@ -7,12 +7,24 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
     ...initialOrder,
     eatingHabit: "Wurstliebhaber",
   });
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({
+    email: false,
+    name: false,
+    order: false,
+  });
 
   const reg = /\w+@\w+\.\w+/;
-  if (error && reg.test(order.email)) {
-    setError(false);
+  if (error.email && reg.test(order.email)) {
+    setError({ ...error, email: false });
   }
+  if (error.name && order.name !== "") {
+    setError({ ...error, name: false });
+  }
+  if (
+    error.order &&
+    order.meals.map((meal) => meal.amount).reduce((a, b) => a + b) !== 0
+  )
+    setError({ ...error, order: false });
 
   const setAmount = (amount, meal) => {
     const hasMeal = Boolean(
@@ -36,13 +48,16 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
     }));
   };
 
-  const testEmail = () => {
+  const testInput = () => {
     const reg = /\w+@\w+\.\w+/;
-    if (!reg.test(order.email)) {
-      setError(true);
-    } else {
-      saveOrder(order);
-    }
+    const nameError = order.name === "";
+    const emailError = !reg.test(order.email);
+    const orderError =
+      order.meals.map((meal) => meal.amount).reduce((a, b) => a + b) === 0;
+
+    setError({ order: orderError, name: nameError, email: emailError });
+
+    if (!nameError && !emailError && !orderError) saveOrder(order);
   };
 
   return (
@@ -50,20 +65,32 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
       <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
       <h3>Für wen ist die Bestellung?</h3>
       <div className="containerForInput">
-        <input
-          type="text"
-          id="name-input"
-          className="input--normal"
-          name="name-input"
-          placeholder="Name"
-          value={order.name}
-          onChange={(event) => setOrder({ ...order, name: event.target.value })}
-        />
         <div>
           <input
             type="text"
+            id="name-input"
+            className={error.name ? "input--error" : "input--normal"}
+            name="name-input"
+            placeholder="Name"
+            value={order.name}
+            onChange={(event) =>
+              setOrder({ ...order, name: event.target.value })
+            }
+          />
+          {error.name ? (
+            <p className="input--index">
+              <b>Name</b>: Es muss ein Name angegeben werden.
+            </p>
+          ) : (
+            <></>
+          )}
+        </div>
+
+        <div>
+          <input
+            type="email"
             id="input"
-            className={error ? "input--error" : "input--normal"}
+            className={error.email ? "input--error" : "input--normal"}
             placeholder="email@xx"
             required
             value={order.email}
@@ -71,9 +98,10 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
               setOrder({ ...order, email: event.target.value })
             }
           />
-          {error ? (
-            <p className="email--index">
-              E-Mail-Adresse: Bei dieser Adresse scheint etwas nicht zu stimmen.
+          {error.email ? (
+            <p className="input--index">
+              <b>E-Mail-Adresse</b>: Bei dieser Adresse scheint etwas nicht zu
+              stimmen.
             </p>
           ) : (
             <></>
@@ -104,11 +132,28 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
         <label htmlFor="Vegetarisch/Vegan">Vegetarisch/Vegan</label>
       </div>
 
-      <Meals order={order} menu={menu} setAmount={setAmount} />
+      <Meals
+        order={order}
+        menu={menu}
+        setAmount={setAmount}
+        orderError={error.order}
+      />
+      {error.order ? (
+        <p className="input--index" style={{ textAlign: "right" }}>
+          <b>Bestellung</b>: Es liegt keine Bestellung vor.
+        </p>
+      ) : (
+        <></>
+      )}
 
-      <button className="button--submit" onClick={testEmail}>
-        Zur Bestellung hinzufügen
-      </button>
+      <div className="container--submitButtons">
+        <button className="button--submit" onClick={testInput}>
+          Zur Bestellung hinzufügen
+        </button>
+        <button className="button--submit" onClick={() => saveOrder(undefined)}>
+          Abbrechen
+        </button>
+      </div>
     </div>
   );
 }

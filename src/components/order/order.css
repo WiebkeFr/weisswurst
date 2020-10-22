@@ -20,7 +20,7 @@
   color: #202840;
 }
 
-table {
+.table--order {
   border-bottom: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
@@ -43,6 +43,9 @@ td {
   border-radius: 10px;
 }
 
+.button--submit:hover {
+  background: #2345ab;
+}
 .button--submit {
   background: #668cff;
   border-radius: 28px;
@@ -68,8 +71,7 @@ td {
   /* identical to box height, or 22px */
 }
 
-.button {
-  all: unset;
+/*.button {
   width: 35px;
   height: 36px;
   border-radius: 3px;
@@ -81,8 +83,7 @@ td {
   line-height: 15px;
   margin: 1px;
   /* or 15px */
-  color: #668cff;
+/* color: #668cff;
 
   text-align: center;
-}
-
+}*/

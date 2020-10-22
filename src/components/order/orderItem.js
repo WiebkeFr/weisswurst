@@ -1,5 +1,5 @@
 import React from "react";
-import './orderItem.css'
+import "./orderItem.css";
 
 function OrderItem({ order, menu, editOrder, deleteOrder }) {
   return (

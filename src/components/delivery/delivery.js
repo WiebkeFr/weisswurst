@@ -21,6 +21,13 @@ function Delivery({ orderItems, setDeliverer }) {
             Jetzt wählen
           </button>
         </div>
+      ) : name === undefined ? (
+        <div>
+          <h2>Es wurden noch keine Bestellungen abgegeben.</h2>
+          <button className="button--submit" onClick={chooseName}>
+            Nochmal versuchen
+          </button>
+        </div>
       ) : (
         <div>
           <h2>

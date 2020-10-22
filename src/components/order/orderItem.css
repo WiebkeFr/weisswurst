@@ -1,32 +1,34 @@
-.orderItem{
-
+.orderItem {
+  border-bottom: solid;
+  border-color: rgba(32, 40, 64, 0.1);
+  border-bottom-width: 1px;
+  height: 50px;
 }
 
-.orderItem--name{
-    width: 40%;
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 110%;
-    /* identical to box height, or 18px */
+.orderItem--name {
+  width: 40%;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
 
+  color: #202840;
 
-    color: #202840;
-
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
-.orderItem--order{
-    width: 45%;
-    font-family: Coco Gothic;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 110%;
-    /* identical to box height, or 18px */
+.orderItem--order {
+  width: 45%;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 110%;
+  /* identical to box height, or 18px */
 
-    color: #202840;
+  color: #202840;
 
-    border-radius: 10px;
+  border-radius: 10px;
 }

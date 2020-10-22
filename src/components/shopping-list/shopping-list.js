@@ -35,7 +35,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
       <div className="shoppingList">
         <div>
           <h3 className="h3--table-header">Gesamtbestellung</h3>
-          <table className="totalOrder">
+          <table className="table--meals" table-layout="auto" width="100%">
             <tbody>
               {menu.map((menuItem) => {
                 return (
@@ -62,13 +62,12 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                 );
               })}
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td className="lastRow--text">
+                <td className="lastRow--text" colSpan="4">
                   Wert der gesamten Bestellung
                 </td>
-                <td className="lastRow--sum">{total.toFixed(2).toString().replace(".", ",")} Euro</td>
+                <td className="lastRow--sum">
+                  {total.toFixed(2).toString().replace(".", ",")} Euro
+                </td>
               </tr>
             </tbody>
           </table>
@@ -76,7 +75,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
 
         <div className="paymentList">
           <h3>Wer muss wie viel bezahlen?</h3>
-          <table>
+          <table className="table--meals" table-layout="auto" width="100%">
             <tbody>
               {orderItems.map((order) => {
                 return (
@@ -103,7 +102,9 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                         .replace(".", ",")}{" "}
                       €
                     </td>
-                    <td style={{textAlign: "right"}}><b>O</b></td>
+                    <td style={{ textAlign: "right" }}>
+                      <b>O</b>
+                    </td>
                   </tr>
                 );
               })}

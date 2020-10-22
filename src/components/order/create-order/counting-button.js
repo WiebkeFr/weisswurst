@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-function CountingButton({ meal, initialAmount, setNewAmount }) {
+function CountingButton({ meal, initialAmount, setNewAmount, orderError }) {
   const [amount, setAmount] = useState(initialAmount);
+
+  const [error, setError] = useState(orderError);
+  if (error !== orderError) {
+    setError(orderError);
+  }
 
   const increase = () => {
     let newAmount = amount + 1;
@@ -21,7 +26,9 @@ function CountingButton({ meal, initialAmount, setNewAmount }) {
       <button className="button--counting" onClick={decrease}>
         -
       </button>
-      <button className="button--number">{amount}</button>
+      <button className={error ? "button--error" : "button--number"}>
+        {amount}
+      </button>
       <button className="button--counting" onClick={increase}>
         +
       </button>

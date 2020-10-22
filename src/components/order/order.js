@@ -23,21 +23,14 @@ function Order({ menu }) {
   const [show, setShow] = useState(false);
   const [deliverer, setDeliverer] = useState("");
   const [editOrder, setEditOrder] = useState(INITIAL_STATE);
-  const [orderItems, setOrderItems] = useState([
-    {
-      id: "0",
-      name: "Georgios",
-      email: "hjhj",
-      meals: [
-        { id: "0", name: "Weißwürste", amount: 1 },
-        { id: "1", name: "Debrezinger", amount: 2 },
-        { id: "2", name: "Karottensalat", amount: 6 },
-        { id: "3", name: "brezeln", amount: 3 },
-      ],
-    },
-  ]);
+  const [orderItems, setOrderItems] = useState([]);
 
   const saveOrder = (order) => {
+    if (order === undefined) {
+      setShow(false);
+      setEditOrder(INITIAL_STATE);
+      return;
+    }
     const hasOrder = orderItems.find(
       (orderItems) => orderItems.name === order.name
     );
@@ -81,21 +74,25 @@ function Order({ menu }) {
       <div>
         <h1 className="h1--Order">1 Bestellung</h1>
         <h2 className="h2--Order">Aktuelle Bestellungen</h2>
-        <table>
-          <tbody>
-            {orderItems.map((order) => {
-              return (
-                <OrderItem
-                  order={order}
-                  menu={menu}
-                  key={order.id}
-                  editOrder={editExistingOrder}
-                  deleteOrder={deleteOrder}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        {orderItems.length === 0 ? (
+          <h3>Im Moment liegen noch keine Bestellungen vor.</h3>
+        ) : (
+          <table className="table--order" width="100%" table-layout="auto">
+            <tbody>
+              {orderItems.map((order) => {
+                return (
+                  <OrderItem
+                    order={order}
+                    menu={menu}
+                    key={order.id}
+                    editOrder={editExistingOrder}
+                    deleteOrder={deleteOrder}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
 
         <button className="button--submit" onClick={showOrderMenu}>
           Neue Bestellung hinzufügen
