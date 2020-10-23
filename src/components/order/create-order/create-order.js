@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./create-order.css";
 import Meals from "./meals.js";
+import SubmitButton from "../../submit-button/submit-button";
 
 function CreateOrder({ menu, initialOrder, saveOrder }) {
   const [order, setOrder] = useState({
     ...initialOrder,
-    eatingHabit: "Wurstliebhaber",
+    eatingHabit: window.$wurst,
   });
   const [error, setError] = useState({
     email: false,
@@ -64,7 +65,7 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
     <div id="addingNewOrder" className="addingNewOrder">
       <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
       <h3>Für wen ist die Bestellung?</h3>
-      <div className="containerForInput">
+      <div className="container--input">
         <div>
           <input
             type="text"
@@ -114,22 +115,22 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
           className="button--radio"
           type="radio"
           name="meal"
-          id="Wurstliebhaber"
-          checked={order.eatingHabit === "Wurstliebhaber"}
-          onChange={() => setOrder({ ...order, eatingHabit: "Wurstliebhaber" })}
+          id={window.$wurst}
+          checked={order.eatingHabit === window.$wurst}
+          onChange={() => setOrder({ ...order, eatingHabit: window.$wurst })}
         />
-        <label htmlFor="Wurstliebhaber">Wurstliebhaber</label>
+        <label htmlFor={window.$wurst}>{window.$wurst}</label>
         <input
           className="button--radio"
           type="radio"
           name="meal"
-          id="Vegetarisch/Vegan"
-          checked={order.eatingHabit === "Vegetarisch/Vegan"}
+          id={window.$veg}
+          checked={order.eatingHabit === window.$veg}
           onChange={() =>
-            setOrder({ ...order, eatingHabit: "Vegetarisch/Vegan" })
+            setOrder({ ...order, eatingHabit: window.$veg })
           }
         />
-        <label htmlFor="Vegetarisch/Vegan">Vegetarisch/Vegan</label>
+        <label htmlFor={window.$veg}>{window.$veg}</label>
       </div>
 
       <Meals
@@ -147,12 +148,8 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
       )}
 
       <div className="container--submitButtons">
-        <button className="button--submit" onClick={testInput}>
-          Zur Bestellung hinzufügen
-        </button>
-        <button className="button--submit" onClick={() => saveOrder(undefined)}>
-          Abbrechen
-        </button>
+        <SubmitButton onClick={testInput} text="Zur Bestellung hinzufügen" disabled={false}/>
+        <SubmitButton onClick={() => saveOrder(undefined)} text="Abbrechen" disabled={false}/>
       </div>
     </div>
   );

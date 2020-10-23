@@ -1,15 +1,11 @@
-h2 {
-  font-family: Coco Gothic;
-  font-style: normal;
+.h2--order {
   font-weight: bold;
   font-size: 32px;
   line-height: 110%;
-  /* or 35px */
-
-  color: #000000;
+  color: #202840;
 }
 
-.containerForInput {
+.container--input {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -75,10 +71,6 @@ h2 {
   font-weight: normal;
   font-size: 24px;
   line-height: 110%;
-  /* or 26px */
-
-  /* Text-L/DefaultText-100 */
-
   color: #202840;
   border-radius: 10px;
 }
@@ -87,22 +79,16 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   border-bottom: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
   width: 648px;
-
-  color: #000000;
 }
 
 .orderNotShown {
   display: none;
 }
 
-.button--counting:focus {
-  outline: none;
-}
 .button--counting:hover {
   background: rgba(32, 40, 64, 0.05);
 }
@@ -111,19 +97,17 @@ h2 {
   width: 35px;
   height: 36px;
   border-radius: 3px;
-
   font-family: Lato;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 15px;
   margin: 1px;
-  /* or 15px */
   color: #668cff;
   background-color: white;
-
   text-align: center;
   border: 0px;
+  cursor: pointer;
 }
 
 .button--number {
@@ -131,16 +115,13 @@ h2 {
   width: 35px;
   height: 36px;
   border-radius: 3px;
-
   font-family: Lato;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 15px;
   margin: 1px;
-  /* or 15px */
   color: #668cff;
-
   text-align: center;
   background: rgba(32, 40, 64, 0.05);
   border-radius: 3px;
@@ -157,7 +138,6 @@ h2 {
   font-size: 14px;
   line-height: 15px;
   margin: 1px;
-  /* or 15px */
   color: #dc052d;
   background-color: #f8cdd5;
   text-align: center;
@@ -170,22 +150,16 @@ h2 {
 }
 
 label {
-  font-family: Coco Gothic;
-  font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-  /* identical to box height, or 18px */
   color: #000000;
 }
 
 .font24 {
-  font-family: Coco Gothic;
-  font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 110%;
-
   color: #202840;
 }
 

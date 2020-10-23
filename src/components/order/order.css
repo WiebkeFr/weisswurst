@@ -1,22 +1,14 @@
-.h1--Order {
-  font-family: Coco Gothic;
-  font-style: normal;
+.h1--order {
   font-weight: bold;
   font-size: 72px;
   line-height: 110%;
-  /* or 79px */
-
   color: #202840;
 }
 
-.h2--Order {
-  font-family: Coco Gothic;
-  font-style: normal;
+.h2--order {
   font-weight: bold;
   font-size: 32px;
   line-height: 110%;
-  /* or 35px */
-
   color: #202840;
 }
 
@@ -24,66 +16,12 @@
   border-bottom: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
-  width: 648px;
+  table-layout: auto;
+  width: 100%;
   border-collapse: collapse;
 }
 
-tr {
-  height: 68px;
-}
 
-td {
-  font-family: Coco Gothic;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 110%;
-  color: #202840;
 
-  border-radius: 10px;
-}
 
-.button--submit:hover {
-  background: #2345ab;
-}
-.button--submit {
-  background: #668cff;
-  border-radius: 28px;
-  color: white;
 
-  width: 312px;
-  height: 48px;
-
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 13px;
-  padding-left: 18px;
-  padding-right: 18px;
-  padding-top: 13px;
-  text-align: left;
-  border: 0px;
-
-  font-family: Coco Gothic;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 110%;
-  /* identical to box height, or 22px */
-}
-
-/*.button {
-  width: 35px;
-  height: 36px;
-  border-radius: 3px;
-
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 15px;
-  margin: 1px;
-  /* or 15px */
-/* color: #668cff;
-
-  text-align: center;
-}*/

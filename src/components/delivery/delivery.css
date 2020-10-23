@@ -1,45 +1,25 @@
-h1 {
+.h1--delivery {
   font-family: "Coco Gothic", serif;
-  font-style: normal;
   font-weight: bold;
   font-size: 72px;
   line-height: 110%;
-  /* or 79px */
-
-  color: #000000;
+  color: #202840;
 }
 
-h2 {
-  font-family: "Coco Gothic";
-  font-style: normal;
+.h2--delivery {
   font-weight: bold;
   font-size: 32px;
   line-height: 110%;
-  /* or 35px */
-
-  color: #000000;
+  color: #202840;
 }
 
-.font18 {
-  font-family: "Coco Gothic";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 150%;
-  /* or 27px */
-  color: #000000;
-}
-
-.buttons {
-  width: 312px;
-  height: 56px;
-  background: rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
+.h3-delivery {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
+  color: #DC052D;
+  border-radius: 10px;
   margin-bottom: 40px;
-  padding-bottom: 19px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 19px;
-  text-align: left;
-  border: 0px;
+  margin-top: 60px;
 }
+

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./delivery.css";
+import SubmitButton from "../submit-button/submit-button";
 
 function Delivery({ orderItems, setDeliverer }) {
   const [name, setName] = useState("");
@@ -13,32 +14,21 @@ function Delivery({ orderItems, setDeliverer }) {
 
   return (
     <div>
-      <h1>2 Wer darf holen?</h1>
-      {name === "" ? (
+      <h1 className="h1--delivery">2 Wer darf holen?</h1>
+      {
+          name === "" ?
+              (<div>
+                <h2 className="h2--delivery">Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.</h2>
+                <SubmitButton className="button--submit" onClick={chooseName} text="Jetzt wählen" disabled={orderItems.length === 0}/>
+              </div>):(
         <div>
-          <h2>Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.</h2>
-          <button className="button--submit" onClick={chooseName}>
-            Jetzt wählen
-          </button>
-        </div>
-      ) : name === undefined ? (
-        <div>
-          <h2>Es wurden noch keine Bestellungen abgegeben.</h2>
-          <button className="button--submit" onClick={chooseName}>
-            Nochmal versuchen
-          </button>
-        </div>
-      ) : (
-        <div>
-          <h2>
+          <h2 className="h2--delivery">
             Herzlichen Glückwünsch! Gewinner darf heute die Bestellung holen.
           </h2>
-          <h3>{name}</h3>
-          <button className="button--submit" onClick={chooseName}>
-            Nochmal versuchen
-          </button>
+          <h3 className="h3-delivery">{name}</h3>
+          <SubmitButton onClick={chooseName} text="Nochmal versuchen" disabled={false}/>
         </div>
-      )}
+              )}
     </div>
   );
 }

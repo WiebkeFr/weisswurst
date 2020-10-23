@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import "./create-order/create-order";
 import "./order.css";
 import CreateOrder from "./create-order/create-order";
 import Delivery from "../delivery/delivery.js";
 import ShoppingList from "../shopping-list/shopping-list.js";
 import OrderItem from "./orderItem.js";
+import SubmitButton from "../submit-button/submit-button";
 
 function Order({ menu }) {
-  console.log("render...");
+  const orderRef = useRef(null)
   let initMeals = [];
   for (let i = 0; i < menu.length; i++) {
     initMeals[i] = { id: menu[i].id, name: menu[i].name, amount: 0 };
@@ -16,7 +17,7 @@ function Order({ menu }) {
   const INITIAL_STATE = {
     name: "",
     email: "",
-    eatingHabit: "Wurstliebhaber",
+    eatingHabit: window.$wurst,
     meals: initMeals,
   };
 
@@ -29,6 +30,7 @@ function Order({ menu }) {
     if (order === undefined) {
       setShow(false);
       setEditOrder(INITIAL_STATE);
+      window.scrollTo(0, orderRef.current.offsetTop)
       return;
     }
     const hasOrder = orderItems.find(
@@ -36,7 +38,7 @@ function Order({ menu }) {
     );
     if (hasOrder) {
       const newOrderItems = orderItems.map((orderItem) => {
-        if (orderItem.name === order.name) {
+        if (orderItem.name === order.name && orderItem.id === order.id) {
           return { ...orderItem, meals: order.meals };
         }
         return orderItem;
@@ -53,6 +55,7 @@ function Order({ menu }) {
     }
     setShow(false);
     setEditOrder(INITIAL_STATE);
+    window.scrollTo(0, orderRef.current.offsetTop)
   };
 
   const showOrderMenu = () => {
@@ -79,8 +82,8 @@ function Order({ menu }) {
   return (
     <>
       <div>
-        <h1 className="h1--Order">1 Bestellung</h1>
-        <h2 className="h2--Order">Aktuelle Bestellungen</h2>
+        <h1 className="h1--order" ref={orderRef}>1 Bestellung</h1>
+        <h2 className="h2--order">Aktuelle Bestellungen</h2>
         {orderItems.length === 0 ? (
           <h3>Im Moment liegen noch keine Bestellungen vor.</h3>
         ) : (
@@ -101,10 +104,7 @@ function Order({ menu }) {
           </table>
         )}
 
-        <button className="button--submit" onClick={showOrderMenu}>
-          Neue Bestellung hinzufügen
-          <span> +</span>
-        </button>
+        <SubmitButton onClick={showOrderMenu} text="Neue Bestellung hinzufügen +" disabled={false}/>
       </div>
 
       {show && (

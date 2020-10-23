@@ -1,18 +1,24 @@
 import React from "react";
 import "./shopping-list.css";
+import SubmitButton from "../submit-button/submit-button";
 function ShoppingList({ orderItems, menu, deliverer }) {
-  let mealNumber = [];
-  for (let i = 0; i < menu.length; i++) {
-    mealNumber[i] = 0;
-  }
-  let total = 0;
 
-  orderItems.forEach((order) => {
-    for (let i = 0; i < menu.length; i++) {
-      mealNumber[i] += order.meals[i].amount;
-      total += order.meals[i].amount * menu[i].price;
-    }
-  });
+  const calculateTotalAmount = (mealItem) => {
+    let amount = 0
+    orderItems.forEach(order =>{
+      amount += order.meals[mealItem.id].amount
+    })
+    return amount
+  }
+
+  const calculateTotalPrice = () => {
+    let price = 0
+    menu.forEach(mealItem => {
+      price += calculateTotalAmount(mealItem) * mealItem.price
+        }
+    )
+    return price
+  }
 
   const calculatePrice = (order) => {
     return order.meals
@@ -22,7 +28,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
 
   return (
     <div>
-      <h1>3 Einkaufszettel</h1>
+      <h1 className="shoppingList--header">3 Einkaufszettel</h1>
       {deliverer === "" ? (
         <h3>Es wurde noch nicht bestimmt, wer holen darf!</h3>
       ) : (
@@ -39,18 +45,18 @@ function ShoppingList({ orderItems, menu, deliverer }) {
             <tbody>
               {menu.map((menuItem) => {
                 return (
-                  <tr key={menuItem.id}>
-                    <td className="td--shoppingList"> {menuItem.name}</td>
-                    <td className="td--shoppingList--right">
-                      <b>{mealNumber[menuItem.id]} Stück</b>
+                  <tr key={menuItem.id} className="tr--shoppingList">
+                    <td className="td--shoppingList-name"> {menuItem.name}</td>
+                    <td className="td--shoppingList--amount">
+                      <b>{calculateTotalAmount(menuItem)} Stück</b>
                     </td>
                     <td className="td--middle"></td>
-                    <td className="td--shoppingList">
+                    <td className="td--shoppingList-price">
                       pro Stück {menuItem.price.replace(".", ",")} €
                     </td>
                     <td className="td--sum">
                       {(
-                        mealNumber[menuItem.id] *
+                        calculateTotalAmount(menuItem) *
                         Number.parseFloat(menuItem.price)
                       )
                         .toFixed(2)
@@ -61,12 +67,12 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                   </tr>
                 );
               })}
-              <tr>
+              <tr className="tr--lastRow">
                 <td className="lastRow--text" colSpan="4">
                   Wert der gesamten Bestellung
                 </td>
                 <td className="lastRow--sum">
-                  {total.toFixed(2).toString().replace(".", ",")} Euro
+                  {calculateTotalPrice().toFixed(2).toString().replace(".", ",")} Euro
                 </td>
               </tr>
             </tbody>
@@ -79,7 +85,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
             <tbody>
               {orderItems.map((order) => {
                 return (
-                  <tr key={order.id}>
+                  <tr key={order.id} className="tr--shoppingList">
                     <td className="td--paymentList--name">{order.name}</td>
                     <td className="td--paymentList--order">
                       {menu.map((menuItem) => {
@@ -113,7 +119,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
         </div>
       </div>
 
-      <button className="button--submit">Einkaufszettel drucken</button>
+      <SubmitButton text="Einkaufszettel drucken" disabled={orderItems.length === 0}/>
     </div>
   );
 }

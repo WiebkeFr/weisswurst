@@ -1,12 +1,8 @@
-h1 {
-  font-family: Coco Gothic;
+.shoppingList--header {
   font-style: normal;
   font-weight: bold;
   font-size: 72px;
   line-height: 110%;
-  /* or 79px */
-
-  color: #000000;
 }
 
 .shoppingList {
@@ -18,47 +14,52 @@ h1 {
 }
 
 .h3--table-header {
-  margin: 0px;
+  margin-bottom: 30px;
+  margin-top: 0px
 }
 
 .table--meals {
   border-collapse: collapse;
 }
 
-.td--shoppingList {
-  width: 18%;
-  font-family: Coco Gothic;
-  font-style: normal;
-  font-weight: normal;
+.tr--shoppingList {
+  height: 45px
+}
+
+.td--shoppingList-name{
+  width: 24%;
   font-size: 16px;
   line-height: 110%;
+  color: #202840;
+}
 
+.td--shoppingList-price{
+  width: 25%;
+  font-size: 16px;
+  line-height: 110%;
   color: #202840;
 }
 
 .td--sum {
-  width: 20%;
-  font-family: Coco Gothic;
-  font-style: normal;
+  width: 24%;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-
   text-align: right;
   color: #668cff;
 }
 
-.td--shoppingList--right {
-  width: 25%;
+.td--shoppingList--amount {
+  width: 20%;
   text-align: right;
 }
 
 .td--middle {
-  width: 5%;
+  width: 4%;
 }
 
 .td--paymentList--name {
-  width: 35%;
+  width: 30%;
 }
 
 .td--paymentList--order {
@@ -66,24 +67,31 @@ h1 {
 }
 
 .td--paymentList--sum {
-  font-family: Coco Gothic;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-
   text-align: right;
   color: #668cff;
 }
 
+.tr--lastRow{
+  border-top: solid;
+  border-top-width: 1px;
+  height: 50px
+}
+
 .lastRow--text {
   text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 110%;
+  color: #202840;
 }
 
 .lastRow--sum {
   text-align: right;
   color: #668cff;
-  font-family: Coco Gothic;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -91,26 +99,11 @@ h1 {
 }
 
 .lastColumn {
-  font-family: Coco Gothic;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-
   text-align: right;
   color: #668cff;
 }
 
-.buttons {
-  width: 312px;
-  height: 56px;
-  background: rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 19px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 19px;
-  text-align: left;
-  border: 0px;
-}

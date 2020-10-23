@@ -14,7 +14,7 @@ function Meals({ order, menu, setAmount, orderError }) {
         return (
           <li
             className={
-              order.eatingHabit === "Vegetarisch/Vegan" && !menu[meal.id].veg
+              order.eatingHabit === window.$veg && !menu[meal.id].veg
                 ? "orderNotShown"
                 : "container--order"
             }
@@ -24,8 +24,8 @@ function Meals({ order, menu, setAmount, orderError }) {
             <CountingButton
               meal={meal}
               initialAmount={meal.amount}
-              setNewAmount={(amount) => setAmount(amount, meal)}
-              orderError={error}
+              onNewAmount={(amount) => setAmount(amount, meal)}
+              showError={error}
             />
           </li>
         );

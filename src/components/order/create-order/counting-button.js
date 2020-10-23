@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 
-function CountingButton({ meal, initialAmount, setNewAmount, orderError }) {
+function CountingButton({ meal, initialAmount, onNewAmount, showError }) {
   const [amount, setAmount] = useState(initialAmount);
 
-  const [error, setError] = useState(orderError);
-  if (error !== orderError) {
-    setError(orderError);
+  const [error, setError] = useState(showError);
+  if (error !== showError) {
+    setError(showError);
   }
 
   const increase = () => {
     let newAmount = amount + 1;
     setAmount(newAmount);
-    setNewAmount(newAmount, meal);
+    onNewAmount(newAmount, meal);
   };
 
   const decrease = () => {
     let newAmount = amount - 1;
     if (newAmount < 0) return;
     setAmount(newAmount);
-    setNewAmount(newAmount, meal);
+    onNewAmount(newAmount, meal);
   };
 
   return (
