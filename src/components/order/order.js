@@ -65,8 +65,15 @@ function Order({ menu }) {
   };
 
   const deleteOrder = (order) => {
-    const newOrderItems = orderItems.filter((orderItem) => orderItem !== order);
-    setOrderItems(newOrderItems);
+    const dlt = window.confirm(
+      "Die Bestellung von " + order.name + "wird gelöscht."
+    );
+    if (dlt) {
+      const newOrderItems = orderItems.filter(
+        (orderItem) => orderItem !== order
+      );
+      setOrderItems(newOrderItems);
+    }
   };
 
   return (

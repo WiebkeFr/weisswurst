@@ -100,6 +100,9 @@ h2 {
   display: none;
 }
 
+.button--counting:focus {
+  outline: none;
+}
 .button--counting:hover {
   background: rgba(32, 40, 64, 0.05);
 }
