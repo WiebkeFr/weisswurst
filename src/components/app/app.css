@@ -1,3 +1,38 @@
+@font-face {
+  font-family: "Coco Gothic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("CocoGothic"), url("./fonts/CocoGothic.woff2") format("woff2"),
+  url("./fonts/CocoGothic.woff") format("woff"),
+  url("./fonts/CocoGothic.ttf") format("truetype"),
+  url("./fonts/CocoGothic.eot") format("embedded-opentype");
+}
+
+@font-face {
+  font-family: "Coco Gothic";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("CocoGothic Italic"),
+  url("./fonts/CocoGothic-Italic.woff2") format("woff2"),
+  url("./fonts/CocoGothic-Italic.woff") format("woff"),
+  url("./fonts/CocoGothic-Italic.ttf") format("truetype"),
+  url("./fonts/CocoGothic-Italic.eot") format("embedded-opentype");
+}
+
+@font-face {
+  font-family: "Coco Gothic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("CocoGothic Bold"),
+  url("./fonts/CocoGothic-Bold.woff2") format("woff2"),
+  url("./fonts/CocoGothic-Bold.woff") format("woff"),
+  url("./fonts/CocoGothic-Bold.ttf") format("truetype"),
+  url("./fonts/CocoGothic-Bold.eot") format("embedded-opentype");
+}
+
 .containerClass {
   max-width: 648px;
   margin: auto;
@@ -5,7 +40,7 @@
 
 body {
   margin: 0;
-  font-family: CocoGothic, -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: "Coco Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -15,39 +50,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-@font-face {
-  font-family: "CocoGothic";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local("CocoGothic"), url("../fonts/CocoGothic.woff2") format("woff2"),
-    url("../fonts/CocoGothic.woff") format("woff"),
-    url("../fonts/CocoGothic.ttf") format("truetype"),
-    url("../fonts/CocoGothic.eot") format("embedded-opentype");
-}
-
-@font-face {
-  font-family: "CocoGothic";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: local("CocoGothic Italic"),
-    url("../fonts/CocoGothic-Italic.woff2") format("woff2"),
-    url("../fonts/CocoGothic-Italic.woff") format("woff"),
-    url("../fonts/CocoGothic-Italic.ttf") format("truetype"),
-    url("../fonts/CocoGothic-Italic.eot") format("embedded-opentype");
-}
-
-@font-face {
-  font-family: "CocoGothic";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local("CocoGothic Bold"),
-    url("../fonts/CocoGothic-Bold.woff2") format("woff2"),
-    url("../fonts/CocoGothic-Bold.woff") format("woff"),
-    url("../fonts/CocoGothic-Bold.ttf") format("truetype"),
-    url("../fonts/CocoGothic-Bold.eot") format("embedded-opentype");
 }

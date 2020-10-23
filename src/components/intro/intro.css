@@ -1,5 +1,5 @@
 .h1--intro {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic";
   font-style: normal;
   font-weight: bold;
   font-size: 72px;
@@ -10,7 +10,7 @@
 }
 
 .h2--intro {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic";
   font-style: normal;
   font-weight: bold;
   font-size: 32px;
@@ -21,7 +21,7 @@
 }
 
 p {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic";
   font-style: normal;
   font-weight: normal;
   font-size: 18px;

@@ -1,5 +1,5 @@
 h1 {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic", serif;
   font-style: normal;
   font-weight: bold;
   font-size: 72px;
@@ -10,7 +10,7 @@ h1 {
 }
 
 h2 {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic";
   font-style: normal;
   font-weight: bold;
   font-size: 32px;
@@ -21,7 +21,7 @@ h2 {
 }
 
 .font18 {
-  font-family: Coco Gothic;
+  font-family: "Coco Gothic";
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
