@@ -15,20 +15,31 @@ function Delivery({ orderItems, setDeliverer }) {
   return (
     <div>
       <h1 className="h1--delivery">2 Wer darf holen?</h1>
-      {
-          name === "" ?
-              (<div>
-                <h2 className="h2--delivery">Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.</h2>
-                <SubmitButton className="button--submit" onClick={chooseName} text="Jetzt wählen" disabled={orderItems.length === 0}/>
-              </div>):(
+      {name === "" ? (
+        <div>
+          <h2 className="h2--delivery">
+            Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.
+          </h2>
+          <SubmitButton
+            className="button--submit"
+            onClick={chooseName}
+            text="Jetzt wählen"
+            disabled={orderItems.length === 0}
+          />
+        </div>
+      ) : (
         <div>
           <h2 className="h2--delivery">
             Herzlichen Glückwünsch! Gewinner darf heute die Bestellung holen.
           </h2>
           <h3 className="h3-delivery">{name}</h3>
-          <SubmitButton onClick={chooseName} text="Nochmal versuchen" disabled={false}/>
+          <SubmitButton
+            onClick={chooseName}
+            text="Nochmal versuchen"
+            disabled={false}
+          />
         </div>
-              )}
+      )}
     </div>
   );
 }

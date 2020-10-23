@@ -1,8 +1,16 @@
-.shoppingList--header {
+.h1--shoppingList {
   font-style: normal;
   font-weight: bold;
   font-size: 72px;
   line-height: 110%;
+  margin-top: 80px;
+}
+
+.h3--shoppingList {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
+  color: #202840;
 }
 
 .shoppingList {
@@ -11,11 +19,20 @@
   border: solid;
   padding: 40px;
   max-width: 648px;
+  margin-top: 88px;
 }
 
-.h3--table-header {
+.container--shoppingList {
+  margin-bottom: 20px;
+}
+
+.h3--header-shoppingList {
   margin-bottom: 30px;
-  margin-top: 0px
+  margin-top: 0px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
+  color: #202840;
 }
 
 .table--meals {
@@ -23,17 +40,17 @@
 }
 
 .tr--shoppingList {
-  height: 45px
+  height: 45px;
 }
 
-.td--shoppingList-name{
+.td--shoppingList-name {
   width: 24%;
   font-size: 16px;
   line-height: 110%;
   color: #202840;
 }
 
-.td--shoppingList-price{
+.td--shoppingList-price {
   width: 25%;
   font-size: 16px;
   line-height: 110%;
@@ -58,6 +75,15 @@
   width: 4%;
 }
 
+.h3--header-paymentList {
+  margin-bottom: 30px;
+  margin-top: 0px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 110%;
+  color: #202840;
+}
+
 .td--paymentList--name {
   width: 30%;
 }
@@ -75,10 +101,10 @@
   color: #668cff;
 }
 
-.tr--lastRow{
+.tr--lastRow {
   border-top: solid;
   border-top-width: 1px;
-  height: 50px
+  height: 70px;
 }
 
 .lastRow--text {
@@ -106,4 +132,3 @@
   text-align: right;
   color: #668cff;
 }
-

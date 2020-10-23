@@ -4,9 +4,9 @@
   font-weight: 400;
   font-display: swap;
   src: local("CocoGothic"), url("./fonts/CocoGothic.woff2") format("woff2"),
-  url("./fonts/CocoGothic.woff") format("woff"),
-  url("./fonts/CocoGothic.ttf") format("truetype"),
-  url("./fonts/CocoGothic.eot") format("embedded-opentype");
+    url("./fonts/CocoGothic.woff") format("woff"),
+    url("./fonts/CocoGothic.ttf") format("truetype"),
+    url("./fonts/CocoGothic.eot") format("embedded-opentype");
 }
 
 @font-face {
@@ -15,10 +15,10 @@
   font-weight: 400;
   font-display: swap;
   src: local("CocoGothic Italic"),
-  url("./fonts/CocoGothic-Italic.woff2") format("woff2"),
-  url("./fonts/CocoGothic-Italic.woff") format("woff"),
-  url("./fonts/CocoGothic-Italic.ttf") format("truetype"),
-  url("./fonts/CocoGothic-Italic.eot") format("embedded-opentype");
+    url("./fonts/CocoGothic-Italic.woff2") format("woff2"),
+    url("./fonts/CocoGothic-Italic.woff") format("woff"),
+    url("./fonts/CocoGothic-Italic.ttf") format("truetype"),
+    url("./fonts/CocoGothic-Italic.eot") format("embedded-opentype");
 }
 
 @font-face {
@@ -27,10 +27,10 @@
   font-weight: 700;
   font-display: swap;
   src: local("CocoGothic Bold"),
-  url("./fonts/CocoGothic-Bold.woff2") format("woff2"),
-  url("./fonts/CocoGothic-Bold.woff") format("woff"),
-  url("./fonts/CocoGothic-Bold.ttf") format("truetype"),
-  url("./fonts/CocoGothic-Bold.eot") format("embedded-opentype");
+    url("./fonts/CocoGothic-Bold.woff2") format("woff2"),
+    url("./fonts/CocoGothic-Bold.woff") format("woff"),
+    url("./fonts/CocoGothic-Bold.ttf") format("truetype"),
+    url("./fonts/CocoGothic-Bold.eot") format("embedded-opentype");
 }
 
 .containerClass {

@@ -1,3 +1,2 @@
-
-window.$wurst = "Wurstliebhaber"
-window.$veg = "Vegetarisch/Vegan"
+window.$wurst = "Wurstliebhaber";
+window.$veg = "Vegetarisch/Vegan";

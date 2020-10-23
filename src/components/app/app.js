@@ -2,12 +2,12 @@ import React from "react";
 import "./app.css";
 import Intro from "../intro/intro.js";
 import Order from "../order/order.js";
-import './config.js'
+import "./config.js";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header"/>
+      <header className="App-header"></header>
 
       <div className="containerClass">
         <Intro />

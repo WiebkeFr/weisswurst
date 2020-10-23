@@ -109,8 +109,8 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
           )}
         </div>
       </div>
-      <h3>Was möchte derjenige essen?</h3>
-      <div>
+      <h3 className="h3--createOrder">Was möchte derjenige essen?</h3>
+      <div className="container--radioButtons">
         <input
           className="button--radio"
           type="radio"
@@ -126,9 +126,7 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
           name="meal"
           id={window.$veg}
           checked={order.eatingHabit === window.$veg}
-          onChange={() =>
-            setOrder({ ...order, eatingHabit: window.$veg })
-          }
+          onChange={() => setOrder({ ...order, eatingHabit: window.$veg })}
         />
         <label htmlFor={window.$veg}>{window.$veg}</label>
       </div>
@@ -148,8 +146,16 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
       )}
 
       <div className="container--submitButtons">
-        <SubmitButton onClick={testInput} text="Zur Bestellung hinzufügen" disabled={false}/>
-        <SubmitButton onClick={() => saveOrder(undefined)} text="Abbrechen" disabled={false}/>
+        <SubmitButton
+          onClick={testInput}
+          text="Zur Bestellung hinzufügen"
+          disabled={false}
+        />
+        <SubmitButton
+          onClick={() => saveOrder(undefined)}
+          text="Abbrechen"
+          disabled={false}
+        />
       </div>
     </div>
   );

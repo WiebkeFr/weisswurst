@@ -2,23 +2,21 @@ import React from "react";
 import "./shopping-list.css";
 import SubmitButton from "../submit-button/submit-button";
 function ShoppingList({ orderItems, menu, deliverer }) {
-
   const calculateTotalAmount = (mealItem) => {
-    let amount = 0
-    orderItems.forEach(order =>{
-      amount += order.meals[mealItem.id].amount
-    })
-    return amount
-  }
+    let amount = 0;
+    orderItems.forEach((order) => {
+      amount += order.meals[mealItem.id].amount;
+    });
+    return amount;
+  };
 
   const calculateTotalPrice = () => {
-    let price = 0
-    menu.forEach(mealItem => {
-      price += calculateTotalAmount(mealItem) * mealItem.price
-        }
-    )
-    return price
-  }
+    let price = 0;
+    menu.forEach((mealItem) => {
+      price += calculateTotalAmount(mealItem) * mealItem.price;
+    });
+    return price;
+  };
 
   const calculatePrice = (order) => {
     return order.meals
@@ -26,21 +24,29 @@ function ShoppingList({ orderItems, menu, deliverer }) {
       .reduce((a, b) => a + b);
   };
 
+  const hasItems = (menuItem, order) => {
+    return order.meals.find((meal) => meal.id > menuItem.id && meal.amount > 0);
+  };
+
   return (
     <div>
-      <h1 className="shoppingList--header">3 Einkaufszettel</h1>
+      <h1 className="h1--shoppingList">3 Einkaufszettel</h1>
       {deliverer === "" ? (
-        <h3>Es wurde noch nicht bestimmt, wer holen darf!</h3>
+        <h3 className="h3--shoppingList">
+          Es wurde noch nicht bestimmt, wer holen darf!
+        </h3>
       ) : (
         <>
-          <h3>Zur Erinnerung:</h3>
-          <h3>{deliverer} darf heute das Weißwurstfrühstück holen.</h3>
+          <h3 className="h3--shoppingList">
+            Zur Erinnerung: <br /> {deliverer} darf heute das Weißwurstfrühstück
+            holen.
+          </h3>
         </>
       )}
 
       <div className="shoppingList">
-        <div>
-          <h3 className="h3--table-header">Gesamtbestellung</h3>
+        <div className="container--shoppingList">
+          <h3 className="h3--header-shoppingList">Gesamtbestellung</h3>
           <table className="table--meals" table-layout="auto" width="100%">
             <tbody>
               {menu.map((menuItem) => {
@@ -72,7 +78,11 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                   Wert der gesamten Bestellung
                 </td>
                 <td className="lastRow--sum">
-                  {calculateTotalPrice().toFixed(2).toString().replace(".", ",")} Euro
+                  {calculateTotalPrice()
+                    .toFixed(2)
+                    .toString()
+                    .replace(".", ",")}{" "}
+                  Euro
                 </td>
               </tr>
             </tbody>
@@ -80,7 +90,9 @@ function ShoppingList({ orderItems, menu, deliverer }) {
         </div>
 
         <div className="paymentList">
-          <h3>Wer muss wie viel bezahlen?</h3>
+          <h3 className="h3--header-paymentList">
+            Wer muss wie viel bezahlen?
+          </h3>
           <table className="table--meals" table-layout="auto" width="100%">
             <tbody>
               {orderItems.map((order) => {
@@ -96,7 +108,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                               ? order.meals[menuItem.id].amount +
                                 "x " +
                                 menuItem.name +
-                                " "
+                                (hasItems(menuItem, order) ? ", " : "")
                               : ""}
                           </React.Fragment>
                         );
@@ -119,7 +131,10 @@ function ShoppingList({ orderItems, menu, deliverer }) {
         </div>
       </div>
 
-      <SubmitButton text="Einkaufszettel drucken" disabled={orderItems.length === 0}/>
+      <SubmitButton
+        text="Einkaufszettel drucken"
+        disabled={orderItems.length === 0}
+      />
     </div>
   );
 }

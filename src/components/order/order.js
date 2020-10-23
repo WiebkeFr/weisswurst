@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import "./create-order/create-order";
 import "./order.css";
 import CreateOrder from "./create-order/create-order";
@@ -8,7 +8,9 @@ import OrderItem from "./orderItem.js";
 import SubmitButton from "../submit-button/submit-button";
 
 function Order({ menu }) {
-  const orderRef = useRef(null)
+  const orderRef = useRef(null);
+  const createOrderRef = useRef(null);
+
   let initMeals = [];
   for (let i = 0; i < menu.length; i++) {
     initMeals[i] = { id: menu[i].id, name: menu[i].name, amount: 0 };
@@ -30,7 +32,11 @@ function Order({ menu }) {
     if (order === undefined) {
       setShow(false);
       setEditOrder(INITIAL_STATE);
-      window.scrollTo(0, orderRef.current.offsetTop)
+      window.scrollTo({
+        top: orderRef.current.offsetTop,
+        left: 0,
+        behavior: "smooth",
+      });
       return;
     }
     const hasOrder = orderItems.find(
@@ -55,21 +61,46 @@ function Order({ menu }) {
     }
     setShow(false);
     setEditOrder(INITIAL_STATE);
-    window.scrollTo(0, orderRef.current.offsetTop)
+    window.scrollTo({
+      top: orderRef.current.offsetTop,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const showOrderMenu = () => {
     setShow(true);
+    window.scroll({
+      top: createOrderRef.current.offsetTop,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const editExistingOrder = (order) => {
     setShow(true);
     setEditOrder(order);
+    window.scroll({
+      top: createOrderRef.current.offsetTop,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   const deleteOrder = (order) => {
+    let msg = "";
+    menu.forEach((menuItem) => {
+      msg +=
+        Number.parseInt(order.meals[menuItem.id].amount) > 0
+          ? order.meals[menuItem.id].amount + "x " + menuItem.name + " "
+          : "";
+    });
+
     const dlt = window.confirm(
-      "Die Bestellung von " + order.name + "wird gelöscht."
+      "Zum Bestätigen des Löschen folgender Bestellung auf OK drücken:\nName: " +
+        order.name +
+        "\nBestellung: " +
+        msg
     );
     if (dlt) {
       const newOrderItems = orderItems.filter(
@@ -82,10 +113,12 @@ function Order({ menu }) {
   return (
     <>
       <div>
-        <h1 className="h1--order" ref={orderRef}>1 Bestellung</h1>
+        <h1 className="h1--order" ref={orderRef}>
+          1 Bestellung
+        </h1>
         <h2 className="h2--order">Aktuelle Bestellungen</h2>
         {orderItems.length === 0 ? (
-          <h3>Im Moment liegen noch keine Bestellungen vor.</h3>
+          <h3>Im Moment liegen keine Bestellungen vor.</h3>
         ) : (
           <table className="table--order" width="100%" table-layout="auto">
             <tbody>
@@ -104,18 +137,25 @@ function Order({ menu }) {
           </table>
         )}
 
-        <SubmitButton onClick={showOrderMenu} text="Neue Bestellung hinzufügen +" disabled={false}/>
+        <SubmitButton
+          onClick={showOrderMenu}
+          text="Neue Bestellung aufgeben"
+          icon="+"
+          disabled={false}
+        />
       </div>
 
-      {show && (
-        <CreateOrder
-          id="createOrder"
-          class="createOrder"
-          menu={menu}
-          initialOrder={editOrder}
-          saveOrder={saveOrder}
-        />
-      )}
+      <div ref={createOrderRef}>
+        {show && (
+          <CreateOrder
+            id="createOrder"
+            class="createOrder"
+            menu={menu}
+            initialOrder={editOrder}
+            saveOrder={saveOrder}
+          />
+        )}
+      </div>
 
       <Delivery
         orderItems={orderItems}
