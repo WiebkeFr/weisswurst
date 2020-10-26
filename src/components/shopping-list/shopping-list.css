@@ -136,3 +136,17 @@
   text-align: right;
   color: #668cff;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #shoppingList * {
+    visibility: visible;
+  }
+  #shoppingList {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

@@ -15,7 +15,6 @@
 .submit-button {
   background: #668cff;
   border-radius: 28px;
-  color: white;
   width: 312px;
   height: 48px;
   margin-top: 40px;
@@ -32,4 +31,7 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  font-family: Coco Gothic;
+  font-style: normal;
+  color: #ffffff;
 }

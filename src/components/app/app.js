@@ -35,7 +35,6 @@ function App() {
               veg: true,
             },
           ]}
-          names={["name1", "name2", "name3"]}
         />
       </div>
     </div>

@@ -44,7 +44,8 @@ function ShoppingList({ orderItems, menu, deliverer }) {
         </>
       )}
 
-      <div className="shoppingList">
+      <div className="shoppingList" id="shoppingList">
+        {console.log("hallo")}
         <div className="container--shoppingList">
           <h3 className="h3--header-shoppingList">Gesamtbestellung</h3>
           <table className="table--meals" table-layout="auto" width="100%">
@@ -135,6 +136,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
       <SubmitButton
         text="Einkaufszettel drucken"
         disabled={orderItems.length === 0}
+        onClick={() => window.print()}
       />
     </div>
   );
