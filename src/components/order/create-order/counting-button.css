@@ -37,7 +37,6 @@
 }
 
 .button--error {
-  all: unset;
   width: 35px;
   height: 36px;
   border-radius: 3px;
@@ -51,4 +50,5 @@
   background-color: #f8cdd5;
   text-align: center;
   border-radius: 3px;
+  border-width: 0px;
 }

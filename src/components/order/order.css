@@ -21,11 +21,6 @@
   width: 100%;
   border-collapse: collapse;
 }
-
-.line--order {
-  border-width: 1px;
-  border-bottom: solid;
-  border-bottom-color: rgba(32, 40, 64, 0.1);
-  margin-top: 93px;
-  margin-bottom: 80px;
+.orderNotShown {
+  display: none;
 }

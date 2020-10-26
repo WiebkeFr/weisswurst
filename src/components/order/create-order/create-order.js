@@ -148,8 +148,16 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
         orderError={error.order}
       />
       {error.order ? (
-        <p className="input--index" style={{ textAlign: "right" }}>
-          <b>Bestellung</b>: Es liegt keine Bestellung vor.
+        <p
+          className="input--index"
+          style={{
+            textAlign: "right",
+            marginRight: "0px",
+            width: "100%",
+            marginTop: "8px",
+          }}
+        >
+          <b>Bestellung</b>: Sie müssen mindestens ein Essen auswählen.
         </p>
       ) : (
         <></>

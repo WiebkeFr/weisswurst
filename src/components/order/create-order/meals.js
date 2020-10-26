@@ -1,5 +1,6 @@
 import CountingButton from "./counting-button";
 import React, { useState } from "react";
+import "./meals.css";
 
 function Meals({ order, menu, setAmount, orderError }) {
   const [error, setError] = useState(orderError);
@@ -15,12 +16,12 @@ function Meals({ order, menu, setAmount, orderError }) {
           <li
             className={
               order.eatingHabit === window.$veg && !menu[meal.id].veg
-                ? "orderNotShown"
+                ? "orderNotShown--meals"
                 : "container--order"
             }
             key={meal.id}
           >
-            <p className="font24">{meal.name}</p>
+            <p className="font24--meals">{meal.name}</p>
             <CountingButton
               meal={meal}
               initialAmount={meal.amount}
