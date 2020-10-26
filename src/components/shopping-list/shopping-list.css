@@ -3,7 +3,7 @@
   font-weight: bold;
   font-size: 72px;
   line-height: 110%;
-  margin-top: 80px;
+  margin-top: 160px;
 }
 
 .h3--shoppingList {
@@ -16,7 +16,6 @@
 .shoppingList {
   background: #f7f8fa;
   border-radius: 4px;
-  border: solid;
   padding: 40px;
   max-width: 648px;
   margin-top: 88px;
@@ -50,14 +49,20 @@
   color: #202840;
 }
 
+.td--shoppingList-amount {
+  width: 20%;
+  text-align: right;
+  color: #202840;
+}
+
 .td--shoppingList-price {
-  width: 25%;
+  width: 23%;
   font-size: 16px;
   line-height: 110%;
   color: #202840;
 }
 
-.td--sum {
+.td--shoppingList-sum {
   width: 24%;
   font-weight: bold;
   font-size: 16px;
@@ -66,13 +71,12 @@
   color: #668cff;
 }
 
-.td--shoppingList--amount {
-  width: 20%;
-  text-align: right;
-}
-
 .td--middle {
   width: 4%;
+}
+
+.tr--space {
+  height: 10px;
 }
 
 .h3--header-paymentList {
@@ -85,7 +89,7 @@
 }
 
 .td--paymentList--name {
-  width: 30%;
+  width: 35%;
 }
 
 .td--paymentList--order {

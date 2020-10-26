@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./counting-button.css";
 
 function CountingButton({ meal, initialAmount, onNewAmount, showError }) {
   const [amount, setAmount] = useState(initialAmount);

@@ -13,7 +13,6 @@
 }
 
 .input--normal {
-  background: rgba(0, 0, 0, 0.1);
   text-align: left;
   padding-bottom: 19px;
   padding-left: 12px;
@@ -22,6 +21,8 @@
   width: 288px;
   height: 18px;
   border: 0px;
+  background: #f7f8fa;
+  border-radius: 4px;
 }
 
 .input--error:-webkit-autofill,
@@ -39,15 +40,12 @@
   padding-top: 19px;
   width: 288px;
   height: 18px;
-
   border: 0px;
   font-family: Coco Gothic;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 110%;
-  /* or 15px */
-
   color: #dc052d;
   background-color: #f8cdd5;
 }
@@ -59,9 +57,10 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 110%;
-  margin-top: 0px;
+  margin-top: 8px;
   height: 30px;
   width: 288px;
+  margin-bottom: 0px;
 }
 
 .mealList {
@@ -83,10 +82,6 @@
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
   width: 648px;
-}
-
-.orderNotShown {
-  display: none;
 }
 
 .button--counting:hover {
@@ -111,7 +106,6 @@
 }
 
 .button--number {
-  all: unset;
   width: 35px;
   height: 36px;
   border-radius: 3px;
@@ -125,6 +119,7 @@
   text-align: center;
   background: rgba(32, 40, 64, 0.05);
   border-radius: 3px;
+  border-width: 0px;
 }
 
 .button--error {
@@ -145,15 +140,26 @@
 }
 
 .button--radio {
-  color: #000000;
-  background: #668cff;
+  background: #f7f8fa;
+  border: 1px solid #668cff;
+  box-sizing: border-box;
+  border-radius: 100px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: 0px;
 }
 
-label {
+.button--label {
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
   color: #000000;
+  margin-right: 24px;
+  margin-left: 8px;
+  cursor: pointer;
+  vertical-align: middle;
 }
 
 .font24 {
@@ -182,4 +188,8 @@ label {
 .container--submitButtons {
   display: flex;
   justify-content: space-between;
+}
+
+.orderNotShown {
+  display: none;
 }

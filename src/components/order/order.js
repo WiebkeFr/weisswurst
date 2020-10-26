@@ -97,7 +97,7 @@ function Order({ menu }) {
     });
 
     const dlt = window.confirm(
-      "Zum Bestätigen des Löschen folgender Bestellung auf OK drücken:\nName: " +
+      "Zum Löschen folgender Bestellung auf OK drücken:\nName: " +
         order.name +
         "\nBestellung: " +
         msg
@@ -153,6 +153,7 @@ function Order({ menu }) {
             menu={menu}
             initialOrder={editOrder}
             saveOrder={saveOrder}
+            createOrderRef={createOrderRef}
           />
         )}
       </div>

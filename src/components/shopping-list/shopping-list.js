@@ -53,14 +53,14 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                 return (
                   <tr key={menuItem.id} className="tr--shoppingList">
                     <td className="td--shoppingList-name"> {menuItem.name}</td>
-                    <td className="td--shoppingList--amount">
+                    <td className="td--shoppingList-amount">
                       <b>{calculateTotalAmount(menuItem)} Stück</b>
                     </td>
                     <td className="td--middle"></td>
                     <td className="td--shoppingList-price">
                       pro Stück {menuItem.price.replace(".", ",")} €
                     </td>
-                    <td className="td--sum">
+                    <td className="td--shoppingList-sum">
                       {(
                         calculateTotalAmount(menuItem) *
                         Number.parseFloat(menuItem.price)
@@ -73,6 +73,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
                   </tr>
                 );
               })}
+              <tr className="tr--space"></tr>
               <tr className="tr--lastRow">
                 <td className="lastRow--text" colSpan="4">
                   Wert der gesamten Bestellung

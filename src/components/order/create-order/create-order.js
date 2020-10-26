@@ -3,7 +3,7 @@ import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
 
-function CreateOrder({ menu, initialOrder, saveOrder }) {
+function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: window.$wurst,
@@ -59,6 +59,12 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
     setError({ order: orderError, name: nameError, email: emailError });
 
     if (!nameError && !emailError && !orderError) saveOrder(order);
+    else
+      window.scrollTo({
+        top: createOrderRef.current.offsetTop,
+        left: 0,
+        behavior: "smooth",
+      });
   };
 
   return (
@@ -119,7 +125,9 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
           checked={order.eatingHabit === window.$wurst}
           onChange={() => setOrder({ ...order, eatingHabit: window.$wurst })}
         />
-        <label htmlFor={window.$wurst}>{window.$wurst}</label>
+        <label className="button--label" htmlFor={window.$wurst}>
+          {window.$wurst}
+        </label>
         <input
           className="button--radio"
           type="radio"
@@ -128,7 +136,9 @@ function CreateOrder({ menu, initialOrder, saveOrder }) {
           checked={order.eatingHabit === window.$veg}
           onChange={() => setOrder({ ...order, eatingHabit: window.$veg })}
         />
-        <label htmlFor={window.$veg}>{window.$veg}</label>
+        <label className="button--label" htmlFor={window.$veg}>
+          {window.$veg}
+        </label>
       </div>
 
       <Meals

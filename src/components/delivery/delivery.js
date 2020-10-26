@@ -30,9 +30,9 @@ function Delivery({ orderItems, setDeliverer }) {
       ) : (
         <div>
           <h2 className="h2--delivery">
-            Herzlichen Glückwünsch! Gewinner darf heute die Bestellung holen.
+            Herzlichen Glückwünsch! {name} darf heute die Bestellung holen.
           </h2>
-          <h3 className="h3-delivery">{name}</h3>
+          <h3 className="h3--delivery">{name}</h3>
           <SubmitButton
             onClick={chooseName}
             text="Nochmal versuchen"
