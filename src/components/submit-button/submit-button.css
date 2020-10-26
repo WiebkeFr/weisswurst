@@ -1,24 +1,24 @@
-.submit-button:hover {
+.submit--button:hover {
   background: #2345ab;
 }
 
-.submit-button[disabled]:hover {
+.submit--button[disabled]:hover {
   opacity: 40%;
   background: #668cff;
   cursor: auto;
 }
 
-.submit-button:disabled {
+.submit--button:disabled {
   opacity: 40%;
 }
 
-.submit-button {
+.submit--button {
   background: #668cff;
   border-radius: 28px;
   width: 312px;
   height: 48px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   padding-bottom: 13px;
   padding-left: 18px;
   padding-right: 18px;
