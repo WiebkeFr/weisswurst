@@ -68,9 +68,9 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
   };
 
   return (
-    <div >
-      <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
-      <h3>Für wen ist die Bestellung?</h3>
+    <div>
+      <h2 className="h2--create-order">Neue Bestellungen aufgeben</h2>
+      <h3 className="h3--create-order">Für wen ist die Bestellung?</h3>
       <div className="container--input">
         <div>
           <input
@@ -115,7 +115,12 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
           )}
         </div>
       </div>
-      <h3 className="h3--createOrder">Was möchte derjenige essen?</h3>
+      <h3
+        className="h3--create-Order"
+        style={{ marginTop: "120px", marginBottom: "32px" }}
+      >
+        Was möchte derjenige essen?
+      </h3>
       <div className="container--radioButtons">
         <input
           className="button--radio"

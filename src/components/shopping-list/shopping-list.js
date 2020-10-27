@@ -29,8 +29,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
   };
 
   return (
-    <div >
-      <h1 className="h1--shoppingList">3 Einkaufszettel</h1>
+    <div>
       {deliverer === "" ? (
         <h3 className="h3--shoppingList">
           Es wurde noch nicht bestimmt, wer holen darf!
@@ -45,7 +44,6 @@ function ShoppingList({ orderItems, menu, deliverer }) {
       )}
 
       <div className="shoppingList" id="shoppingList">
-        {console.log("hallo")}
         <div className="container--shoppingList">
           <h3 className="h3--header-shoppingList">Gesamtbestellung</h3>
           <table className="table--meals" table-layout="auto" width="100%">
@@ -137,6 +135,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
         text="Einkaufszettel drucken"
         disabled={orderItems.length === 0}
         onClick={() => window.print()}
+        icon={"wwf-print.svg"}
       />
     </div>
   );

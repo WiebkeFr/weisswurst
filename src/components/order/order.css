@@ -12,7 +12,15 @@
   font-size: 32px;
   line-height: 110%;
   color: #202840;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
+  margin-top: 120px;
+}
+
+.h3--order {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 150%;
+  color: #202840;
 }
 
 .table--order {

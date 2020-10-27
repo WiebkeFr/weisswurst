@@ -21,7 +21,7 @@ function Meals({ order, menu, setAmount, orderError }) {
             }
             key={meal.id}
           >
-            <p className="font24--meals">{meal.name}</p>
+            <p className="font20--meals">{meal.name}</p>
             <CountingButton
               meal={meal}
               initialAmount={meal.amount}

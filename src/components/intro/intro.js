@@ -13,7 +13,7 @@ function Intro() {
         planen. Damit einer von uns, die richtige Menge an Würsten, Brezen und
         Obazden besorgen kann, brauchen wir deinen Hunger.
       </p>
-      <p className="text--intro">
+      <p className="text--intro" style={{ marginBottom: "80px" }}>
         Bitte gib unten jeweils ein, auf was du heute Lust hast und wähle per
         Zufall den glücklichen Holer für uns alle aus. Viel Spaß und an guadn
         Hunger:)

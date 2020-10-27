@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./delivery.css";
 import SubmitButton from "../submit-button/submit-button";
-import emoji from "./wwf-emoji.svg"
-
+import emoji from "./wwf-emoji.svg";
 
 function Delivery({ orderItems, setDeliverer }) {
   const [name, setName] = useState("");
@@ -15,18 +14,18 @@ function Delivery({ orderItems, setDeliverer }) {
   };
 
   return (
-    <div >
-      <h1 className="h1--delivery">2 Wer darf holen?</h1>
+    <div>
       {name === "" ? (
         <div>
           <h2 className="h2--delivery">
-            Wer darf heute holen? Drück den "Glücks-Button". Toi Toi Toi.
+            Wer darf heute holen? <br /> Drück den "Glücks-Button"
           </h2>
           <SubmitButton
             className="button--submit"
             onClick={chooseName}
             text="Jetzt wählen"
             disabled={orderItems.length === 0}
+            center={true}
           />
         </div>
       ) : (
@@ -34,14 +33,22 @@ function Delivery({ orderItems, setDeliverer }) {
           <h2 className="h2--delivery">
             Herzlichen Glückwünsch! {name} darf heute die Bestellung holen.
           </h2>
-          <div classNmae="container--name">
+          <div
+            style={{
+              margin: "auto",
+              width: "max-content",
+              height: "58px",
+              marginBottom: "80px",
+            }}
+          >
             <h3 className="h3--delivery">{name}</h3>
-            <img src={emoji} alt="emoji" width="57" height="57"/>
+            <img src={emoji} alt="emoji" width="57" height="57" />
           </div>
           <SubmitButton
             onClick={chooseName}
             text="Nochmal versuchen"
             disabled={false}
+            center={true}
           />
         </div>
       )}

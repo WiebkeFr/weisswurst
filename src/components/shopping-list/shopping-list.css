@@ -9,9 +9,12 @@
 
 .h3--shoppingList {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 32px;
   line-height: 110%;
   color: #202840;
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 80px;
 }
 
 .shoppingList {
@@ -54,6 +57,10 @@
   width: 20%;
   text-align: right;
   color: #202840;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
 }
 
 .td--shoppingList-price {

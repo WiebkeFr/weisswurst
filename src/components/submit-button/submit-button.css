@@ -35,3 +35,7 @@
   font-style: normal;
   color: #ffffff;
 }
+
+.submit-button--icon {
+  margin: 0px;
+}

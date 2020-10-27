@@ -23,10 +23,16 @@ function OrderItem({ order, menu, editOrder, deleteOrder }) {
         })}
       </td>
       <td>
-        <button onClick={() => editOrder(order)}>B</button>
+        <button
+          className="orderItem--button-edit"
+          onClick={() => editOrder(order)}
+        ></button>
       </td>
-      <td>
-        <button onClick={() => deleteOrder(order)}>L</button>
+      <td style={{ weight: "30px" }}>
+        <button
+          className="orderItem--button-delete"
+          onClick={() => deleteOrder(order)}
+        ></button>
       </td>
     </tr>
   );
