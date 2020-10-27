@@ -11,15 +11,6 @@ function SubmitButton({ onClick, text, icon, disabled }) {
                     ""
                 )}
             </button>
-            <button className="submit--button" disabled={true}>
-                <span>{text}</span>
-            </button>
-            <button className="submit--button" style={{ opacity: 0.4}} disabled={true}>
-                <span>{text}</span>
-            </button>
-            <button className="test-name--button" disabled={true}>
-                <span>{text}</span>
-            </button>
         </>
     );
 }
