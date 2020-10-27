@@ -68,7 +68,7 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
   };
 
   return (
-    <div id="addingNewOrder" className="addingNewOrder">
+    <div >
       <h2 id="newOrder">Neue Bestellungen aufgeben</h2>
       <h3>Für wen ist die Bestellung?</h3>
       <div className="container--input">

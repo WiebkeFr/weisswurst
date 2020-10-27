@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./delivery.css";
 import SubmitButton from "../submit-button/submit-button";
+import emoji from "./wwf-emoji.svg"
+
 
 function Delivery({ orderItems, setDeliverer }) {
   const [name, setName] = useState("");
@@ -13,7 +15,7 @@ function Delivery({ orderItems, setDeliverer }) {
   };
 
   return (
-    <div>
+    <div >
       <h1 className="h1--delivery">2 Wer darf holen?</h1>
       {name === "" ? (
         <div>
@@ -32,7 +34,10 @@ function Delivery({ orderItems, setDeliverer }) {
           <h2 className="h2--delivery">
             Herzlichen Glückwünsch! {name} darf heute die Bestellung holen.
           </h2>
-          <h3 className="h3--delivery">{name}</h3>
+          <div classNmae="container--name">
+            <h3 className="h3--delivery">{name}</h3>
+            <img src={emoji} alt="emoji" width="57" height="57"/>
+          </div>
           <SubmitButton
             onClick={chooseName}
             text="Nochmal versuchen"

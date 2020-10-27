@@ -29,7 +29,7 @@ function ShoppingList({ orderItems, menu, deliverer }) {
   };
 
   return (
-    <div>
+    <div >
       <h1 className="h1--shoppingList">3 Einkaufszettel</h1>
       {deliverer === "" ? (
         <h3 className="h3--shoppingList">

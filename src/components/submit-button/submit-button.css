@@ -35,3 +35,15 @@
   font-style: normal;
   color: #ffffff;
 }
+
+.test-name--button:hover {
+  background: #2345ab;
+}
+.test-name--button[disabled]:hover {
+  opacity: 40%;
+  background: #668cff;
+  cursor: auto;
+}
+.test-name--button:disabled {
+  opacity: 40%;
+}
