@@ -20,9 +20,9 @@ function Slider () {
             <div className="button--container">
                 <hr/>
                 <div className="circle--container">
-                    <a className={page === '1' ? "bigCircle": "circle"} href="#slide-1" onClick={onClick}/>
-                    <a className={page === '2' ? "bigCircle": "circle"} href="#slide-2" onClick={onClick}/>
-                    <a className={page === '3' ? "bigCircle": "circle"} href="#slide-3" onClick={onClick}/>
+                    <a className={page === '1' ? "bigCircle": "circle"} href="#slide-1" onClick={onClick}>1</a>
+                    <a className={page === '2' ? "bigCircle": "circle"} href="#slide-2" onClick={onClick}>2</a>
+                    <a className={page === '3' ? "bigCircle": "circle"} href="#slide-3" onClick={onClick}>3</a>
                 </div>
             </div>
 

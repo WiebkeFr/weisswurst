@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./components/app/app.css";
 import App from "./components/app/app";
-import Slider from "./components/app/slider"
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
