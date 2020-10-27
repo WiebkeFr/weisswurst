@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import "./create-order/create-order";
 import "./order.css";
+import "../app/config";
 import CreateOrder from "./create-order/create-order";
-import Delivery from "../delivery/delivery.js";
-import ShoppingList from "../shopping-list/shopping-list.js";
 import OrderItem from "./orderItem.js";
 import SubmitButton from "../submit-button/submit-button";
 
@@ -14,11 +13,15 @@ function Order({
   saveOrder,
   show,
   editExistingOrder,
-  orderRef,
   showOrderMenu,
   createOrderRef,
   editOrder,
 }) {
+
+  const onClick = () => {
+    document.getElementById("circle-2").click()
+  }
+
   return (
     <div>
       {!show && (
@@ -46,12 +49,18 @@ function Order({
             </table>
           )}
 
-          <SubmitButton
-            onClick={showOrderMenu}
-            text="Neue Bestellung aufgeben"
-            icon="+"
-            disabled={false}
-          />
+          <div className="button-container--order" style={{display: "flex"}}>
+            <SubmitButton
+                onClick={showOrderMenu}
+                text="Neue Bestellung aufgeben"
+                icon="+"
+                disabled={false}
+            />
+            <button className="continue-button--order" onClick={onClick}>Weiter zur Auswahl ></button>
+          </div>
+
+
+
         </div>
       )}
 

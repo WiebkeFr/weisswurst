@@ -31,6 +31,26 @@
   width: 100%;
   border-collapse: collapse;
 }
+
 .orderNotShown {
   display: none;
+}
+
+.button-container--order{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continue-button--order{
+  font-family: "Coco Gothic";
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+  color: #668CFF;
+  border-radius: 10px;
+  width: 178px;
+  background-color: white;
+  border: none;
+  margin-bottom: 39px;
 }

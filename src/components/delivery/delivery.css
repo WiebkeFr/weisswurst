@@ -26,5 +26,24 @@
   align-items: center;
 }
 
-img {
+.continue-button--delivery{
+  font-family: "Coco Gothic";
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+  color: #668CFF;
+  border-radius: 10px;
+  width: 312px;
+  height: 20px;
+  background-color: white;
+  border: none;
+  margin: auto;
+  margin-top: 24px;
+  text-align: right;
+}
+
+.button-container--delivery{
+  display: flex;
+  flex-direction: column;
+
 }

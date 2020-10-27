@@ -3,6 +3,7 @@ import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
 
+
 function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
@@ -174,11 +175,9 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
           text="Zur Bestellung hinzufügen"
           disabled={false}
         />
-        <SubmitButton
-          onClick={() => saveOrder(undefined)}
-          text="Abbrechen"
-          disabled={false}
-        />
+        <button className="continue-button--create-order" onClick={() => saveOrder(undefined)}>
+          Abbrechen
+        </button>
       </div>
     </div>
   );

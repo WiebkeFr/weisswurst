@@ -13,6 +13,10 @@ function Delivery({ orderItems, setDeliverer }) {
     setDeliverer(name);
   };
 
+  const onClick = () => {
+    document.getElementById("circle-3").click()
+  }
+
   return (
     <div>
       {name === "" ? (
@@ -44,12 +48,18 @@ function Delivery({ orderItems, setDeliverer }) {
             <h3 className="h3--delivery">{name}</h3>
             <img src={emoji} alt="emoji" width="57" height="57" />
           </div>
-          <SubmitButton
-            onClick={chooseName}
-            text="Nochmal versuchen"
-            disabled={false}
-            center={true}
-          />
+          <div className="button-container--delivery">
+            <SubmitButton
+                onClick={chooseName}
+                text="Nochmal versuchen"
+                disabled={false}
+                center={true}
+            />
+            <button className="continue-button--delivery" onClick={onClick}>
+              Weiter zur Shopping-Liste >
+            </button>
+          </div>
+
         </div>
       )}
     </div>

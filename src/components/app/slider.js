@@ -205,7 +205,6 @@ function Slider() {
             saveOrder={saveOrder}
             show={show}
             editExistingOrder={editExistingOrder}
-            ordeRef={orderRef}
             showOrderMenu={showOrderMenu}
             createOrderRef={createOrderRef}
             editOrder={editOrder}
