@@ -3,13 +3,13 @@
 }
 
 .submit--button[disabled]:hover {
-  opacity: 40%;
+  opacity: 0.4;
   background: #668cff;
   cursor: auto;
 }
 
 .submit--button:disabled {
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .submit--button {
