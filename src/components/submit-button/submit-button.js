@@ -19,7 +19,7 @@ function SubmitButton({ onClick, text, icon, disabled, center }) {
           ) : (
             <img
               className="submit-button--icon"
-              src="wwf-print.svg"
+              src={icon}
               alt="icon"
               width="20px"
               height="20px"

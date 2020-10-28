@@ -1,7 +1,11 @@
 import React from "react";
 import "./shopping-list.css";
 import SubmitButton from "../submit-button/submit-button";
-function ShoppingList({ orderItems, menu, deliverer }) {
+import {MenuContext} from "../app/menu-context"
+
+function ShoppingList({ orderItems, deliverer }) {
+  const menu = MenuContext._currentValue
+
   const calculateTotalAmount = (mealItem) => {
     let amount = 0;
     orderItems.forEach((order) => {

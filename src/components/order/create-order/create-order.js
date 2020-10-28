@@ -3,8 +3,8 @@ import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
 
+function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
 
-function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: window.$wurst,
@@ -149,7 +149,6 @@ function CreateOrder({ menu, initialOrder, saveOrder, createOrderRef }) {
 
       <Meals
         order={order}
-        menu={menu}
         setAmount={setAmount}
         orderError={error.order}
       />

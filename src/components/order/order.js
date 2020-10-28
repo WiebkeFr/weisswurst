@@ -5,9 +5,10 @@ import "../app/config";
 import CreateOrder from "./create-order/create-order";
 import OrderItem from "./orderItem.js";
 import SubmitButton from "../submit-button/submit-button";
+import {MenuContext} from "../app/menu-context"
+
 
 function Order({
-  menu,
   orderItems,
   deleteOrder,
   saveOrder,
@@ -38,7 +39,6 @@ function Order({
                   return (
                     <OrderItem
                       order={order}
-                      menu={menu}
                       key={order.id}
                       editOrder={editExistingOrder}
                       deleteOrder={deleteOrder}
@@ -69,7 +69,6 @@ function Order({
           <CreateOrder
             id="createOrder"
             class="createOrder"
-            menu={menu}
             initialOrder={editOrder}
             saveOrder={saveOrder}
             createOrderRef={createOrderRef}

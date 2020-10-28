@@ -1,8 +1,12 @@
 import CountingButton from "./counting-button";
 import React, { useState } from "react";
 import "./meals.css";
+import {MenuContext} from "../../app/menu-context";
 
-function Meals({ order, menu, setAmount, orderError }) {
+function Meals({ order, setAmount, orderError }) {
+
+  const menu = MenuContext._currentValue
+
   const [error, setError] = useState(orderError);
 
   if (error !== orderError) {

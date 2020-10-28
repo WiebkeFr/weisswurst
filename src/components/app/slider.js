@@ -5,6 +5,7 @@ import Intro from "../intro/intro";
 import Delivery from "../delivery/delivery";
 import Order from "../order/order";
 import ShoppingList from "../shopping-list/shopping-list";
+import { MenuContext } from "./menu-context"
 
 function Slider() {
   const [page, setPage] = useState("1");
@@ -12,27 +13,7 @@ function Slider() {
   const orderRef = useRef(null);
   const createOrderRef = useRef(null);
 
-  const menu = [
-    { id: "0", name: "Weißwürste", price: "1.20", veg: false },
-    {
-      id: "1",
-      name: "Debreziner",
-      price: "1.20",
-      veg: false,
-    },
-    {
-      id: "2",
-      name: "Karottensalat",
-      price: "3.25",
-      veg: true,
-    },
-    {
-      id: "3",
-      name: "Brezeln",
-      price: "0.68",
-      veg: true,
-    },
-  ];
+  const menu = MenuContext._currentValue
 
   let initMeals = [];
   for (let i = 0; i < menu.length; i++) {
@@ -199,7 +180,6 @@ function Slider() {
       <div className="slides" ref={orderRef}>
         <div className="page" id="slide-1">
           <Order
-            menu={menu}
             orderItems={orderItems}
             deleteOrder={deleteOrder}
             saveOrder={saveOrder}
@@ -219,7 +199,6 @@ function Slider() {
         <div className="page" id="slide-3">
           <ShoppingList
             orderItems={orderItems}
-            menu={menu}
             deliverer={deliverer}
           />
         </div>

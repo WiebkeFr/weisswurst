@@ -54,6 +54,7 @@ function Delivery({ orderItems, setDeliverer }) {
                 text="Nochmal versuchen"
                 disabled={false}
                 center={true}
+                icon="wwf-arrow.svg"
             />
             <button className="continue-button--delivery" onClick={onClick}>
               Weiter zur Shopping-Liste >

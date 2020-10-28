@@ -1,7 +1,11 @@
 import React from "react";
 import "./orderItem.css";
+import {MenuContext} from "../app/menu-context"
 
-function OrderItem({ order, menu, editOrder, deleteOrder }) {
+function OrderItem({ order, editOrder, deleteOrder }) {
+
+    const menu = MenuContext._currentValue
+
   const hasItems = (menuItem) => {
     return order.meals.find((meal) => meal.id > menuItem.id && meal.amount > 0);
   };
