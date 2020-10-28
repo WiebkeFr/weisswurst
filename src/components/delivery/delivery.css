@@ -26,12 +26,12 @@
   align-items: center;
 }
 
-.continue-button--delivery{
+.continue-button--delivery {
   font-family: "Coco Gothic";
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-  color: #668CFF;
+  color: #668cff;
   border-radius: 10px;
   width: 312px;
   height: 20px;
@@ -42,8 +42,7 @@
   text-align: right;
 }
 
-.button-container--delivery{
+.button-container--delivery {
   display: flex;
   flex-direction: column;
-
 }

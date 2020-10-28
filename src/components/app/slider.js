@@ -5,7 +5,8 @@ import Intro from "../intro/intro";
 import Delivery from "../delivery/delivery";
 import Order from "../order/order";
 import ShoppingList from "../shopping-list/shopping-list";
-import { MenuContext } from "./menu-context"
+import { MenuContext } from "./menu-context";
+import { OrderItemsContext } from "./orderItems-context";
 
 function Slider() {
   const [page, setPage] = useState("1");
@@ -13,7 +14,7 @@ function Slider() {
   const orderRef = useRef(null);
   const createOrderRef = useRef(null);
 
-  const menu = MenuContext._currentValue
+  const menu = React.useContext(MenuContext);
 
   let initMeals = [];
   for (let i = 0; i < menu.length; i++) {
@@ -28,11 +29,10 @@ function Slider() {
   };
 
   const [deliverer, setDeliverer] = useState("");
-  const [orderItems, setOrderItems] = useState([]);
   const [show, setShow] = useState(false);
   const [editOrder, setEditOrder] = useState(INITIAL_STATE);
 
-  const deleteOrder = (order) => {
+  const deleteOrder = (orderItems, order) => {
     let msg = "";
     menu.forEach((menuItem) => {
       msg +=
@@ -51,7 +51,11 @@ function Slider() {
       const newOrderItems = orderItems.filter(
         (orderItem) => orderItem !== order
       );
-      setOrderItems(newOrderItems);
+      setContextValue((prevState) => ({
+        ...prevState,
+        orderItems: newOrderItems,
+      }));
+      /*setOrderItems(newOrderItems);*/
     }
   };
 
@@ -74,7 +78,7 @@ function Slider() {
     });
   };
 
-  const saveOrder = (order) => {
+  const saveOrder = (orderItems, order) => {
     if (order === undefined) {
       setShow(false);
       setEditOrder(INITIAL_STATE);
@@ -95,7 +99,11 @@ function Slider() {
         }
         return orderItem;
       });
-      setOrderItems(newOrderItems);
+      setContextValue((prevState) => ({
+        ...prevState,
+        orderItems: newOrderItems,
+      }));
+      /*setOrderItems(newOrderItems);*/
     } else {
       const newItem = {
         id: orderItems.length,
@@ -103,7 +111,12 @@ function Slider() {
         email: order.email,
         meals: order.meals,
       };
-      setOrderItems((prevState) => [...prevState, newItem]);
+      const newOrderItems = [...orderItems, newItem];
+      setContextValue((prevState) => ({
+        ...prevState,
+        orderItems: newOrderItems,
+      }));
+      /*setOrderItems((prevState) => [...prevState, newItem]);*/
     }
     setShow(false);
     setEditOrder(INITIAL_STATE);
@@ -121,6 +134,12 @@ function Slider() {
       .charAt(event.target.id.toString().length - 1);
     setPage(page);
   };
+
+  const [contextValue, setContextValue] = useState({
+    orderItems: [],
+    saveOrder: saveOrder,
+    deleteOrder: deleteOrder,
+  });
 
   return (
     <div className="slider">
@@ -177,32 +196,25 @@ function Slider() {
         </div>
       </div>
 
-      <div className="slides" ref={orderRef}>
-        <div className="page" id="slide-1">
-          <Order
-            orderItems={orderItems}
-            deleteOrder={deleteOrder}
-            saveOrder={saveOrder}
-            show={show}
-            editExistingOrder={editExistingOrder}
-            showOrderMenu={showOrderMenu}
-            createOrderRef={createOrderRef}
-            editOrder={editOrder}
-          />
+      <OrderItemsContext.Provider value={contextValue}>
+        <div className="slides" ref={orderRef}>
+          <div className="page" id="slide-1">
+            <Order
+              show={show}
+              editExistingOrder={editExistingOrder}
+              showOrderMenu={showOrderMenu}
+              createOrderRef={createOrderRef}
+              editOrder={editOrder}
+            />
+          </div>
+          <div className="page" id="slide-2">
+            <Delivery setDeliverer={(name) => setDeliverer(name)} />
+          </div>
+          <div className="page" id="slide-3">
+            <ShoppingList deliverer={deliverer} />
+          </div>
         </div>
-        <div className="page" id="slide-2">
-          <Delivery
-            orderItems={orderItems}
-            setDeliverer={(name) => setDeliverer(name)}
-          />
-        </div>
-        <div className="page" id="slide-3">
-          <ShoppingList
-            orderItems={orderItems}
-            deliverer={deliverer}
-          />
-        </div>
-      </div>
+      </OrderItemsContext.Provider>
     </div>
   );
 }

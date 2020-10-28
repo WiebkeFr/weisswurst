@@ -1,10 +1,10 @@
 import React from "react";
 import "./orderItem.css";
-import {MenuContext} from "../app/menu-context"
+import { MenuContext } from "../app/menu-context";
+import { OrderItemsContext } from "../app/orderItems-context";
 
-function OrderItem({ order, editOrder, deleteOrder }) {
-
-    const menu = MenuContext._currentValue
+function OrderItem({ order, editOrder }) {
+  const menu = React.useContext(MenuContext);
 
   const hasItems = (menuItem) => {
     return order.meals.find((meal) => meal.id > menuItem.id && meal.amount > 0);
@@ -30,13 +30,17 @@ function OrderItem({ order, editOrder, deleteOrder }) {
         <button
           className="orderItem--button-edit"
           onClick={() => editOrder(order)}
-        ></button>
+        />
       </td>
       <td style={{ weight: "30px" }}>
-        <button
-          className="orderItem--button-delete"
-          onClick={() => deleteOrder(order)}
-        ></button>
+        <OrderItemsContext.Consumer>
+          {(value) => (
+            <button
+              className="orderItem--button-delete"
+              onClick={() => value.deleteOrder(value.orderItems, order)}
+            />
+          )}
+        </OrderItemsContext.Consumer>
       </td>
     </tr>
   );

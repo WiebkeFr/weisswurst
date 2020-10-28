@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
+import { OrderItemsContext } from "../../app/orderItems-context";
 
-function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
-
+function CreateOrder({ initialOrder, createOrderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: window.$wurst,
@@ -50,7 +50,7 @@ function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
     }));
   };
 
-  const testInput = () => {
+  const testInput = (saveOrder, orderItems) => {
     const reg = /\w+@\w+\.\w+/;
     const nameError = order.name === "";
     const emailError = !reg.test(order.email);
@@ -59,7 +59,7 @@ function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
 
     setError({ order: orderError, name: nameError, email: emailError });
 
-    if (!nameError && !emailError && !orderError) saveOrder(order);
+    if (!nameError && !emailError && !orderError) saveOrder(orderItems, order);
     else
       window.scrollTo({
         top: createOrderRef.current.offsetTop,
@@ -147,11 +147,7 @@ function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
         </label>
       </div>
 
-      <Meals
-        order={order}
-        setAmount={setAmount}
-        orderError={error.order}
-      />
+      <Meals order={order} setAmount={setAmount} orderError={error.order} />
       {error.order ? (
         <p
           className="input--index"
@@ -168,16 +164,23 @@ function CreateOrder({ initialOrder, saveOrder, createOrderRef }) {
         <></>
       )}
 
-      <div className="container--submitButtons">
-        <SubmitButton
-          onClick={testInput}
-          text="Zur Bestellung hinzufügen"
-          disabled={false}
-        />
-        <button className="continue-button--create-order" onClick={() => saveOrder(undefined)}>
-          Abbrechen
-        </button>
-      </div>
+      <OrderItemsContext.Consumer>
+        {(value) => (
+          <div className="container--submitButtons">
+            <SubmitButton
+              onClick={() => testInput(value.saveOrder, value.orderItems)}
+              text="Zur Bestellung hinzufügen"
+              disabled={false}
+            />
+            <button
+              className="continue-button--create-order"
+              onClick={() => value.saveOrder(undefined)}
+            >
+              Abbrechen
+            </button>
+          </div>
+        )}
+      </OrderItemsContext.Consumer>
     </div>
   );
 }

@@ -4,8 +4,7 @@ import "./intro.css";
 function Intro() {
   return (
     <div>
-
-            <img src="./wwf-arrow.svg" alt="versuch" width="100px" height="100px"/>
+      <img src="./wwf-arrow.svg" alt="versuch" width="100px" height="100px" />
 
       <h1 className="h1--intro">Weißwurst Frühstück</h1>
       <h2 className="h2--intro">

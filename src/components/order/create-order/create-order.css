@@ -107,12 +107,12 @@
   align-items: center;
 }
 
-.continue-button--create-order{
+.continue-button--create-order {
   font-family: "Coco Gothic";
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-  color: #668CFF;
+  color: #668cff;
   border-radius: 10px;
   width: max-content;
   height: 20px;

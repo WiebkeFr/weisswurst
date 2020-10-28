@@ -36,18 +36,18 @@
   display: none;
 }
 
-.button-container--order{
+.button-container--order {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.continue-button--order{
+.continue-button--order {
   font-family: "Coco Gothic";
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
-  color: #668CFF;
+  color: #668cff;
   border-radius: 10px;
   width: 178px;
   background-color: white;
