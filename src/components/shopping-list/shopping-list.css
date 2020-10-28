@@ -47,31 +47,33 @@
 }
 
 .td--shoppingList-name {
-  width: 24%;
+  font-weight: bold;
+  width: 34%;
   font-size: 16px;
   line-height: 110%;
   color: #202840;
 }
 
 .td--shoppingList-amount {
-  width: 20%;
-  text-align: right;
+  width: 15%;
+  text-align: left;
   color: #202840;
-  font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
+  color: #202840;
 }
 
 .td--shoppingList-price {
   width: 23%;
-  font-size: 16px;
+  font-size: 12px;
   line-height: 110%;
   color: #202840;
+  font-weight: normal;
 }
 
 .td--shoppingList-sum {
-  width: 24%;
+  width: 20%;
   font-weight: bold;
   font-size: 16px;
   line-height: 110%;
@@ -97,11 +99,21 @@
 }
 
 .td--paymentList--name {
-  width: 35%;
+  width: 25%;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 110%;
+  color: #202840;
+  border-radius: 10px;
 }
 
 .td--paymentList--order {
   width: 40%;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 110%;
+  color: #202840;
+  border-radius: 10px;
 }
 
 .td--paymentList--sum {
@@ -116,13 +128,13 @@
 .tr--lastRow {
   border-top: solid;
   border-top-width: 1px;
-  height: 70px;
+  height: 58px;
 }
 
 .lastRow--text {
   text-align: right;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 110%;
   color: #202840;
 }
@@ -134,15 +146,8 @@
   font-weight: bold;
   font-size: 24px;
   line-height: 110%;
-}
-
-.lastColumn {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 110%;
-  text-align: right;
-  color: #668cff;
+  padding-bottom: 8px;
+  padding-top: 24px;
 }
 
 @media print {

@@ -86,15 +86,17 @@ function ShoppingList({ deliverer }) {
                   })}
                   <tr className="tr--space" />
                   <tr className="tr--lastRow">
-                    <td className="lastRow--text" colSpan="4">
-                      Wert der gesamten Bestellung
-                    </td>
-                    <td className="lastRow--sum">
+                    <td className="lastRow--sum" colSpan="5">
                       {calculateTotalPrice(value.orderItems)
                         .toFixed(2)
                         .toString()
                         .replace(".", ",")}{" "}
                       Euro
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="lastRow--text" colSpan="5">
+                      Wert der gesamten Bestellung
                     </td>
                   </tr>
                 </tbody>

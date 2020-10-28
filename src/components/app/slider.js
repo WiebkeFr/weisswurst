@@ -7,6 +7,7 @@ import Order from "../order/order";
 import ShoppingList from "../shopping-list/shopping-list";
 import { MenuContext } from "./menu-context";
 import { OrderItemsContext } from "./orderItems-context";
+import { EATING_HABIT } from "./config";
 
 function Slider() {
   const [page, setPage] = useState("1");
@@ -24,7 +25,7 @@ function Slider() {
   const INITIAL_STATE = {
     name: "",
     email: "",
-    eatingHabit: window.$wurst,
+    eatingHabit: EATING_HABIT.OMNIVORE,
     meals: initMeals,
   };
 
@@ -55,7 +56,6 @@ function Slider() {
         ...prevState,
         orderItems: newOrderItems,
       }));
-      /*setOrderItems(newOrderItems);*/
     }
   };
 
@@ -103,7 +103,6 @@ function Slider() {
         ...prevState,
         orderItems: newOrderItems,
       }));
-      /*setOrderItems(newOrderItems);*/
     } else {
       const newItem = {
         id: orderItems.length,
@@ -116,7 +115,6 @@ function Slider() {
         ...prevState,
         orderItems: newOrderItems,
       }));
-      /*setOrderItems((prevState) => [...prevState, newItem]);*/
     }
     setShow(false);
     setEditOrder(INITIAL_STATE);
@@ -127,19 +125,38 @@ function Slider() {
     });
   };
 
+  const [contextValue, setContextValue] = useState({
+    orderItems: [],
+    saveOrder: saveOrder,
+    deleteOrder: deleteOrder,
+  });
+
   const onClick = (event) => {
-    console.log(event.target);
+    if (contextValue.orderItems.length === 0) return;
     const page = event.target.id
       .toString()
       .charAt(event.target.id.toString().length - 1);
     setPage(page);
   };
 
-  const [contextValue, setContextValue] = useState({
-    orderItems: [],
-    saveOrder: saveOrder,
-    deleteOrder: deleteOrder,
-  });
+  const handleScroll = () => {
+    let id = "slide-" + page;
+    const slide = document.getElementById(id);
+    const data = slide.getBoundingClientRect();
+    const slidesData = document
+      .getElementById("slides")
+      .getBoundingClientRect();
+
+    if (data.x + data.width / 2 <= slidesData.x && page !== "3") {
+      const newPage = Number.parseInt(page) + 1;
+      setPage(newPage.toString());
+    } else {
+      if (data.x >= slidesData.x + data.width / 2) {
+        const newPage = Number.parseInt(page) - 1;
+        setPage(newPage.toString());
+      }
+    }
+  };
 
   return (
     <div className="slider">
@@ -151,36 +168,67 @@ function Slider() {
           <a href="#slide-1" onClick={onClick}>
             <div
               id="circle-1"
-              className={page === "1" ? "bigCircle" : "circle"}
+              className={
+                page === "1"
+                  ? "circle-active"
+                  : contextValue.orderItems.length !== 0
+                  ? "circle-done"
+                  : "circle"
+              }
             />
             <p
               id="caption-1"
               className={
-                page === "1" ? "link--caption-active" : "link--caption-inactive"
+                page === "1" || contextValue.orderItems.length !== 0
+                  ? "link--caption-active"
+                  : "link--caption-inactive"
               }
             >
               Bestellung
             </p>
           </a>
-          <a href="#slide-2" onClick={onClick}>
+          <a
+            href={
+              contextValue.orderItems.length === 0 ? "#slide-1" : "#slide-2"
+            }
+            onClick={onClick}
+          >
             <div
               id="circle-2"
-              className={page === "2" ? "bigCircle" : "circle"}
+              className={
+                page === "2"
+                  ? "circle-active"
+                  : contextValue.orderItems.length !== 0 &&
+                    page === "3" &&
+                    deliverer !== ""
+                  ? "circle-done"
+                  : "circle"
+              }
               style={{ margin: "auto" }}
             />
             <p
               id="caption-2"
               className={
-                page === "2" ? "link--caption-active" : "link--caption-inactive"
+                page === "2" ||
+                (contextValue.orderItems.length !== 0 &&
+                  page === "3" &&
+                  deliverer !== "")
+                  ? "link--caption-active"
+                  : "link--caption-inactive"
               }
             >
               Wer darf holen?
             </p>
           </a>
-          <a href="#slide-3" onClick={onClick}>
+          <a
+            href={
+              contextValue.orderItems.length === 0 ? "#slide-1" : "#slide-3"
+            }
+            onClick={onClick}
+          >
             <div
               id="circle-3"
-              className={page === "3" ? "bigCircle" : "circle"}
+              className={page === "3" ? "circle-active" : "circle"}
               style={{ float: "right" }}
             />
             <p
@@ -197,7 +245,12 @@ function Slider() {
       </div>
 
       <OrderItemsContext.Provider value={contextValue}>
-        <div className="slides" ref={orderRef}>
+        <div
+          className="slides"
+          id="slides"
+          ref={orderRef}
+          onScroll={handleScroll}
+        >
           <div className="page" id="slide-1">
             <Order
               show={show}
@@ -207,12 +260,16 @@ function Slider() {
               editOrder={editOrder}
             />
           </div>
-          <div className="page" id="slide-2">
-            <Delivery setDeliverer={(name) => setDeliverer(name)} />
-          </div>
-          <div className="page" id="slide-3">
-            <ShoppingList deliverer={deliverer} />
-          </div>
+          {contextValue.orderItems.length !== 0 && (
+            <>
+              <div className="page" id="slide-2">
+                <Delivery setDeliverer={(name) => setDeliverer(name)} />
+              </div>
+              <div className="page" id="slide-3">
+                <ShoppingList deliverer={deliverer} />
+              </div>
+            </>
+          )}
         </div>
       </OrderItemsContext.Provider>
     </div>

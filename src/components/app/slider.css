@@ -12,19 +12,16 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.slides::-webkit-scrollbar {
+  display: none;
+}
+
 .page {
   scroll-snap-align: start;
   flex-shrink: 0;
   width: 100%;
   margin-right: 50px;
   border-radius: 10px;
-  transform-origin: center center;
-  transform: scale(1);
-  transition: transform 10s;
-  position: relative;
-  /*display: flex;
-  justify-content: center;
-  align-items: center;*/
 }
 
 .link--container {
@@ -52,7 +49,7 @@
   font-opacity: 0.5;
 }
 
-.bigCircle {
+.circle-active {
   background: #f5f5f5;
   border: 6px solid #668cff;
   box-sizing: border-box;
@@ -61,6 +58,16 @@
   height: 20px;
   text-decoration: none;
   cursor: pointer;
+}
+
+.circle-done {
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  background: url("check.svg") no-repeat #668cff center;
 }
 
 hr {
@@ -83,6 +90,7 @@ hr {
 .link--caption-active {
   width: max-content;
   margin-top: 8px;
+  margin-bottom: 15px;
   cursor: pointer;
   font-size: 12px;
   line-height: 110%;
@@ -92,6 +100,7 @@ hr {
 .link--caption-inactive {
   width: max-content;
   margin-top: 8px;
+  margin-bottom: 15px;
   cursor: pointer;
   opacity: 0.5;
   font-size: 12px;
@@ -101,4 +110,5 @@ hr {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }

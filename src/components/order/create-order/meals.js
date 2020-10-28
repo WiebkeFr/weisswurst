@@ -2,6 +2,7 @@ import CountingButton from "./counting-button";
 import React, { useState } from "react";
 import "./meals.css";
 import { MenuContext } from "../../app/menu-context";
+import { EATING_HABIT } from "../../app/config";
 
 function Meals({ order, setAmount, orderError }) {
   const menu = React.useContext(MenuContext);
@@ -18,7 +19,8 @@ function Meals({ order, setAmount, orderError }) {
         return (
           <li
             className={
-              order.eatingHabit === window.$veg && !menu[meal.id].veg
+              order.eatingHabit === EATING_HABIT.VEGETARIAN &&
+              !menu[meal.id].veg
                 ? "orderNotShown--meals"
                 : "container--order"
             }

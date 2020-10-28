@@ -21,6 +21,8 @@
   line-height: 110%;
   color: #202840;
   border-radius: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .orderItem--button-edit {

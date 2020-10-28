@@ -1,2 +1,4 @@
-window.$wurst = "Wurstliebhaber";
-window.$veg = "Vegetarisch/Vegan";
+export const EATING_HABIT = {
+  OMNIVORE: "Wurstliebhaber",
+  VEGETARIAN: "Vegetarisch/Vegan",
+};

@@ -3,11 +3,12 @@ import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
 import { OrderItemsContext } from "../../app/orderItems-context";
+import { EATING_HABIT } from "../../app/config";
 
 function CreateOrder({ initialOrder, createOrderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
-    eatingHabit: window.$wurst,
+    eatingHabit: EATING_HABIT.OMNIVORE,
   });
   const [error, setError] = useState({
     email: false,
@@ -127,23 +128,27 @@ function CreateOrder({ initialOrder, createOrderRef }) {
           className="button--radio"
           type="radio"
           name="meal"
-          id={window.$wurst}
-          checked={order.eatingHabit === window.$wurst}
-          onChange={() => setOrder({ ...order, eatingHabit: window.$wurst })}
+          id={EATING_HABIT.OMNIVORE}
+          checked={order.eatingHabit === EATING_HABIT.OMNIVORE}
+          onChange={() =>
+            setOrder({ ...order, eatingHabit: EATING_HABIT.OMNIVORE })
+          }
         />
-        <label className="button--label" htmlFor={window.$wurst}>
-          {window.$wurst}
+        <label className="button--label" htmlFor={EATING_HABIT.OMNIVORE}>
+          {EATING_HABIT.OMNIVORE}
         </label>
         <input
           className="button--radio"
           type="radio"
           name="meal"
-          id={window.$veg}
-          checked={order.eatingHabit === window.$veg}
-          onChange={() => setOrder({ ...order, eatingHabit: window.$veg })}
+          id={EATING_HABIT.VEGETARIAN}
+          checked={order.eatingHabit === EATING_HABIT.VEGETARIAN}
+          onChange={() =>
+            setOrder({ ...order, eatingHabit: EATING_HABIT.VEGETARIAN })
+          }
         />
-        <label className="button--label" htmlFor={window.$veg}>
-          {window.$veg}
+        <label className="button--label" htmlFor={EATING_HABIT.VEGETARIAN}>
+          {EATING_HABIT.VEGETARIAN}
         </label>
       </div>
 
