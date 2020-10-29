@@ -86,3 +86,9 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+button{
+  border: none;
+  background: none;
+  padding: 0px
+}

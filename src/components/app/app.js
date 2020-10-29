@@ -1,7 +1,7 @@
 import React from "react";
 import "./app.css";
 import Intro from "../intro/intro.js";
-import Slider from "./slider"
+import Slider from "./slider/slider"
 import "./config.js";
 
 function App() {

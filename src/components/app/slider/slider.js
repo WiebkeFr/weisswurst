@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import "./slider.css";
 import { useState } from "react";
-import Intro from "../intro/intro";
-import Delivery from "../delivery/delivery";
-import Order from "../order/order";
-import ShoppingList from "../shopping-list/shopping-list";
+import Intro from "../../intro/intro";
+import Delivery from "../../delivery/delivery";
+import Order from "../../order/order";
+import ShoppingList from "../../shopping-list/shopping-list";
 import SliderHeader from "./slider-header";
-import { MenuContext } from "./menu-context";
-import { OrderItemsContext } from "./orderItems-context";
-import { EATING_HABIT } from "./config";
+import { MenuContext } from "../menu-context";
+import { OrderItemsContext } from "../orderItems-context";
+import { EATING_HABIT } from "../config";
 
 function Slider() {
   const [page, setPage] = useState("1");

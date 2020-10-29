@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./components/app/app.css";
 import * as serviceWorker from "./serviceWorker";
-import Slider from "./components/app/slider";
+import Slider from "./components/app/slider/slider";
 
 ReactDOM.render(
   <React.StrictMode>

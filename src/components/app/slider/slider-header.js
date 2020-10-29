@@ -1,13 +1,24 @@
 import React from "react";
-import { OrderItemsContext } from "./orderItems-context";
+import { OrderItemsContext } from "../orderItems-context";
 import "./slider-header.css";
 
 function SliderHeader({ page, setPage }) {
+
   const onClick = (orderItems, event) => {
     if (orderItems.length === 0) return;
-    const page = event.target.id
+    const newPage = event.target.id
       .toString()
       .charAt(event.target.id.toString().length - 1);
+
+    const slides = document.getElementById("slides")
+    const slidesWidth = slides.getBoundingClientRect().width
+    const left = slidesWidth * (newPage - 1)
+
+    slides.scrollTo({
+      left,
+      behavior: "smooth"
+    })
+
     setPage(page);
   };
 
@@ -17,8 +28,7 @@ function SliderHeader({ page, setPage }) {
         <div className="button--container">
           <hr />
           <div className="circle--container">
-            <a
-              href="#slide-1"
+            <button
               onClick={(event) => onClick(value.orderItems, event)}
             >
               <div
@@ -43,9 +53,8 @@ function SliderHeader({ page, setPage }) {
               >
                 Bestellung
               </p>
-            </a>
-            <a
-              href={value.orderItems.length === 0 ? "#slide-1" : "#slide-2"}
+            </button>
+            <button
               onClick={(event) => onClick(value.orderItems, event)}
             >
               <div
@@ -70,9 +79,8 @@ function SliderHeader({ page, setPage }) {
               >
                 Wer darf holen?
               </p>
-            </a>
-            <a
-              href={value.orderItems.length === 0 ? "#slide-1" : "#slide-3"}
+            </button>
+            <button
               onClick={(event) => onClick(value.orderItems, event)}
             >
               <div
@@ -91,7 +99,7 @@ function SliderHeader({ page, setPage }) {
               >
                 Einkaufsliste
               </p>
-            </a>
+            </button>
           </div>
         </div>
       )}
