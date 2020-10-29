@@ -5,7 +5,7 @@ import SubmitButton from "../../submit-button/submit-button";
 import { OrderItemsContext } from "../../app/orderItems-context";
 import { EATING_HABIT } from "../../app/config";
 
-function CreateOrder({ initialOrder, createOrderRef }) {
+function CreateOrder({ initialOrder, orderRef }) {
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: EATING_HABIT.OMNIVORE,
@@ -51,7 +51,7 @@ function CreateOrder({ initialOrder, createOrderRef }) {
     }));
   };
 
-  const testInput = (saveOrder, orderItems) => {
+  const testInput = (dispatch, orderItems) => {
     const reg = /\w+@\w+\.\w+/;
     const nameError = order.name === "";
     const emailError = !reg.test(order.email);
@@ -60,13 +60,17 @@ function CreateOrder({ initialOrder, createOrderRef }) {
 
     setError({ order: orderError, name: nameError, email: emailError });
 
-    if (!nameError && !emailError && !orderError) saveOrder(orderItems, order);
-    else
-      window.scrollTo({
+    if (!nameError && !emailError && !orderError) {
+        dispatch({ type: 'SAVE_ORDER', order});
+        dispatch({ type: 'TOGGLE_SHOW', orderRef})
+    }
+    /*saveOrder(orderItems, order);*/
+    /*else
+      /*window.scrollTo({
         top: createOrderRef.current.offsetTop,
         left: 0,
         behavior: "smooth",
-      });
+      });*/
   };
 
   return (
@@ -170,16 +174,16 @@ function CreateOrder({ initialOrder, createOrderRef }) {
       )}
 
       <OrderItemsContext.Consumer>
-        {(value) => (
+        {({state, dispatch}) => (
           <div className="container--submitButtons">
             <SubmitButton
-              onClick={() => testInput(value.saveOrder, value.orderItems)}
+              onClick={() => testInput(dispatch, state.orderItems)}
               text="Zur Bestellung hinzufügen"
               disabled={false}
             />
             <button
               className="continue-button--create-order"
-              onClick={() => value.saveOrder(undefined)}
+              onClick={() => dispatch({type: 'SAVE_ORDER', order: undefined})}
             >
               Abbrechen
             </button>

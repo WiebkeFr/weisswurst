@@ -7,11 +7,12 @@ import { OrderItemsContext } from "../app/orderItems-context";
 function Delivery() {
   const [name, setName] = useState("");
 
-  const chooseName = (setDeliverer, orderItems) => {
+  const chooseName = (dispatch, orderItems) => {
     const names = orderItems.map((order) => order.name);
     const name = names[Math.floor(Math.random() * names.length)];
     setName(name);
-    setDeliverer(name);
+    dispatch({type: 'SET_DELIVERER', name})
+    /*setDeliverer(name);*/
   };
 
   const onClick = () => {
@@ -20,7 +21,7 @@ function Delivery() {
 
   return (
     <OrderItemsContext.Consumer>
-      {(value) => (
+      {({state, dispatch}) => (
         <div>
           {name === "" ? (
             <div>
@@ -29,9 +30,9 @@ function Delivery() {
               </h2>
               <SubmitButton
                 className="button--submit"
-                onClick={() => chooseName(value.setDeliverer, value.orderItems)}
+                onClick={() => chooseName(dispatch, state.orderItems)}
                 text="Jetzt wählen"
-                disabled={value.orderItems.length === 0}
+                disabled={state.orderItems.length === 0}
                 center={true}
               />
             </div>
@@ -54,7 +55,7 @@ function Delivery() {
               <div className="button-container--delivery">
                 <SubmitButton
                   onClick={() =>
-                    chooseName(value.setDeliverer, value.orderItems)
+                    chooseName(dispatch, state.orderItems)
                   }
                   text="Nochmal versuchen"
                   disabled={false}

@@ -24,17 +24,17 @@ function SliderHeader({ page, setPage }) {
 
   return (
     <OrderItemsContext.Consumer>
-      {(value) => (
+      {({state, dispatch}) => (
         <div className="button--container">
           <hr />
           <div className="circle--container">
             <button
-              onClick={(event) => onClick(value.orderItems, event)}
+              onClick={(event) => onClick(state.orderItems, event)}
             >
               <div
                 id="circle-1"
                 className={
-                    value.orderItems.length !== 0
+                  state.orderItems.length !== 0
                     ? "circle-done"
                     : (
                         page === "1"
@@ -46,7 +46,7 @@ function SliderHeader({ page, setPage }) {
               <p
                 id="caption-1"
                 className={
-                  page === "1" || value.orderItems.length !== 0
+                  page === "1" || state.orderItems.length !== 0
                     ? "link--caption-active"
                     : "link--caption-inactive"
                 }
@@ -55,12 +55,12 @@ function SliderHeader({ page, setPage }) {
               </p>
             </button>
             <button
-              onClick={(event) => onClick(value.orderItems, event)}
+              onClick={(event) => onClick(state.orderItems, event)}
             >
               <div
                 id="circle-2"
                 className={
-                  value.deliverer !== ""
+                  state.deliverer !== ""
                     ? "circle-done"
                     : page === "2"
                     ? "circle-active"
@@ -72,7 +72,7 @@ function SliderHeader({ page, setPage }) {
                 id="caption-2"
                 className={
                     (page === "2" ||
-                  value.deliverer !== "")
+                        state.deliverer !== "")
                     ? "link--caption-active"
                     : "link--caption-inactive"
                 }
@@ -81,7 +81,7 @@ function SliderHeader({ page, setPage }) {
               </p>
             </button>
             <button
-              onClick={(event) => onClick(value.orderItems, event)}
+              onClick={(event) => onClick(state.orderItems, event)}
             >
               <div
                 id="circle-3"

@@ -34,10 +34,11 @@ function OrderItem({ order, editOrder }) {
       </td>
       <td style={{ weight: "30px" }}>
         <OrderItemsContext.Consumer>
-          {(value) => (
+          {({state, dispatch}) => (
             <button
               className="orderItem--button-delete"
-              onClick={() => value.deleteOrder(value.orderItems, order)}
+              onClick={() => dispatch({type: 'DELETE_ORDER', order})}
+                  /*value.deleteOrder(value.orderItems, order)}*/
             />
           )}
         </OrderItemsContext.Consumer>

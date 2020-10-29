@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, {useReducer, useRef} from "react";
 import "./slider.css";
 import { useState } from "react";
 import Intro from "../../intro/intro";
@@ -7,14 +7,13 @@ import Order from "../../order/order";
 import ShoppingList from "../../shopping-list/shopping-list";
 import SliderHeader from "./slider-header";
 import { MenuContext } from "../menu-context";
-import { OrderItemsContext } from "../orderItems-context";
+import { OrderItemsContext, OrderItemsReducer, initialState} from "../orderItems-context";
 import { EATING_HABIT } from "../config";
 
 function Slider() {
   const [page, setPage] = useState("1");
 
   const orderRef = useRef(null);
-  const createOrderRef = useRef(null);
 
   const menu = React.useContext(MenuContext);
 
@@ -30,112 +29,18 @@ function Slider() {
     meals: initMeals,
   };
 
-  const [show, setShow] = useState(false);
   const [editOrder, setEditOrder] = useState(INITIAL_STATE);
 
-  const setDeliverer = (name) => {
-    setContextValue((prevState) => ({ ...prevState, deliverer: name }));
-  };
-
-  const deleteOrder = (orderItems, order) => {
-    let msg = "";
-    menu.forEach((menuItem) => {
-      msg +=
-        Number.parseInt(order.meals[menuItem.id].amount) > 0
-          ? order.meals[menuItem.id].amount + "x " + menuItem.name + " "
-          : "";
-    });
-
-    const dlt = window.confirm(
-      "Zum Löschen folgender Bestellung auf OK drücken:\nName: " +
-        order.name +
-        "\nBestellung: " +
-        msg
-    );
-    if (dlt) {
-      const newOrderItems = orderItems.filter(
-        (orderItem) => orderItem !== order
-      );
-      setContextValue((prevState) => ({
-        ...prevState,
-        orderItems: newOrderItems,
-      }));
-    }
-  };
-
-  const showOrderMenu = () => {
-    setShow(true);
-    window.scroll({
-      top: orderRef.current.offsetTop,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
+  const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
 
   const editExistingOrder = (order) => {
-    setShow(true);
     setEditOrder(order);
-    window.scroll({
+    /*window.scroll({
       top: createOrderRef.current.offsetTop,
       left: 0,
       behavior: "smooth",
-    });
+    });*/
   };
-
-  const saveOrder = (orderItems, order) => {
-    if (order === undefined) {
-      setShow(false);
-      setEditOrder(INITIAL_STATE);
-      window.scrollTo({
-        top: orderRef.current.offsetTop,
-        left: 0,
-        behavior: "smooth",
-      });
-      return;
-    }
-    const hasOrder = orderItems.find(
-      (orderItems) => orderItems.name === order.name
-    );
-    if (hasOrder) {
-      const newOrderItems = orderItems.map((orderItem) => {
-        if (orderItem.name === order.name && orderItem.id === order.id) {
-          return { ...orderItem, meals: order.meals };
-        }
-        return orderItem;
-      });
-      setContextValue((prevState) => ({
-        ...prevState,
-        orderItems: newOrderItems,
-      }));
-    } else {
-      const newItem = {
-        id: orderItems.length,
-        name: order.name,
-        email: order.email,
-        meals: order.meals,
-      };
-      const newOrderItems = [...orderItems, newItem];
-      setContextValue((prevState) => ({
-        ...prevState,
-        orderItems: newOrderItems,
-      }));
-    }
-    setShow(false);
-    setEditOrder(INITIAL_STATE);
-    window.scrollTo({
-      top: orderRef.current.offsetTop,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const [contextValue, setContextValue] = useState({
-    orderItems: [],
-    saveOrder: saveOrder,
-    deleteOrder: deleteOrder,
-    deliverer: "",
-    setDeliverer,
-  });
 
   const handleScroll = () => {
     let id = "slide-" + page;
@@ -160,23 +65,22 @@ function Slider() {
     <div className="slider">
       <Intro />
 
-      <OrderItemsContext.Provider value={contextValue}>
-        <div ref={orderRef}></div>
+      <OrderItemsContext.Provider value={{state, dispatch}}>
+
+        <div ref={orderRef}/>
 
         <SliderHeader page={page} setPage={setPage} />
 
         <div className="slides" id="slides" onScroll={handleScroll}>
           <div className="page" id="slide-1">
             <Order
-              show={show}
               editExistingOrder={editExistingOrder}
-              showOrderMenu={showOrderMenu}
-              createOrderRef={createOrderRef}
+              orderRef={orderRef}
               editOrder={editOrder}
             />
           </div>
 
-          {contextValue.orderItems.length !== 0 && (
+          {state.orderItems.length !== 0 && (
             <>
               <div className="page" id="slide-2">
                 <Delivery />

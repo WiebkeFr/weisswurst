@@ -8,10 +8,8 @@ import SubmitButton from "../submit-button/submit-button";
 import { OrderItemsContext } from "../app/orderItems-context";
 
 function Order({
-  show,
   editExistingOrder,
-  showOrderMenu,
-  createOrderRef,
+  orderRef,
   editOrder,
 }) {
   const onClick = () => {
@@ -20,64 +18,64 @@ function Order({
 
   return (
     <div>
-      {!show && (
-        <div>
-          <h2 className="h2--order">Aktuelle Bestellungen</h2>
+      <OrderItemsContext.Consumer>
+        {({state, dispatch}) => (
+            <div>
+              {!state.show && (
+                  <div>
+                    <h2 className="h2--order">Aktuelle Bestellungen</h2>
+                  <div>
+                    {state.orderItems.length === 0 ? (
+                        <h3 className="h3--order">
+                          Im Moment liegen keine Bestellungen vor.
+                        </h3>
+                    ) : (
+                        <table
+                            className="table--order"
+                            width="100%"
+                            table-layout="auto"
+                        >
+                          <tbody>
+                          {state.orderItems.map((order) => {
+                            return (
+                                <OrderItem
+                                    order={order}
+                                    key={order.id}
+                                    editOrder={editExistingOrder}
+                                />
+                            );
+                          })}
+                          </tbody>
+                        </table>
+                    )}
+                  </div>
 
-          <OrderItemsContext.Consumer>
-            {(value) => (
-              <div>
-                {value.orderItems.length === 0 ? (
-                  <h3 className="h3--order">
-                    Im Moment liegen keine Bestellungen vor.
-                  </h3>
-                ) : (
-                  <table
-                    className="table--order"
-                    width="100%"
-                    table-layout="auto"
-                  >
-                    <tbody>
-                      {value.orderItems.map((order) => {
-                        return (
-                          <OrderItem
-                            order={order}
-                            key={order.id}
-                            editOrder={editExistingOrder}
-                          />
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                )}
-              </div>
+                  <div className="button-container--order" style={{ display: "flex" }}>
+                    <SubmitButton
+                        onClick={() => dispatch({type: 'TOGGLE_SHOW', orderRef: orderRef})}
+                        text="Neue Bestellung aufgeben"
+                        icon="+"
+                        disabled={false}
+                    />
+                    <button className="continue-button--order" onClick={onClick}>
+                      Weiter zur Auswahl >
+                    </button>
+                  </div>
+
+                </div>
             )}
-          </OrderItemsContext.Consumer>
 
-          <div className="button-container--order" style={{ display: "flex" }}>
-            <SubmitButton
-              onClick={showOrderMenu}
-              text="Neue Bestellung aufgeben"
-              icon="+"
-              disabled={false}
-            />
-            <button className="continue-button--order" onClick={onClick}>
-              Weiter zur Auswahl >
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div ref={createOrderRef}>
-        {show && (
-          <CreateOrder
-            id="createOrder"
-            class="createOrder"
-            initialOrder={editOrder}
-            createOrderRef={createOrderRef}
-          />
-        )}
-      </div>
+              {state.show && (
+                <CreateOrder
+                  id="createOrder"
+                  class="createOrder"
+                  initialOrder={editOrder}
+                  orderRef={orderRef}
+                />
+              )}
+            </div>
+          )}
+      </OrderItemsContext.Consumer>
     </div>
   );
 }

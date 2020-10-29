@@ -34,16 +34,16 @@ function ShoppingList() {
 
   return (
     <OrderItemsContext.Consumer>
-      {(value) => (
+      {({state, dispatch}) => (
         <div>
-          {value.deliverer === "" ? (
+          {state.deliverer === "" ? (
             <h3 className="h3--shoppingList">
               Es wurde noch nicht bestimmt, wer holen darf!
             </h3>
           ) : (
             <>
               <h3 className="h3--shoppingList">
-                Zur Erinnerung: <br /> {value.deliverer} darf heute das
+                Zur Erinnerung: <br /> {state.deliverer} darf heute das
                 Weißwurstfrühstück holen.
               </h3>
             </>
@@ -63,7 +63,7 @@ function ShoppingList() {
                         </td>
                         <td className="td--shoppingList-amount">
                           <b>
-                            {calculateTotalAmount(value.orderItems, menuItem)}{" "}
+                            {calculateTotalAmount(state.orderItems, menuItem)}{" "}
                             Stück
                           </b>
                         </td>
@@ -73,7 +73,7 @@ function ShoppingList() {
                         </td>
                         <td className="td--shoppingList-sum">
                           {(
-                            calculateTotalAmount(value.orderItems, menuItem) *
+                            calculateTotalAmount(state.orderItems, menuItem) *
                             Number.parseFloat(menuItem.price)
                           )
                             .toFixed(2)
@@ -87,7 +87,7 @@ function ShoppingList() {
                   <tr className="tr--space" />
                   <tr className="tr--lastRow">
                     <td className="lastRow--sum" colSpan="5">
-                      {calculateTotalPrice(value.orderItems)
+                      {calculateTotalPrice(state.orderItems)
                         .toFixed(2)
                         .toString()
                         .replace(".", ",")}{" "}
@@ -109,7 +109,7 @@ function ShoppingList() {
               </h3>
               <table className="table--meals" table-layout="auto" width="100%">
                 <tbody>
-                  {value.orderItems.map((order) => {
+                  {state.orderItems.map((order) => {
                     return (
                       <tr key={order.id} className="tr--shoppingList">
                         <td className="td--paymentList--name">{order.name}</td>
@@ -148,7 +148,7 @@ function ShoppingList() {
 
           <SubmitButton
             text="Einkaufszettel drucken"
-            disabled={value.orderItems.length === 0}
+            disabled={state.orderItems.length === 0}
             onClick={() => window.print()}
             icon={"wwf-print.svg"}
           />
