@@ -4,10 +4,10 @@ import SubmitButton from "../submit-button/submit-button";
 import emoji from "./wwf-emoji.svg";
 import { OrderItemsContext } from "../app/orderItems-context";
 
-function Delivery({ setDeliverer }) {
+function Delivery() {
   const [name, setName] = useState("");
 
-  const chooseName = (orderItems) => {
+  const chooseName = (setDeliverer, orderItems) => {
     const names = orderItems.map((order) => order.name);
     const name = names[Math.floor(Math.random() * names.length)];
     setName(name);
@@ -29,7 +29,7 @@ function Delivery({ setDeliverer }) {
               </h2>
               <SubmitButton
                 className="button--submit"
-                onClick={() => chooseName(value.orderItems)}
+                onClick={() => chooseName(value.setDeliverer, value.orderItems)}
                 text="Jetzt wählen"
                 disabled={value.orderItems.length === 0}
                 center={true}
@@ -53,7 +53,9 @@ function Delivery({ setDeliverer }) {
               </div>
               <div className="button-container--delivery">
                 <SubmitButton
-                  onClick={() => chooseName(value.orderItems)}
+                  onClick={() =>
+                    chooseName(value.setDeliverer, value.orderItems)
+                  }
                   text="Nochmal versuchen"
                   disabled={false}
                   center={true}

@@ -1,0 +1,88 @@
+.link--container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.button--container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 34px;
+}
+
+.circle {
+  background: #f5f5f5;
+  border: 2px solid #668cff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-opacity: 0.5;
+}
+
+.circle-active {
+  background: #f5f5f5;
+  border: 6px solid #668cff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.circle-done {
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  background: url("check.svg") no-repeat #668cff center;
+}
+
+hr {
+  color: black;
+  background-color: black;
+  border-color: black;
+  width: 100%;
+  height: 1px;
+  position: relative;
+}
+
+.circle--container {
+  width: 100%;
+  max-width: 648px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+}
+
+.link--caption-active {
+  width: max-content;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 110%;
+  color: #668cff;
+}
+
+.link--caption-inactive {
+  width: max-content;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  opacity: 0.5;
+  font-size: 12px;
+  line-height: 110%;
+  color: #668cff;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}

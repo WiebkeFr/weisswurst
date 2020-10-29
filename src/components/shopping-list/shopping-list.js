@@ -4,7 +4,7 @@ import SubmitButton from "../submit-button/submit-button";
 import { MenuContext } from "../app/menu-context";
 import { OrderItemsContext } from "../app/orderItems-context";
 
-function ShoppingList({ deliverer }) {
+function ShoppingList() {
   const menu = React.useContext(MenuContext);
 
   const calculateTotalAmount = (orderItems, mealItem) => {
@@ -36,14 +36,14 @@ function ShoppingList({ deliverer }) {
     <OrderItemsContext.Consumer>
       {(value) => (
         <div>
-          {deliverer === "" ? (
+          {value.deliverer === "" ? (
             <h3 className="h3--shoppingList">
               Es wurde noch nicht bestimmt, wer holen darf!
             </h3>
           ) : (
             <>
               <h3 className="h3--shoppingList">
-                Zur Erinnerung: <br /> {deliverer} darf heute das
+                Zur Erinnerung: <br /> {value.deliverer} darf heute das
                 Weißwurstfrühstück holen.
               </h3>
             </>
