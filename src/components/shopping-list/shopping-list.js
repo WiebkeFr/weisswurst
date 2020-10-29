@@ -1,40 +1,14 @@
 import React from "react";
 import "./shopping-list.css";
 import SubmitButton from "../submit-button/submit-button";
-import { MenuContext } from "../app/menu-context";
 import { OrderItemsContext } from "../app/orderItems-context";
+import { Link } from "react-router-dom";
+import List from "./list";
 
 function ShoppingList() {
-  const menu = React.useContext(MenuContext);
-
-  const calculateTotalAmount = (orderItems, mealItem) => {
-    if (orderItems.length === 0) return 0;
-    return orderItems
-      .map((order) => order.meals[mealItem.id].amount)
-      .reduce((a, b) => a + b);
-  };
-
-  const calculateTotalPrice = (orderItems) => {
-    let price = 0;
-    menu.forEach((mealItem) => {
-      price += calculateTotalAmount(orderItems, mealItem) * mealItem.price;
-    });
-    return price;
-  };
-
-  const calculatePrice = (order) => {
-    return order.meals
-      .map((meal) => meal.amount * menu[meal.id].price)
-      .reduce((a, b) => a + b);
-  };
-
-  const hasItems = (menuItem, order) => {
-    return order.meals.find((meal) => meal.id > menuItem.id && meal.amount > 0);
-  };
-
   return (
     <OrderItemsContext.Consumer>
-      {({state, dispatch}) => (
+      {({ state, dispatch }) => (
         <div>
           {state.deliverer === "" ? (
             <h3 className="h3--shoppingList">
@@ -49,109 +23,60 @@ function ShoppingList() {
             </>
           )}
 
-          <div className="shoppingList" id="shoppingList">
-            <div className="container--shoppingList">
-              <h3 className="h3--header-shoppingList">Gesamtbestellung</h3>
-              <table className="table--meals" table-layout="auto" width="100%">
-                <tbody>
-                  {menu.map((menuItem) => {
-                    return (
-                      <tr key={menuItem.id} className="tr--shoppingList">
-                        <td className="td--shoppingList-name">
-                          {" "}
-                          {menuItem.name}
-                        </td>
-                        <td className="td--shoppingList-amount">
-                          <b>
-                            {calculateTotalAmount(state.orderItems, menuItem)}{" "}
-                            Stück
-                          </b>
-                        </td>
-                        <td className="td--middle" />
-                        <td className="td--shoppingList-price">
-                          pro Stück {menuItem.price.replace(".", ",")} €
-                        </td>
-                        <td className="td--shoppingList-sum">
-                          {(
-                            calculateTotalAmount(state.orderItems, menuItem) *
-                            Number.parseFloat(menuItem.price)
-                          )
-                            .toFixed(2)
-                            .toString()
-                            .replace(".", ",")}{" "}
-                          €
-                        </td>
-                      </tr>
-                    );
-                  })}
-                  <tr className="tr--space" />
-                  <tr className="tr--lastRow">
-                    <td className="lastRow--sum" colSpan="5">
-                      {calculateTotalPrice(state.orderItems)
-                        .toFixed(2)
-                        .toString()
-                        .replace(".", ",")}{" "}
-                      Euro
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="lastRow--text" colSpan="5">
-                      Wert der gesamten Bestellung
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <List />
 
-            <div className="paymentList">
-              <h3 className="h3--header-paymentList">
-                Wer muss wie viel bezahlen?
-              </h3>
-              <table className="table--meals" table-layout="auto" width="100%">
-                <tbody>
-                  {state.orderItems.map((order) => {
-                    return (
-                      <tr key={order.id} className="tr--shoppingList">
-                        <td className="td--paymentList--name">{order.name}</td>
-                        <td className="td--paymentList--order">
-                          {menu.map((menuItem) => {
-                            return (
-                              <React.Fragment key={menuItem.id}>
-                                {Number.parseInt(
-                                  order.meals[menuItem.id].amount
-                                ) > 0
-                                  ? order.meals[menuItem.id].amount +
-                                    "x " +
-                                    menuItem.name +
-                                    (hasItems(menuItem, order) ? ", " : "")
-                                  : ""}
-                              </React.Fragment>
-                            );
-                          })}
-                        </td>
-                        <td className="td--paymentList--sum">
-                          {Number.parseFloat(calculatePrice(order))
-                            .toFixed(2)
-                            .replace(".", ",")}{" "}
-                          €
-                        </td>
-                        <td style={{ textAlign: "right" }}>
-                          <b>O</b>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <SubmitButton
-            text="Einkaufszettel drucken"
-            disabled={state.orderItems.length === 0}
-            onClick={() => window.print()}
-            icon={"wwf-print.svg"}
-          />
+          <Link className="print-link" to={"/print"}>
+            <span>Einkaufszettel drucken</span>
+            <svg
+              width="28"
+              height="29"
+              viewBox="0 0 28 29"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 21H24C25.1046 21 26 20.1046 26 19V9C26 7.89543 25.1046 7 24 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H8"
+                stroke="white"
+                strokeWidth="2.5"
+              />
+              <path
+                d="M15 11H16"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M12 23H16"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M20 11H22"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <rect
+                x="8"
+                y="2"
+                width="12"
+                height="5"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinejoin="round"
+              />
+              <rect
+                x="8"
+                y="17"
+                width="12"
+                height="10"
+                stroke="white"
+                strokeWidth="2.5"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
         </div>
       )}
     </OrderItemsContext.Consumer>

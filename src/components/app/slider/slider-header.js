@@ -3,44 +3,39 @@ import { OrderItemsContext } from "../orderItems-context";
 import "./slider-header.css";
 
 function SliderHeader({ page, setPage }) {
-
   const onClick = (orderItems, event) => {
     if (orderItems.length === 0) return;
     const newPage = event.target.id
       .toString()
       .charAt(event.target.id.toString().length - 1);
 
-    const slides = document.getElementById("slides")
-    const slidesWidth = slides.getBoundingClientRect().width
-    const left = slidesWidth * (newPage - 1)
+    const slides = document.getElementById("slides");
+    const slidesWidth = slides.getBoundingClientRect().width;
+    const left = slidesWidth * (newPage - 1);
 
     slides.scrollTo({
       left,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
 
     setPage(page);
   };
 
   return (
     <OrderItemsContext.Consumer>
-      {({state, dispatch}) => (
+      {({ state, dispatch }) => (
         <div className="button--container">
           <hr />
           <div className="circle--container">
-            <button
-              onClick={(event) => onClick(state.orderItems, event)}
-            >
+            <button onClick={(event) => onClick(state.orderItems, event)}>
               <div
                 id="circle-1"
                 className={
                   state.orderItems.length !== 0
                     ? "circle-done"
-                    : (
-                        page === "1"
-                        ? "circle-active"
-                        : "circle"
-                    )
+                    : page === "1"
+                    ? "circle-active"
+                    : "circle"
                 }
               />
               <p
@@ -54,9 +49,7 @@ function SliderHeader({ page, setPage }) {
                 Bestellung
               </p>
             </button>
-            <button
-              onClick={(event) => onClick(state.orderItems, event)}
-            >
+            <button onClick={(event) => onClick(state.orderItems, event)}>
               <div
                 id="circle-2"
                 className={
@@ -71,8 +64,7 @@ function SliderHeader({ page, setPage }) {
               <p
                 id="caption-2"
                 className={
-                    (page === "2" ||
-                        state.deliverer !== "")
+                  page === "2" || state.deliverer !== ""
                     ? "link--caption-active"
                     : "link--caption-inactive"
                 }
@@ -80,9 +72,7 @@ function SliderHeader({ page, setPage }) {
                 Wer darf holen?
               </p>
             </button>
-            <button
-              onClick={(event) => onClick(state.orderItems, event)}
-            >
+            <button onClick={(event) => onClick(state.orderItems, event)}>
               <div
                 id="circle-3"
                 className={page === "3" ? "circle-active" : "circle"}

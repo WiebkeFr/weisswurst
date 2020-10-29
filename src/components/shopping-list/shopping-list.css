@@ -17,149 +17,37 @@
   margin-bottom: 80px;
 }
 
-.shoppingList {
-  background: #f7f8fa;
-  border-radius: 4px;
-  padding: 40px;
-  max-width: 648px;
-  margin-top: 88px;
+.print-link:hover {
+  background: #2345ab;
 }
 
-.container--shoppingList {
-  margin-bottom: 20px;
+.print-link[disabled]:hover {
+  opacity: 0.4;
+  background: #668cff;
+  cursor: auto;
 }
 
-.h3--header-shoppingList {
-  margin-bottom: 30px;
-  margin-top: 0px;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 110%;
-  color: #202840;
+.print-link:disabled {
+  opacity: 0.4;
 }
 
-.table--meals {
-  border-collapse: collapse;
-}
-
-.tr--shoppingList {
-  height: 45px;
-}
-
-.td--shoppingList-name {
-  font-weight: bold;
-  width: 34%;
-  font-size: 16px;
-  line-height: 110%;
-  color: #202840;
-}
-
-.td--shoppingList-amount {
-  width: 15%;
+.print-link {
+  background: #668cff;
+  border-radius: 28px;
+  width: 276px;
+  height: 22px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+  padding: 13px 18px;
   text-align: left;
-  color: #202840;
+  border: 0px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 110%;
-  color: #202840;
-}
-
-.td--shoppingList-price {
-  width: 23%;
-  font-size: 12px;
-  line-height: 110%;
-  color: #202840;
-  font-weight: normal;
-}
-
-.td--shoppingList-sum {
-  width: 20%;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 110%;
-  text-align: right;
-  color: #668cff;
-}
-
-.td--middle {
-  width: 4%;
-}
-
-.tr--space {
-  height: 10px;
-}
-
-.h3--header-paymentList {
-  margin-bottom: 30px;
-  margin-top: 0px;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 110%;
-  color: #202840;
-}
-
-.td--paymentList--name {
-  width: 25%;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 110%;
-  color: #202840;
-  border-radius: 10px;
-}
-
-.td--paymentList--order {
-  width: 40%;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 110%;
-  color: #202840;
-  border-radius: 10px;
-}
-
-.td--paymentList--sum {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-family: Coco Gothic;
   font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 110%;
-  text-align: right;
-  color: #668cff;
-}
-
-.tr--lastRow {
-  border-top: solid;
-  border-top-width: 1px;
-  height: 58px;
-}
-
-.lastRow--text {
-  text-align: right;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 110%;
-  color: #202840;
-}
-
-.lastRow--sum {
-  text-align: right;
-  color: #668cff;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 110%;
-  padding-bottom: 8px;
-  padding-top: 24px;
-}
-
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  #shoppingList * {
-    visibility: visible;
-  }
-  #shoppingList {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+  color: #ffffff;
 }

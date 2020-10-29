@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./components/app/app.css";
 import * as serviceWorker from "./serviceWorker";
-import Slider from "./components/app/slider/slider";
+import App from "./components/app/app";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Slider />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

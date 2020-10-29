@@ -62,23 +62,22 @@ function CreateOrder({ initialOrder, orderRef }) {
     setError({ order: orderError, name: nameError, email: emailError });
 
     if (!nameError && !emailError && !orderError) {
-        dispatch({ type: 'SAVE_ORDER', order});
-        dispatch({type: 'RESET_ORDER'})
-        dispatch({ type: 'TOGGLE_SHOW', orderRef})
-    }else{
-        window.scrollTo({
-            top: 550,
-            left: 0,
-            behavior: "smooth",
-        });
+      dispatch({ type: "SAVE_ORDER", order });
+      dispatch({ type: "RESET_ORDER" });
+      dispatch({ type: "TOGGLE_SHOW", orderRef });
+    } else {
+      window.scrollTo({
+        top: 550,
+        left: 0,
+        behavior: "smooth",
+      });
     }
   };
 
   const abort = (dispatch) => {
-      dispatch({type: 'SAVE_ORDER', order: undefined})
-      dispatch({type: 'TOGGLE_SHOW', orderRef})
-
-  }
+    dispatch({ type: "SAVE_ORDER", order: undefined });
+    dispatch({ type: "TOGGLE_SHOW", orderRef });
+  };
 
   return (
     <div>
@@ -181,7 +180,7 @@ function CreateOrder({ initialOrder, orderRef }) {
       )}
 
       <OrderItemsContext.Consumer>
-        {({state, dispatch}) => (
+        {({ state, dispatch }) => (
           <div className="container--submitButtons">
             <SubmitButton
               onClick={() => testInput(dispatch)}

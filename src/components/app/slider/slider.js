@@ -1,46 +1,20 @@
-import React, {useReducer, useRef} from "react";
+import React, { useRef } from "react";
 import "./slider.css";
 import { useState } from "react";
-import Intro from "../../intro/intro";
 import Delivery from "../../delivery/delivery";
 import Order from "../../order/order";
 import ShoppingList from "../../shopping-list/shopping-list";
 import SliderHeader from "./slider-header";
-import { MenuContext } from "../menu-context";
-import { OrderItemsContext, OrderItemsReducer} from "../orderItems-context";
-import {EATING_HABIT} from "../config";
+import { OrderItemsContext } from "../orderItems-context";
 
 function Slider() {
   const [page, setPage] = useState("1");
 
   const orderRef = useRef(null);
 
-  const menu = React.useContext(MenuContext);
-
-  let initMeals = [];
-  for (let i = 0; i < menu.length; i++) {
-    initMeals[i] = { id: menu[i].id, name: menu[i].name, amount: 0 };
-  }
-
-  const INITIAL_ORDER = {
-    name: "",
-    email: "",
-    eatingHabit: EATING_HABIT.OMNIVORE,
-    meals: initMeals,
-  };
-
-  const initialState = {
-    orderItems: [],
-    deliverer: "",
-    show: false,
-    editOrder: INITIAL_ORDER
-  }
-
-  const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
-
   const editExistingOrder = (order, dispatch) => {
-    dispatch({type: 'SET_EDIT_ORDER', editOrder: order})
-    dispatch({type: 'TOGGLE_SHOW', orderRef})
+    dispatch({ type: "SET_EDIT_ORDER", editOrder: order });
+    dispatch({ type: "TOGGLE_SHOW", orderRef });
   };
 
   const handleScroll = () => {
@@ -64,34 +38,30 @@ function Slider() {
 
   return (
     <div className="slider">
-      <Intro />
+      <div ref={orderRef} />
 
-      <OrderItemsContext.Provider value={{state, dispatch}}>
+      <SliderHeader page={page} setPage={setPage} />
 
-        <div ref={orderRef}/>
-
-        <SliderHeader page={page} setPage={setPage} />
-
-        <div className="slides" id="slides" onScroll={handleScroll}>
-          <div className="page" id="slide-1">
-            <Order
-              editExistingOrder={editExistingOrder}
-              orderRef={orderRef}
-            />
-          </div>
-
-          {state.orderItems.length !== 0 && (
-            <>
-              <div className="page" id="slide-2">
-                <Delivery />
-              </div>
-              <div className="page" id="slide-3">
-                <ShoppingList />
-              </div>
-            </>
-          )}
+      <div className="slides" id="slides" onScroll={handleScroll}>
+        <div className="page" id="slide-1">
+          <Order editExistingOrder={editExistingOrder} orderRef={orderRef} />
         </div>
-      </OrderItemsContext.Provider>
+
+        <OrderItemsContext.Consumer>
+          {({ state, dispatch }) =>
+            state.orderItems.length !== 0 && (
+              <>
+                <div className="page" id="slide-2">
+                  <Delivery />
+                </div>
+                <div className="page" id="slide-3">
+                  <ShoppingList />
+                </div>
+              </>
+            )
+          }
+        </OrderItemsContext.Consumer>
+      </div>
     </div>
   );
 }

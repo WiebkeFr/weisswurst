@@ -11,7 +11,7 @@ function Delivery() {
     const names = orderItems.map((order) => order.name);
     const name = names[Math.floor(Math.random() * names.length)];
     setName(name);
-    dispatch({type: 'SET_DELIVERER', name})
+    dispatch({ type: "SET_DELIVERER", name });
     /*setDeliverer(name);*/
   };
 
@@ -21,7 +21,7 @@ function Delivery() {
 
   return (
     <OrderItemsContext.Consumer>
-      {({state, dispatch}) => (
+      {({ state, dispatch }) => (
         <div>
           {name === "" ? (
             <div>
@@ -54,9 +54,7 @@ function Delivery() {
               </div>
               <div className="button-container--delivery">
                 <SubmitButton
-                  onClick={() =>
-                    chooseName(dispatch, state.orderItems)
-                  }
+                  onClick={() => chooseName(dispatch, state.orderItems)}
                   text="Nochmal versuchen"
                   disabled={false}
                   center={true}
