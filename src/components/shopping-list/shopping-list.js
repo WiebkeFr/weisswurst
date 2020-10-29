@@ -1,6 +1,5 @@
 import React from "react";
 import "./shopping-list.css";
-import SubmitButton from "../submit-button/submit-button";
 import { OrderItemsContext } from "../app/orderItems-context";
 import { Link } from "react-router-dom";
 import List from "./list";
