@@ -17,6 +17,7 @@ function CreateOrder({ initialOrder, orderRef }) {
   });
 
   const reg = /\w+@\w+\.\w+/;
+
   if (error.email && reg.test(order.email)) {
     setError({ ...error, email: false });
   }
@@ -51,7 +52,7 @@ function CreateOrder({ initialOrder, orderRef }) {
     }));
   };
 
-  const testInput = (dispatch, orderItems) => {
+  const testInput = (dispatch) => {
     const reg = /\w+@\w+\.\w+/;
     const nameError = order.name === "";
     const emailError = !reg.test(order.email);
@@ -62,16 +63,22 @@ function CreateOrder({ initialOrder, orderRef }) {
 
     if (!nameError && !emailError && !orderError) {
         dispatch({ type: 'SAVE_ORDER', order});
+        dispatch({type: 'RESET_ORDER'})
         dispatch({ type: 'TOGGLE_SHOW', orderRef})
+    }else{
+        window.scrollTo({
+            top: 550,
+            left: 0,
+            behavior: "smooth",
+        });
     }
-    /*saveOrder(orderItems, order);*/
-    /*else
-      /*window.scrollTo({
-        top: createOrderRef.current.offsetTop,
-        left: 0,
-        behavior: "smooth",
-      });*/
   };
+
+  const abort = (dispatch) => {
+      dispatch({type: 'SAVE_ORDER', order: undefined})
+      dispatch({type: 'TOGGLE_SHOW', orderRef})
+
+  }
 
   return (
     <div>
@@ -177,13 +184,13 @@ function CreateOrder({ initialOrder, orderRef }) {
         {({state, dispatch}) => (
           <div className="container--submitButtons">
             <SubmitButton
-              onClick={() => testInput(dispatch, state.orderItems)}
+              onClick={() => testInput(dispatch)}
               text="Zur Bestellung hinzufügen"
               disabled={false}
             />
             <button
               className="continue-button--create-order"
-              onClick={() => dispatch({type: 'SAVE_ORDER', order: undefined})}
+              onClick={() => abort(dispatch)}
             >
               Abbrechen
             </button>

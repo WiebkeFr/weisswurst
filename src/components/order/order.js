@@ -9,8 +9,7 @@ import { OrderItemsContext } from "../app/orderItems-context";
 
 function Order({
   editExistingOrder,
-  orderRef,
-  editOrder,
+  orderRef
 }) {
   const onClick = () => {
     document.getElementById("circle-2").click();
@@ -69,7 +68,7 @@ function Order({
                 <CreateOrder
                   id="createOrder"
                   class="createOrder"
-                  initialOrder={editOrder}
+                  initialOrder={state.editOrder}
                   orderRef={orderRef}
                 />
               )}

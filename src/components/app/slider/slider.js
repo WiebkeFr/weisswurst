@@ -7,8 +7,8 @@ import Order from "../../order/order";
 import ShoppingList from "../../shopping-list/shopping-list";
 import SliderHeader from "./slider-header";
 import { MenuContext } from "../menu-context";
-import { OrderItemsContext, OrderItemsReducer, initialState} from "../orderItems-context";
-import { EATING_HABIT } from "../config";
+import { OrderItemsContext, OrderItemsReducer} from "../orderItems-context";
+import {EATING_HABIT} from "../config";
 
 function Slider() {
   const [page, setPage] = useState("1");
@@ -22,24 +22,25 @@ function Slider() {
     initMeals[i] = { id: menu[i].id, name: menu[i].name, amount: 0 };
   }
 
-  const INITIAL_STATE = {
+  const INITIAL_ORDER = {
     name: "",
     email: "",
     eatingHabit: EATING_HABIT.OMNIVORE,
     meals: initMeals,
   };
 
-  const [editOrder, setEditOrder] = useState(INITIAL_STATE);
+  const initialState = {
+    orderItems: [],
+    deliverer: "",
+    show: false,
+    editOrder: INITIAL_ORDER
+  }
 
   const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
 
-  const editExistingOrder = (order) => {
-    setEditOrder(order);
-    /*window.scroll({
-      top: createOrderRef.current.offsetTop,
-      left: 0,
-      behavior: "smooth",
-    });*/
+  const editExistingOrder = (order, dispatch) => {
+    dispatch({type: 'SET_EDIT_ORDER', editOrder: order})
+    dispatch({type: 'TOGGLE_SHOW', orderRef})
   };
 
   const handleScroll = () => {
@@ -76,7 +77,6 @@ function Slider() {
             <Order
               editExistingOrder={editExistingOrder}
               orderRef={orderRef}
-              editOrder={editOrder}
             />
           </div>
 

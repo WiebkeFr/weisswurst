@@ -1,17 +1,12 @@
 import React from "react";
+import {EATING_HABIT} from "./config";
 
 export const OrderItemsContext = React.createContext({
   orderItems: [],
   deliverer: "",
-  show: false
+  show: false,
+  editOrder: {}
 });
-
-
-const initialState = {
-  orderItems: [],
-  deliverer: "",
-  show: false
-}
 
 const OrderItemsReducer = (state, action) => {
 
@@ -46,27 +41,10 @@ const OrderItemsReducer = (state, action) => {
       }
 
     case 'DELETE_ORDER':
-      let msg = "";
-
-      action.order.meals.stream().forEach((meal) =>
-          msg += Number.parseInt(meal.amount) > 0
-              ? meal.amount + "x " + meal.name + " "
-              : ""
-      )
-
-      const dlt = window.confirm(
-          "Zum Löschen folgender Bestellung auf OK drücken:\nName: " +
-          action.order.name +
-          "\nBestellung: " +
-          msg
+      const newOrderItems = state.orderItems.filter(
+          (orderItem) => orderItem !== action.order
       );
-      if (dlt) {
-        const newOrderItems = state.orderItems.filter(
-            (orderItem) => orderItem !== action.order
-        );
-        return {...state, orderItems: newOrderItems}
-      }
-      return state;
+      return {...state, orderItems: newOrderItems}
 
     case 'SET_DELIVERER':
       if(action.name === undefined) return state;
@@ -85,9 +63,23 @@ const OrderItemsReducer = (state, action) => {
       }
       return {...state, show: newShow}
 
+    case 'RESET_ORDER':
+      const initMeals = state.editOrder.meals.map((meal) => {return {id: meal.id, name: meal.name, amount: 0}})
+
+      const INITIAL_ORDER = {
+        name: "",
+        email: "",
+        eatingHabit: EATING_HABIT.OMNIVORE,
+        meals: initMeals,
+      };
+      return {...state, editOrder: INITIAL_ORDER}
+
+    case 'SET_EDIT_ORDER':
+      return {...state, editOrder: action.editOrder}
+
     default:
       return state
   }
 };
 
-export {OrderItemsReducer, initialState}
+export {OrderItemsReducer}
