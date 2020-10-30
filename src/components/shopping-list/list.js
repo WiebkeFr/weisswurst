@@ -1,9 +1,13 @@
 import React from "react";
 import { MenuContext } from "../app/menu-context";
-import { OrderItemsContext } from "../app/orderItems-context";
 import "./list.css";
 
-function List() {
+function List({orderItems}) {
+
+  if(orderItems === undefined){
+    orderItems = JSON.parse(localStorage.getItem("OrderItems"))
+  }
+
   const menu = React.useContext(MenuContext);
 
   const calculateTotalAmount = (orderItems, mealItem) => {
@@ -32,8 +36,6 @@ function List() {
   };
 
   return (
-    <OrderItemsContext.Consumer>
-      {({ state, dispatch }) => (
         <div className="shoppingList" id="shoppingList">
           <div className="container--shoppingList">
             <h3 className="h3--header-shoppingList">Gesamtbestellung</h3>
@@ -48,7 +50,7 @@ function List() {
                       </td>
                       <td className="td--shoppingList-amount">
                         <b>
-                          {calculateTotalAmount(state.orderItems, menuItem)}{" "}
+                          {calculateTotalAmount(orderItems, menuItem)}{" "}
                           Stück
                         </b>
                       </td>
@@ -58,7 +60,7 @@ function List() {
                       </td>
                       <td className="td--shoppingList-sum">
                         {(
-                          calculateTotalAmount(state.orderItems, menuItem) *
+                          calculateTotalAmount(orderItems, menuItem) *
                           Number.parseFloat(menuItem.price)
                         )
                           .toFixed(2)
@@ -72,7 +74,7 @@ function List() {
                 <tr className="tr--space" />
                 <tr className="tr--lastRow">
                   <td className="lastRow--sum" colSpan="5">
-                    {calculateTotalPrice(state.orderItems)
+                    {calculateTotalPrice(orderItems)
                       .toFixed(2)
                       .toString()
                       .replace(".", ",")}{" "}
@@ -94,7 +96,7 @@ function List() {
             </h3>
             <table className="table--meals" table-layout="auto" width="100%">
               <tbody>
-                {state.orderItems.map((order) => {
+                {orderItems.map((order) => {
                   return (
                     <tr key={order.id} className="tr--shoppingList">
                       <td className="td--paymentList--name">{order.name}</td>
@@ -130,8 +132,6 @@ function List() {
             </table>
           </div>
         </div>
-      )}
-    </OrderItemsContext.Consumer>
   );
 }
 

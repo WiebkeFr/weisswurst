@@ -12,11 +12,6 @@ function Slider() {
 
   const orderRef = useRef(null);
 
-  const editExistingOrder = (order, dispatch) => {
-    dispatch({ type: "SET_EDIT_ORDER", editOrder: order });
-    dispatch({ type: "TOGGLE_SHOW", orderRef });
-  };
-
   const handleScroll = () => {
     let id = "slide-" + page;
     const slide = document.getElementById(id);
@@ -44,7 +39,7 @@ function Slider() {
 
       <div className="slides" id="slides" onScroll={handleScroll}>
         <div className="page" id="slide-1">
-          <Order editExistingOrder={editExistingOrder} orderRef={orderRef} />
+          <Order orderRef={orderRef} />
         </div>
 
         <OrderItemsContext.Consumer>

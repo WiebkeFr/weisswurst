@@ -3,11 +3,16 @@ import "./orderItem.css";
 import { MenuContext } from "../app/menu-context";
 import { OrderItemsContext } from "../app/orderItems-context";
 
-function OrderItem({ order, editOrder }) {
+function OrderItem({ order }) {
   const menu = React.useContext(MenuContext);
 
   const hasItems = (menuItem) => {
     return order.meals.find((meal) => meal.id > menuItem.id && meal.amount > 0);
+  };
+
+  const editExistingOrder = (order, dispatch) => {
+    dispatch({ type: "SET_EDIT_ORDER", editOrder: order });
+    dispatch({ type: "TOGGLE_SHOW" });
   };
 
   const deleteOrder = (dispatch, order) => {
@@ -53,7 +58,7 @@ function OrderItem({ order, editOrder }) {
           <td>
             <button
               className="orderItem--button-edit"
-              onClick={() => editOrder(order, dispatch)}
+              onClick={() => editExistingOrder(order, dispatch)}
             />
           </td>
           <td style={{ weight: "30px" }}>

@@ -54,6 +54,7 @@ code {
 }
 
 @media print {
-  .shoppingList {
+  .submit--button {
+    visibility: hidden;
   }
 }

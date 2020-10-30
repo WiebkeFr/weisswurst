@@ -22,10 +22,11 @@ function ShoppingList() {
             </>
           )}
 
-          <List />
+          <List orderItems={state.orderItems}/>
 
-          <Link className="print-link" to={"/print"}>
-            <span>Einkaufszettel drucken</span>
+          <Link className="print-link" to={"/print"} target="_blank"
+                onClick={() => {dispatch({type: 'SET_PRINTED'}); localStorage.setItem("OrderItems", JSON.stringify(state.orderItems))}}>
+            <span>Druckvorschau anzeigen</span>
             <svg
               width="28"
               height="29"

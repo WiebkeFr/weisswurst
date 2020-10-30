@@ -77,6 +77,7 @@ function CreateOrder({ initialOrder, orderRef }) {
   const abort = (dispatch) => {
     dispatch({ type: "SAVE_ORDER", order: undefined });
     dispatch({ type: "TOGGLE_SHOW", orderRef });
+    dispatch({ type: "RESET_ORDER"})
   };
 
   return (

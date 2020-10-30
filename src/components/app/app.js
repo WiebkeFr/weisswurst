@@ -1,13 +1,14 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import "./app.css";
 import Intro from "../intro/intro.js";
 import Slider from "./slider/slider";
 import "./config.js";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import List from "../shopping-list/list";
 import { OrderItemsContext, OrderItemsReducer } from "./orderItems-context";
 import { MenuContext } from "./menu-context";
 import { EATING_HABIT } from "./config";
+import SubmitButton from "../submit-button/submit-button";
 
 function App() {
   const menu = React.useContext(MenuContext);
@@ -29,6 +30,7 @@ function App() {
     deliverer: "",
     show: false,
     editOrder: INITIAL_ORDER,
+    printed: false
   };
 
   const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
@@ -37,7 +39,7 @@ function App() {
     <Router>
       <OrderItemsContext.Provider value={{ state, dispatch }}>
         <Route exact={true} path={"/"} component={Rest} />
-        <Route exact={true} path={"/print"} component={PrintList} />
+        <Route exact={true} path={"/print"} component={(state) => PrintList(state)} />
       </OrderItemsContext.Provider>
     </Router>
   );
@@ -46,15 +48,15 @@ function App() {
 export default App;
 
 function PrintList() {
-  const history = useHistory();
-  useEffect(() => {
-    window.print();
-    history.replace("/");
-  });
-
   return (
     <div style={{ margin: "auto", maxWidth: "648px" }}>
       <List />
+      <SubmitButton className="print-button"
+          text="Einkaufszettel drucken"
+          disabled={false}
+          onClick={() => window.print()}
+          icon={"wwf-print.svg"}
+      />
     </div>
   );
 }

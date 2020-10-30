@@ -37,7 +37,6 @@ function Order({ editExistingOrder, orderRef }) {
                             <OrderItem
                               order={order}
                               key={order.id}
-                              editOrder={editExistingOrder}
                             />
                           );
                         })}
