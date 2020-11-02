@@ -39,20 +39,22 @@ function OrderItem({ order }) {
     <OrderItemsContext.Consumer>
       {({ state, dispatch }) => (
         <tr className="orderItem">
-          <td className="orderItem--name">{order.name}</td>
-          <td className="orderItem--order">
-            {menu.map((menuItem) => {
-              return (
-                <React.Fragment key={menuItem.id}>
-                  {Number.parseInt(order.meals[menuItem.id].amount) > 0
-                    ? order.meals[menuItem.id].amount +
-                      "x " +
-                      menuItem.name +
-                      (hasItems(menuItem) ? ", " : "")
-                    : ""}
-                </React.Fragment>
-              );
-            })}
+          <td className="orderItem--container">
+            <span className="orderItem--name">{order.name}</span>
+            <span className="orderItem--order">
+              {menu.map((menuItem) => {
+                return (
+                  <React.Fragment key={menuItem.id}>
+                    {Number.parseInt(order.meals[menuItem.id].amount) > 0
+                      ? order.meals[menuItem.id].amount +
+                        "x " +
+                        menuItem.name +
+                        (hasItems(menuItem) ? ", " : "")
+                      : ""}
+                  </React.Fragment>
+                );
+              })}
+            </span>
           </td>
 
           <td>

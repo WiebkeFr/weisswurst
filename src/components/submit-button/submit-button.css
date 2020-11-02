@@ -18,7 +18,7 @@
   width: 312px;
   height: 48px;
   margin-top: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 24px;
   padding: 13px 18px;
   text-align: left;
   border: 0px;
@@ -46,4 +46,11 @@
   margin-top: 1px;
 }
 .container--button-icon {
+}
+
+@media only screen and (max-width: 344px) {
+  .submit--button {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }

@@ -75,7 +75,13 @@ function SliderHeader({ page, setPage }) {
             <button onClick={(event) => onClick(state.orderItems, event)}>
               <div
                 id="circle-3"
-                className={state.printed ? "circle-done" : page === "3" ? "circle-active" : "circle"}
+                className={
+                  state.printed
+                    ? "circle-done"
+                    : page === "3"
+                    ? "circle-active"
+                    : "circle"
+                }
                 style={{ float: "right" }}
               />
               <p

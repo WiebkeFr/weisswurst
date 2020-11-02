@@ -3,7 +3,7 @@
   font-size: 72px;
   line-height: 110%;
   color: #668cff;
-  margin-bottom: 40px
+  margin-bottom: 40px;
 }
 
 .h2--intro {
@@ -11,7 +11,7 @@
   font-size: 32px;
   line-height: 110%;
   color: #202840;
-  margin-bottom: 32px
+  margin-bottom: 32px;
 }
 
 .text--intro {
@@ -19,4 +19,21 @@
   font-size: 16px;
   line-height: 150%;
   color: #202840;
+}
+
+@media only screen and (max-width: 344px) {
+  .h1--intro {
+    font-size: 48px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .h2--intro {
+    font-size: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .text--intro {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }

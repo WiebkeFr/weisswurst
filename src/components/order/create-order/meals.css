@@ -1,5 +1,4 @@
 .mealList {
-  all: unset;
   font-family: Coco Gothic;
   font-style: normal;
   font-weight: normal;
@@ -7,6 +6,9 @@
   line-height: 110%;
   color: #202840;
   border-radius: 10px;
+  border-top: solid;
+  border-width: 1px;
+  border-color: rgba(32, 40, 64, 0.1);
 }
 
 .container--order {
@@ -16,7 +18,6 @@
   border-bottom: solid;
   border-width: 1px;
   border-color: rgba(32, 40, 64, 0.1);
-  width: 648px;
   height: 56px;
 }
 
@@ -29,4 +30,10 @@
 
 .orderNotShown--meals {
   display: none;
+}
+
+@media only screen and (max-width: 344px) {
+  .container--order {
+    padding-left: 16px;
+  }
 }

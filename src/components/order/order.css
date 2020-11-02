@@ -24,9 +24,9 @@
 }
 
 .table--order {
-  border-bottom: solid;
+  border-top: solid;
   border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(32, 40, 64, 0.1);
   table-layout: auto;
   width: 100%;
   border-collapse: collapse;
@@ -40,6 +40,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .continue-button--order {
@@ -52,5 +54,26 @@
   width: 178px;
   background-color: white;
   border: none;
-  margin-bottom: 39px;
+  text-align: right;
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 344px) {
+  .h2--order {
+    font-size: 24px;
+    margin-top: 80px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .h3--order {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .continue-button--order {
+    margin-top: 0px;
+    margin-left: 16px;
+    margin-right: 16px;
+    float: right;
+    width: 312px;
+  }
 }

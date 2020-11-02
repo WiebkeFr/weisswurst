@@ -12,7 +12,6 @@ function Delivery() {
     const name = names[Math.floor(Math.random() * names.length)];
     setName(name);
     dispatch({ type: "SET_DELIVERER", name });
-    /*setDeliverer(name);*/
   };
 
   const onClick = () => {
@@ -34,12 +33,16 @@ function Delivery() {
                 text="Jetzt wählen"
                 disabled={state.orderItems.length === 0}
                 center={true}
+                centeredText={true}
               />
             </div>
           ) : (
             <div>
               <h2 className="h2--delivery">
-                Herzlichen Glückwünsch! {name} darf heute die Bestellung holen.
+                <span style={{ marginBottom: "8px", display: "block" }}>
+                  Herzlichen Glückwünsch!{" "}
+                </span>
+                {name} darf heute die Bestellung holen.
               </h2>
               <div
                 style={{

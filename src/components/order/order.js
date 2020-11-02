@@ -33,22 +33,14 @@ function Order({ editExistingOrder, orderRef }) {
                     >
                       <tbody>
                         {state.orderItems.map((order) => {
-                          return (
-                            <OrderItem
-                              order={order}
-                              key={order.id}
-                            />
-                          );
+                          return <OrderItem order={order} key={order.id} />;
                         })}
                       </tbody>
                     </table>
                   )}
                 </div>
 
-                <div
-                  className="button-container--order"
-                  style={{ display: "flex" }}
-                >
+                <div className="button-container--order">
                   <SubmitButton
                     onClick={() =>
                       dispatch({ type: "TOGGLE_SHOW", orderRef: orderRef })

@@ -6,7 +6,7 @@ export const OrderItemsContext = React.createContext({
   deliverer: "",
   show: false,
   editOrder: {},
-  printed: false
+  printed: false,
 });
 
 const OrderItemsReducer = (state, action) => {
@@ -81,10 +81,10 @@ const OrderItemsReducer = (state, action) => {
       return { ...state, editOrder: action.editOrder };
 
     case "SET_PRINTED":
-      return {...state, printed: true}
+      return { ...state, printed: true };
 
     case "RESET_PRINTED":
-      return {...state, printed: false}
+      return { ...state, printed: false };
 
     default:
       return state;

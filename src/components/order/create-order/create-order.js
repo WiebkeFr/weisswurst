@@ -77,7 +77,7 @@ function CreateOrder({ initialOrder, orderRef }) {
   const abort = (dispatch) => {
     dispatch({ type: "SAVE_ORDER", order: undefined });
     dispatch({ type: "TOGGLE_SHOW", orderRef });
-    dispatch({ type: "RESET_ORDER"})
+    dispatch({ type: "RESET_ORDER" });
   };
 
   return (
@@ -128,39 +128,41 @@ function CreateOrder({ initialOrder, orderRef }) {
           )}
         </div>
       </div>
-      <h3
-        className="h3--create-Order"
-        style={{ marginTop: "120px", marginBottom: "32px" }}
-      >
-        Was möchte derjenige essen?
-      </h3>
+
+      <h3 className="h3--create-order-2">Was möchte derjenige essen?</h3>
+
       <div className="container--radioButtons">
-        <input
-          className="button--radio"
-          type="radio"
-          name="meal"
-          id={EATING_HABIT.OMNIVORE}
-          checked={order.eatingHabit === EATING_HABIT.OMNIVORE}
-          onChange={() =>
-            setOrder({ ...order, eatingHabit: EATING_HABIT.OMNIVORE })
-          }
-        />
-        <label className="button--label" htmlFor={EATING_HABIT.OMNIVORE}>
-          {EATING_HABIT.OMNIVORE}
-        </label>
-        <input
-          className="button--radio"
-          type="radio"
-          name="meal"
-          id={EATING_HABIT.VEGETARIAN}
-          checked={order.eatingHabit === EATING_HABIT.VEGETARIAN}
-          onChange={() =>
-            setOrder({ ...order, eatingHabit: EATING_HABIT.VEGETARIAN })
-          }
-        />
-        <label className="button--label" htmlFor={EATING_HABIT.VEGETARIAN}>
-          {EATING_HABIT.VEGETARIAN}
-        </label>
+        <div style={{ marginBottom: "24px" }}>
+          <input
+            className="button--radio"
+            type="radio"
+            name="meal"
+            id={EATING_HABIT.OMNIVORE}
+            checked={order.eatingHabit === EATING_HABIT.OMNIVORE}
+            onChange={() =>
+              setOrder({ ...order, eatingHabit: EATING_HABIT.OMNIVORE })
+            }
+          />
+          <label className="button--label" htmlFor={EATING_HABIT.OMNIVORE}>
+            {EATING_HABIT.OMNIVORE}
+          </label>
+        </div>
+
+        <div style={{ marginBottom: "40px" }}>
+          <input
+            className="button--radio"
+            type="radio"
+            name="meal"
+            id={EATING_HABIT.VEGETARIAN}
+            checked={order.eatingHabit === EATING_HABIT.VEGETARIAN}
+            onChange={() =>
+              setOrder({ ...order, eatingHabit: EATING_HABIT.VEGETARIAN })
+            }
+          />
+          <label className="button--label" htmlFor={EATING_HABIT.VEGETARIAN}>
+            {EATING_HABIT.VEGETARIAN}
+          </label>
+        </div>
       </div>
 
       <Meals order={order} setAmount={setAmount} orderError={error.order} />

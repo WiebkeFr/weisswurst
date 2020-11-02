@@ -16,16 +16,28 @@ function ShoppingList() {
           ) : (
             <>
               <h3 className="h3--shoppingList">
-                Zur Erinnerung: <br /> {state.deliverer} darf heute das
-                Weißwurstfrühstück holen.
+                <span style={{ display: "block", marginBottom: "10px" }}>
+                  Zur Erinnerung:
+                </span>
+                {state.deliverer} darf heute das Weißwurstfrühstück holen.
               </h3>
             </>
           )}
 
-          <List orderItems={state.orderItems}/>
+          <List orderItems={state.orderItems} />
 
-          <Link className="print-link" to={"/print"} target="_blank"
-                onClick={() => {dispatch({type: 'SET_PRINTED'}); localStorage.setItem("OrderItems", JSON.stringify(state.orderItems))}}>
+          <Link
+            className="print-link"
+            to={"/print"}
+            target="_blank"
+            onClick={() => {
+              dispatch({ type: "SET_PRINTED" });
+              localStorage.setItem(
+                "OrderItems",
+                JSON.stringify(state.orderItems)
+              );
+            }}
+          >
             <span>Druckvorschau anzeigen</span>
             <svg
               width="28"

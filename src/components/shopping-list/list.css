@@ -11,7 +11,7 @@
 }
 
 .h3--header-shoppingList {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   margin-top: 0px;
   font-weight: bold;
   font-size: 24px;
@@ -33,6 +33,15 @@
   font-size: 16px;
   line-height: 110%;
   color: #202840;
+}
+
+.td--shoppingList-name-mobile {
+  font-weight: bold;
+  width: 34%;
+  font-size: 16px;
+  line-height: 110%;
+  color: #202840;
+  display: none;
 }
 
 .td--shoppingList-amount {
@@ -131,3 +140,26 @@
   padding-top: 24px;
 }
 
+@media only screen and (max-width: 344px) {
+  .td--shoppingList-name-mobile {
+    display: block;
+    margin-top: 24px;
+  }
+  .td--shoppingList-name {
+    display: none;
+  }
+  .shoppingList {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 24px;
+  }
+  .td--shoppingList-amount {
+    width: 10%;
+  }
+  .td--shoppingList-price {
+    width: 40%;
+  }
+  .td--shoppingList-sum {
+    width: 33%;
+  }
+}

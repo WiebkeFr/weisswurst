@@ -15,22 +15,30 @@
   margin-bottom: 32px;
 }
 
+.h3--create-order-2 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 110%;
+  color: #202840;
+  margin-bottom: 32px;
+  margin-top: 120px;
+}
+
 .container--input {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: flex-start;
   color: black;
 }
 
 .input--normal {
   text-align: left;
-  padding-bottom: 19px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 19px;
+  padding: 19px 12px;
   width: 288px;
   height: 18px;
   border: 0px;
+  margin-bottom: 24px;
   background: #f7f8fa;
   border-radius: 4px;
 }
@@ -70,7 +78,7 @@
   margin-top: 8px;
   height: 30px;
   width: 288px;
-  margin-bottom: 0px;
+  margin-bottom: 24px;
 }
 
 .button--radio {
@@ -98,13 +106,17 @@
 
 .container--radioButtons {
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .container--submitButtons {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 80px;
 }
 
 .continue-button--create-order {
@@ -118,5 +130,34 @@
   height: 20px;
   background-color: white;
   border: none;
-  margin-bottom: 39px;
+}
+
+@media only screen and (max-width: 344px) {
+  .h2--create-order {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  .h3--create-order {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  .h3--create-order-2 {
+    margin-top: 80px;
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  .container--input {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  .container--radioButtons {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+  .continue-button--create-order {
+    margin-right: 16px;
+    margin-right: 16px;
+    width: 312px;
+    text-align: right;
+  }
 }

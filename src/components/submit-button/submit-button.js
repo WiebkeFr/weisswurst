@@ -1,16 +1,16 @@
 import React from "react";
 import "./submit-button.css";
 
-function SubmitButton({ onClick, text, icon, disabled, center }) {
+function SubmitButton({ onClick, text, icon, disabled, center, centeredText }) {
   return (
     <div className="container--button-icon">
       <button
         className="submit--button"
         onClick={onClick}
         disabled={disabled}
-        style={center ? { margin: "auto"} : {}}
+        style={center ? { margin: "auto" } : {}}
       >
-        <span style={center ? { margin: "auto"} : {}}>{text}</span>
+        <span style={centeredText ? { margin: "auto" } : {}}>{text}</span>
         {icon !== undefined ? (
           icon === "+" ? (
             <span className="submit-button--icon">{icon}</span>

@@ -51,3 +51,14 @@
   font-style: normal;
   color: #ffffff;
 }
+
+@media only screen and (max-width: 344px) {
+  .h3--shoppingList {
+    font-size: 24px;
+  }
+  .print-link {
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 80px;
+  }
+}

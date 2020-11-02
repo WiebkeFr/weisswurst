@@ -30,7 +30,7 @@ function App() {
     deliverer: "",
     show: false,
     editOrder: INITIAL_ORDER,
-    printed: false
+    printed: false,
   };
 
   const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
@@ -39,7 +39,11 @@ function App() {
     <Router>
       <OrderItemsContext.Provider value={{ state, dispatch }}>
         <Route exact={true} path={"/"} component={Rest} />
-        <Route exact={true} path={"/print"} component={(state) => PrintList(state)} />
+        <Route
+          exact={true}
+          path={"/print"}
+          component={(state) => PrintList(state)}
+        />
       </OrderItemsContext.Provider>
     </Router>
   );
@@ -51,11 +55,12 @@ function PrintList() {
   return (
     <div style={{ margin: "auto", maxWidth: "648px" }}>
       <List />
-      <SubmitButton className="print-button"
-          text="Einkaufszettel drucken"
-          disabled={false}
-          onClick={() => window.print()}
-          icon={"wwf-print.svg"}
+      <SubmitButton
+        className="print-button"
+        text="Einkaufszettel drucken"
+        disabled={false}
+        onClick={() => window.print()}
+        icon={"wwf-print.svg"}
       />
     </div>
   );

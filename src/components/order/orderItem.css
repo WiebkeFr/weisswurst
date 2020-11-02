@@ -12,6 +12,8 @@
   color: #202840;
   border-radius: 10px;
   font-weight: bold;
+
+  float: left;
 }
 
 .orderItem--order {
@@ -45,4 +47,29 @@
   color: #202840;
   float: right;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 344px) {
+  .orderItem--name {
+    display: block;
+    margin-bottom: 8px;
+    margin-left: 16px;
+    margin-top: 16px;
+    float: none;
+  }
+  .orderItem--order {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    margin-right: 0px;
+    display: block;
+    width: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .orderItem--button-delete {
+    margin-right: 16px;
+  }
+  .orderItem--button-edit {
+    margin-right: 16px;
+  }
 }
