@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./orderItem.css";
-import { MenuContext } from "../app/menu-context";
-import { OrderItemsContext } from "../app/orderItems-context";
+import { MenuContext } from "../../state/menu-context";
+import { OrderItemsContext } from "../../state/orderItems-context";
 
 function OrderItem({ order }) {
+  const { dispatch } = useContext(OrderItemsContext);
+
   const menu = React.useContext(MenuContext);
 
   const hasItems = (menuItem) => {
@@ -36,42 +38,45 @@ function OrderItem({ order }) {
   };
 
   return (
-    <OrderItemsContext.Consumer>
-      {({ state, dispatch }) => (
-        <tr className="orderItem">
-          <td className="orderItem--container">
-            <span className="orderItem--name">{order.name}</span>
-            <span className="orderItem--order">
-              {menu.map((menuItem) => {
-                return (
-                  <React.Fragment key={menuItem.id}>
-                    {Number.parseInt(order.meals[menuItem.id].amount) > 0
-                      ? order.meals[menuItem.id].amount +
-                        "x " +
-                        menuItem.name +
-                        (hasItems(menuItem) ? ", " : "")
-                      : ""}
-                  </React.Fragment>
-                );
-              })}
-            </span>
-          </td>
+    <>
+      <tr className="orderItems--name-mobile">
+        <td className="orderItem--name-mobile" colSpan="4">
+          {order.name}
+        </td>
+      </tr>
+      <tr className="orderItem">
+        <td className="orderItem--container">
+          <span className="orderItem--name">{order.name}</span>
+          <span className="orderItem--order">
+            {menu.map((menuItem) => {
+              return (
+                <React.Fragment key={menuItem.id}>
+                  {Number.parseInt(order.meals[menuItem.id].amount) > 0
+                    ? order.meals[menuItem.id].amount +
+                      "x " +
+                      menuItem.name +
+                      (hasItems(menuItem) ? ", " : "")
+                    : ""}
+                </React.Fragment>
+              );
+            })}
+          </span>
+        </td>
 
-          <td>
-            <button
-              className="orderItem--button-edit"
-              onClick={() => editExistingOrder(order, dispatch)}
-            />
-          </td>
-          <td style={{ width: "27px" }}>
-            <button
-              className="orderItem--button-delete"
-              onClick={() => deleteOrder(dispatch, order)}
-            />
-          </td>
-        </tr>
-      )}
-    </OrderItemsContext.Consumer>
+        <td>
+          <button
+            className="orderItem--button-edit"
+            onClick={() => editExistingOrder(order, dispatch)}
+          />
+        </td>
+        <td style={{ width: "27px" }}>
+          <button
+            className="orderItem--button-delete"
+            onClick={() => deleteOrder(dispatch, order)}
+          />
+        </td>
+      </tr>
+    </>
   );
 }
 

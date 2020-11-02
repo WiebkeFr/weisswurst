@@ -1,13 +1,15 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./slider.css";
 import { useState } from "react";
-import Delivery from "../../delivery/delivery";
-import Order from "../../order/order";
-import ShoppingList from "../../shopping-list/shopping-list";
+import Delivery from "../delivery/delivery";
+import Order from "../order/order";
+import ShoppingList from "../shopping-list/shopping-list";
 import SliderHeader from "./slider-header";
-import { OrderItemsContext } from "../orderItems-context";
+import { OrderItemsContext } from "../../state/orderItems-context";
 
 function Slider() {
+  const { state } = useContext(OrderItemsContext);
+
   const [page, setPage] = useState("1");
 
   const orderRef = useRef(null);
@@ -41,21 +43,16 @@ function Slider() {
         <div className="page" id="slide-1">
           <Order orderRef={orderRef} />
         </div>
-
-        <OrderItemsContext.Consumer>
-          {({ state, dispatch }) =>
-            state.orderItems.length !== 0 && (
-              <>
-                <div className="page" id="slide-2">
-                  <Delivery />
-                </div>
-                <div className="page" id="slide-3">
-                  <ShoppingList />
-                </div>
-              </>
-            )
-          }
-        </OrderItemsContext.Consumer>
+        {state.orderItems.length !== 0 && (
+          <>
+            <div className="page" id="slide-2">
+              <Delivery />
+            </div>
+            <div className="page" id="slide-3">
+              <ShoppingList />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@
 }
 
 .h3--header-shoppingList {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   margin-top: 0px;
   font-weight: bold;
   font-size: 24px;
@@ -24,7 +24,7 @@
 }
 
 .tr--shoppingList {
-  height: 45px;
+  height: 40px;
 }
 
 .td--shoppingList-name {
@@ -35,13 +35,16 @@
   color: #202840;
 }
 
+.tr--shoppingList-name-mobile {
+  height: 0px;
+}
 .td--shoppingList-name-mobile {
+  text-align: left;
   font-weight: bold;
-  width: 34%;
-  font-size: 16px;
+  font-size: 0px;
   line-height: 110%;
   color: #202840;
-  display: none;
+  height: 0px;
 }
 
 .td--shoppingList-amount {
@@ -113,6 +116,7 @@
   line-height: 110%;
   text-align: right;
   color: #668cff;
+  padding-right: 12px;
 }
 
 .tr--lastRow {
@@ -140,10 +144,32 @@
   padding-top: 24px;
 }
 
+.td--paymentList-checkbox {
+  width: 16px;
+  height: 16px;
+  color: #668cff;
+  background-color: #f7f8fa;
+  border: 2px solid #668cff;
+  margin: 0px;
+  cursor: pointer;
+}
+.input[type="checkbox"]::before {
+  border: 2px solid #668cff;
+}
+
 @media only screen and (max-width: 344px) {
+  .h3--header-shoppingList {
+    margin-bottom: 24px;
+  }
+  .tr--shoppingList {
+    height: 24px;
+  }
   .td--shoppingList-name-mobile {
-    display: block;
-    margin-top: 24px;
+    height: 32px;
+    column-span: all;
+    font-size: 16px;
+    padding-top: 16px;
+    padding-bottom: 0px;
   }
   .td--shoppingList-name {
     display: none;
@@ -154,12 +180,25 @@
     padding: 24px;
   }
   .td--shoppingList-amount {
-    width: 10%;
+    width: 35%;
+    padding-bottom: 8px;
   }
   .td--shoppingList-price {
-    width: 40%;
+    width: 30%;
+    padding-bottom: 8px;
   }
   .td--shoppingList-sum {
-    width: 33%;
+    width: 40%;
+    padding-bottom: 8px;
+  }
+  .td--paymentList--name {
+    display: none;
+  }
+  .td--paymentList--order {
+    width: 70%;
+  }
+  .td--paymentList--sum {
+    width: 30%;
+    padding-right: 12px;
   }
 }

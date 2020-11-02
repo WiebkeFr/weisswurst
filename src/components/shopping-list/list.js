@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuContext } from "../app/menu-context";
+import { MenuContext } from "../../state/menu-context";
 import "./list.css";
 
 function List({ orderItems }) {
@@ -43,8 +43,8 @@ function List({ orderItems }) {
             {menu.map((menuItem) => {
               return (
                 <React.Fragment key={menuItem.id}>
-                  <tr>
-                    <td className="td--shoppingList-name-mobile">
+                  <tr className="tr--shoppingList-name-mobile">
+                    <td className="td--shoppingList-name-mobile" colSpan="4">
                       {menuItem.name}
                     </td>
                   </tr>
@@ -56,7 +56,7 @@ function List({ orderItems }) {
                     </td>
 
                     <td className="td--shoppingList-price">
-                      pro Stück {menuItem.price.replace(".", ",")} €
+                      Stück {menuItem.price.replace(".", ",")} €
                     </td>
                     <td className="td--shoppingList-sum">
                       {(
@@ -74,7 +74,7 @@ function List({ orderItems }) {
             })}
             <tr className="tr--space" />
             <tr className="tr--lastRow">
-              <td className="lastRow--sum" colSpan="5">
+              <td className="lastRow--sum" colSpan="4">
                 {calculateTotalPrice(orderItems)
                   .toFixed(2)
                   .toString()
@@ -92,37 +92,48 @@ function List({ orderItems }) {
       </div>
 
       <div className="paymentList">
-        <h3 className="h3--header-paymentList">Wer muss wie viel bezahlen?</h3>
+        <h3 className="h3--header-paymentList">Bezahlung</h3>
         <table className="table--meals" table-layout="auto" width="100%">
           <tbody>
             {orderItems.map((order) => {
               return (
-                <tr key={order.id} className="tr--shoppingList">
-                  <td className="td--paymentList--name">{order.name}</td>
-                  <td className="td--paymentList--order">
-                    {menu.map((menuItem) => {
-                      return (
-                        <React.Fragment key={menuItem.id}>
-                          {Number.parseInt(order.meals[menuItem.id].amount) > 0
-                            ? order.meals[menuItem.id].amount +
-                              "x " +
-                              menuItem.name +
-                              (hasItems(menuItem, order) ? ", " : "")
-                            : ""}
-                        </React.Fragment>
-                      );
-                    })}
-                  </td>
-                  <td className="td--paymentList--sum">
-                    {Number.parseFloat(calculatePrice(order))
-                      .toFixed(2)
-                      .replace(".", ",")}{" "}
-                    €
-                  </td>
-                  <td style={{ textAlign: "right", width: "20px" }}>
-                    <b>O</b>
-                  </td>
-                </tr>
+                <React.Fragment key={order.id}>
+                  <tr>
+                    <td className="td--shoppingList-name-mobile">
+                      {order.name}
+                    </td>
+                  </tr>
+                  <tr className="tr--shoppingList">
+                    <td className="td--paymentList--name">{order.name}</td>
+                    <td className="td--paymentList--order">
+                      {menu.map((menuItem) => {
+                        return (
+                          <React.Fragment key={menuItem.id}>
+                            {Number.parseInt(order.meals[menuItem.id].amount) >
+                            0
+                              ? order.meals[menuItem.id].amount +
+                                "x " +
+                                menuItem.name +
+                                (hasItems(menuItem, order) ? ", " : "")
+                              : ""}
+                          </React.Fragment>
+                        );
+                      })}
+                    </td>
+                    <td className="td--paymentList--sum">
+                      {Number.parseFloat(calculatePrice(order))
+                        .toFixed(2)
+                        .replace(".", ",")}{" "}
+                      €
+                    </td>
+                    <td style={{ verticalAlign: "middle" }}>
+                      <input
+                        className="td--paymentList-checkbox"
+                        type="checkbox"
+                      />
+                    </td>
+                  </tr>
+                </React.Fragment>
               );
             })}
           </tbody>

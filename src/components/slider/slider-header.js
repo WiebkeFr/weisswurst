@@ -1,5 +1,5 @@
 import React from "react";
-import { OrderItemsContext } from "../orderItems-context";
+import { OrderItemsContext } from "../../state/orderItems-context";
 import "./slider-header.css";
 
 function SliderHeader({ page, setPage }) {

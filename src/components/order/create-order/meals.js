@@ -1,8 +1,8 @@
 import CountingButton from "./counting-button";
 import React, { useState } from "react";
 import "./meals.css";
-import { MenuContext } from "../../app/menu-context";
-import { EATING_HABIT } from "../../app/config";
+import { MenuContext } from "../../../state/menu-context";
+import { EATING_HABIT } from "../../../state/config";
 
 function Meals({ order, setAmount, orderError }) {
   const menu = React.useContext(MenuContext);

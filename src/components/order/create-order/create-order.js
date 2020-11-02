@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./create-order.css";
 import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
-import { OrderItemsContext } from "../../app/orderItems-context";
-import { EATING_HABIT } from "../../app/config";
+import { OrderItemsContext } from "../../../state/orderItems-context";
+import { EATING_HABIT } from "../../../state/config";
 
 function CreateOrder({ initialOrder, orderRef }) {
+  const { dispatch } = useContext(OrderItemsContext);
   const [order, setOrder] = useState({
     ...initialOrder,
     eatingHabit: EATING_HABIT.OMNIVORE,
@@ -182,23 +183,19 @@ function CreateOrder({ initialOrder, orderRef }) {
         <></>
       )}
 
-      <OrderItemsContext.Consumer>
-        {({ state, dispatch }) => (
-          <div className="container--submitButtons">
-            <SubmitButton
-              onClick={() => testInput(dispatch)}
-              text="Zur Bestellung hinzufügen"
-              disabled={false}
-            />
-            <button
-              className="continue-button--create-order"
-              onClick={() => abort(dispatch)}
-            >
-              Abbrechen
-            </button>
-          </div>
-        )}
-      </OrderItemsContext.Consumer>
+      <div className="container--submitButtons">
+        <SubmitButton
+          onClick={() => testInput(dispatch)}
+          text="Zur Bestellung hinzufügen"
+          disabled={false}
+        />
+        <button
+          className="continue-button--create-order"
+          onClick={() => abort(dispatch)}
+        >
+          Abbrechen
+        </button>
+      </div>
     </div>
   );
 }
