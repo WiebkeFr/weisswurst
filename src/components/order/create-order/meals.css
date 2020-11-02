@@ -15,9 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: rgba(32, 40, 64, 0.1);
+  border-bottom: solid 1px rgba(32, 40, 64, 0.1);
   height: 56px;
 }
 
