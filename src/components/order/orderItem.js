@@ -61,7 +61,7 @@ function OrderItem({ order }) {
               onClick={() => editExistingOrder(order, dispatch)}
             />
           </td>
-          <td style={{ weight: "30px" }}>
+          <td style={{ width: "27px" }}>
             <button
               className="orderItem--button-delete"
               onClick={() => deleteOrder(dispatch, order)}

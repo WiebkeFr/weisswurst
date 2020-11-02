@@ -6,7 +6,7 @@ function Intro() {
     <div>
       <h1 className="h1--intro">Weißwurst Frühstück</h1>
       <h2 className="h2--intro">
-        It's Weißwurst o'clock. Integer posuere erat a ante venenatis dapibus.
+        It's Weißwurst o'clock. Bestellen, Wählen, Genießen.
       </h2>
       <p className="text--intro">
         Es ist mal wieder an der Zeit, ein gemeinsames Weißwurstfrühstück zu

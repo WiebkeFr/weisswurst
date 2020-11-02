@@ -54,7 +54,6 @@ function List({orderItems}) {
                           Stück
                         </b>
                       </td>
-                      <td className="td--middle" />
                       <td className="td--shoppingList-price">
                         pro Stück {menuItem.price.replace(".", ",")} €
                       </td>
@@ -122,7 +121,7 @@ function List({orderItems}) {
                           .replace(".", ",")}{" "}
                         €
                       </td>
-                      <td style={{ textAlign: "right" }}>
+                      <td style={{ textAlign: "right", width: "20px"}}>
                         <b>O</b>
                       </td>
                     </tr>

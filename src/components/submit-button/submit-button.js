@@ -8,9 +8,9 @@ function SubmitButton({ onClick, text, icon, disabled, center }) {
         className="submit--button"
         onClick={onClick}
         disabled={disabled}
-        style={center ? { margin: "auto" } : {}}
+        style={center ? { margin: "auto"} : {}}
       >
-        <span>{text}</span>
+        <span style={center ? { margin: "auto"} : {}}>{text}</span>
         {icon !== undefined ? (
           icon === "+" ? (
             <span className="submit-button--icon">{icon}</span>
