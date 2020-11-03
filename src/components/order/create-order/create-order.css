@@ -81,6 +81,19 @@
   margin-bottom: 24px;
 }
 
+.input--index-order{
+  color: #dc052d;
+  font-family: Coco Gothic;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 110%;
+  margin-top: 8px;
+  text-align: right;
+  height: 30px;
+  margin-bottom: 24px;
+}
+
 .button--radio {
   background: #f7f8fa;
   border: 1px solid #668cff;
@@ -119,19 +132,6 @@
   margin-bottom: 80px;
 }
 
-.continue-button--create-order {
-  font-family: "Coco Gothic";
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 110%;
-  color: #668cff;
-  border-radius: 10px;
-  width: max-content;
-  height: 20px;
-  background-color: white;
-  border: none;
-}
-
 @media only screen and (max-width: 344px) {
   .h2--create-order {
     margin-right: 16px;
@@ -159,5 +159,8 @@
     margin-right: 16px;
     width: 312px;
     text-align: right;
+  }
+  .input--index-order{
+    margin-right: 16px;
   }
 }

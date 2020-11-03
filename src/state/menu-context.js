@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 
 const menu = [
   { id: "0", name: "Weißwürste", price: "1.20", veg: false },
@@ -23,3 +23,7 @@ const menu = [
 ];
 
 export const MenuContext = React.createContext(menu);
+
+export function useMenu(){
+  return useContext(MenuContext)
+}

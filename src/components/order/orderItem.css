@@ -12,7 +12,6 @@
   color: #202840;
   border-radius: 10px;
   font-weight: bold;
-  float: left;
 }
 
 .orderItem--name-mobile {
@@ -54,7 +53,7 @@
 }
 
 @media only screen and (max-width: 344px) {
-  .orderItems {
+  .orderItem {
     height: unset;
   }
   .orderItem--name {

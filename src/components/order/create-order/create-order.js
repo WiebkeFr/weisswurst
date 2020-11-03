@@ -4,6 +4,7 @@ import Meals from "./meals.js";
 import SubmitButton from "../../submit-button/submit-button";
 import { OrderItemsContext } from "../../../state/orderItems-context";
 import { EATING_HABIT } from "../../../state/config";
+import ContinueButton from "../../continue-button/continue-button";
 
 function CreateOrder({ initialOrder, orderRef }) {
   const { dispatch } = useContext(OrderItemsContext);
@@ -67,11 +68,20 @@ function CreateOrder({ initialOrder, orderRef }) {
       dispatch({ type: "RESET_ORDER" });
       dispatch({ type: "TOGGLE_SHOW", orderRef });
     } else {
-      window.scrollTo({
-        top: 550,
-        left: 0,
-        behavior: "smooth",
-      });
+      if(nameError || emailError){
+        window.scrollTo({
+          top: 850,
+          left: 0,
+          behavior: "smooth",
+        });
+      }else{
+        window.scrollTo({
+          top: 1350,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
+
     }
   };
 
@@ -169,13 +179,7 @@ function CreateOrder({ initialOrder, orderRef }) {
       <Meals order={order} setAmount={setAmount} orderError={error.order} />
       {error.order ? (
         <p
-          className="input--index"
-          style={{
-            textAlign: "right",
-            marginRight: "0px",
-            width: "100%",
-            marginTop: "8px",
-          }}
+          className="input--index-order"
         >
           <b>Bestellung</b>: Sie müssen mindestens ein Essen auswählen.
         </p>
@@ -189,12 +193,8 @@ function CreateOrder({ initialOrder, orderRef }) {
           text="Zur Bestellung hinzufügen"
           disabled={false}
         />
-        <button
-          className="continue-button--create-order"
-          onClick={() => abort(dispatch)}
-        >
-          Abbrechen
-        </button>
+
+        <ContinueButton text="Abbrechen" onClick={() => abort(dispatch)}/>
       </div>
     </div>
   );

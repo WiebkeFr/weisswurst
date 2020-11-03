@@ -4,15 +4,20 @@
   font-size: 16px;
   line-height: 110%;
   color: #668cff;
-  width: 312px;
+  width: max-content;
   height: 20px;
   background-color: white;
-  border: none;
-  margin: auto;
   margin-top: 40px;
   margin-bottom: 24px;
   text-align: right;
+  border-bottom: solid white 3px;
 }
 .continue-button:hover {
   border-bottom: solid #668cff 3px;
+}
+
+@media only screen and (max-width: 344px){
+  .continue-button:hover {
+    border-bottom: solid #668cff 3px;
+  }
 }

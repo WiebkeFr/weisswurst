@@ -1,0 +1,25 @@
+.h1--error{
+    margin-top: 100px;
+}
+.container--error{
+    text-align: center;
+}
+
+.link--error{
+    font-family: "Coco Gothic";
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 110%;
+    color: #668cff;
+    width: max-content;
+    height: 20px;
+    background-color: white;
+    margin-top: 40px;
+    margin-bottom: 24px;
+    text-align: right;
+    border-bottom: solid white 3px;
+}
+
+.link--error:hover {
+    border-bottom: solid #668cff 3px;
+}

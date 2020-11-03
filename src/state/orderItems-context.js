@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import { EATING_HABIT } from "./config";
+import {useMenu} from "./menu-context";
 
 export const OrderItemsContext = React.createContext({
   orderItems: [],
@@ -8,6 +9,7 @@ export const OrderItemsContext = React.createContext({
   editOrder: {},
   printed: false,
 });
+
 
 const OrderItemsReducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +32,7 @@ const OrderItemsReducer = (state, action) => {
           }
           return orderItem;
         });
+        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
         return { ...state, orderItems: newOrderItems };
       } else {
         const newItem = {
@@ -39,6 +42,7 @@ const OrderItemsReducer = (state, action) => {
           meals: action.order.meals,
         };
         const newOrderItems = [...state.orderItems, newItem];
+        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
         return { ...state, orderItems: newOrderItems };
       }
 
@@ -46,10 +50,12 @@ const OrderItemsReducer = (state, action) => {
       const newOrderItems = state.orderItems.filter(
         (orderItem) => orderItem !== action.order
       );
+      localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
       return { ...state, orderItems: newOrderItems };
 
     case "SET_DELIVERER":
       if (action.name === undefined) return state;
+      localStorage.setItem("Deliverer", action.name);
       return { ...state, deliverer: action.name };
 
     case "TOGGLE_SHOW":
@@ -92,3 +98,7 @@ const OrderItemsReducer = (state, action) => {
 };
 
 export { OrderItemsReducer };
+
+export function useOrderItems(){
+  return useContext(OrderItemsContext)
+}

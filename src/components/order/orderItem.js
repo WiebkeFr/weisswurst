@@ -45,9 +45,8 @@ function OrderItem({ order }) {
         </td>
       </tr>
       <tr className="orderItem">
-        <td className="orderItem--container">
-          <span className="orderItem--name">{order.name}</span>
-          <span className="orderItem--order">
+        <td className="orderItem--name">{order.name}</td>
+        <td className="orderItem--order">
             {menu.map((menuItem) => {
               return (
                 <React.Fragment key={menuItem.id}>
@@ -60,7 +59,6 @@ function OrderItem({ order }) {
                 </React.Fragment>
               );
             })}
-          </span>
         </td>
 
         <td>

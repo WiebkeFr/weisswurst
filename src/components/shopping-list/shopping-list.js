@@ -32,7 +32,6 @@ function ShoppingList() {
         target="_blank"
         onClick={() => {
           dispatch({ type: "SET_PRINTED" });
-          localStorage.setItem("OrderItems", JSON.stringify(state.orderItems));
         }}
       >
         <span>Druckvorschau anzeigen</span>
