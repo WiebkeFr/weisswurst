@@ -27,3 +27,12 @@ export const MenuContext = React.createContext(menu);
 export function useMenu(){
   return useContext(MenuContext)
 }
+
+export function MenuProvider(props){
+  const menu = useContext(MenuContext)
+  return(
+      <MenuContext.Provider value={menu}>
+        {props.children}
+      </MenuContext.Provider>
+  )
+}

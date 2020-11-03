@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "./delivery.css";
 import SubmitButton from "../submit-button/submit-button";
-import {OrderItemsContext, useOrderItems} from "../../state/orderItems-context";
+import { useOrderItems} from "../../state/orderItems-context";
 import ContinueButton from "../continue-button/continue-button";
 
 function Delivery() {
