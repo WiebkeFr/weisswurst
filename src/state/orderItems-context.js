@@ -39,6 +39,7 @@ const OrderItemsReducer = (state, action) => {
           name: action.order.name,
           email: action.order.email,
           meals: action.order.meals,
+          isPaid: false
         };
         const newOrderItems = [...state.orderItems, newItem];
         localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
@@ -91,6 +92,20 @@ const OrderItemsReducer = (state, action) => {
     case "RESET_PRINTED":
       return { ...state, printed: false };
 
+    case "IS_PAID":
+      const isPaidState = action.order.isPaid;
+      const newOrders = state.orderItems.map((orderItem) => {
+        if (
+            orderItem.name === action.order.name &&
+            orderItem.id === action.order.id
+        ) {
+          return { ...orderItem, isPaid: !isPaidState };
+        }
+        return orderItem;
+      });
+      localStorage.setItem("OrderItems", JSON.stringify(newOrders));
+      return { ...state, orderItems: newOrders };
+
     default:
       return state;
   }
@@ -115,6 +130,7 @@ export function OrderItemsProvider(props) {
     email: "",
     eatingHabit: EATING_HABIT.OMNIVORE,
     meals: initMeals,
+    isPaid: false
   };
 
   const orderItemsInitialState = JSON.parse(localStorage.getItem("OrderItems"));

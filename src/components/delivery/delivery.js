@@ -134,7 +134,7 @@ function Delivery() {
             <ContinueButton
               text="Weiter zur Shopping-Liste >"
               onClick={onClick}
-              style="mobile"
+              mobile={true}
             />
           </div>
         </div>

@@ -1,13 +1,15 @@
 import React from "react";
-import { MenuContext } from "../../state/menu-context";
+import { useMenu} from "../../state/menu-context";
 import "./list.css";
+import {useOrderItems} from "../../state/orderItems-context";
 
 function List({ orderItems }) {
   if (orderItems === undefined) {
     orderItems = JSON.parse(localStorage.getItem("OrderItems"));
   }
 
-  const menu = React.useContext(MenuContext);
+  const menu = useMenu();
+  const { dispatch} = useOrderItems()
 
   const calculateTotalAmount = (orderItems, mealItem) => {
     if (orderItems.length === 0) return 0;
@@ -128,7 +130,8 @@ function List({ orderItems }) {
                     </td>
                     <td style={{ verticalAlign: "middle", width: "20px" }}>
                       <label className="container-checkbox">
-                        <input type="checkbox" />
+                        <input type="checkbox" checked={order.isPaid}
+                               onChange={() => dispatch({type: "IS_PAID", order })}/>
                         <span className="checkmark"></span>
                       </label>
                     </td>
