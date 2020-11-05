@@ -53,10 +53,11 @@ const OrderItemsReducer = (state, action) => {
       if(state.deliverer === action.order.name){
         const newState = {...state, deliverer: ""}
         localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
-        return { ...newState, orderItems: newOrderItems };
+        localStorage.removeItem("Deliverer")
+        return { ...newState, orderItems: newOrderItems, printed: false};
       }else{
         localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
-        return { ...state, orderItems: newOrderItems };
+        return { ...state, orderItems: newOrderItems, printed: false};
       }
 
     case "SET_DELIVERER":
