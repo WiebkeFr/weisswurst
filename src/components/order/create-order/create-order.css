@@ -81,7 +81,7 @@
   margin-bottom: 24px;
 }
 
-.input--index-order{
+.input--index-order {
   color: #dc052d;
   font-family: Coco Gothic;
   font-style: normal;
@@ -132,7 +132,7 @@
   margin-bottom: 80px;
 }
 
-@media only screen and (max-width: 344px) {
+@media only screen and (max-width: 600px) {
   .h2--create-order {
     margin-right: 16px;
     margin-left: 16px;
@@ -160,7 +160,14 @@
     width: 312px;
     text-align: right;
   }
-  .input--index-order{
+  .input--index-order {
     margin-right: 16px;
+  }
+  .container--submitButtons {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    margin: auto;
+    align-items: flex-end;
   }
 }

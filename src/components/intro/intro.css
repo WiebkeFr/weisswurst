@@ -21,7 +21,17 @@
   color: #202840;
 }
 
-@media only screen and (max-width: 344px) {
+.versuch {
+  height: 50px;
+  border: 5px black solid;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
   .h1--intro {
     font-size: 48px;
     margin-left: 16px;

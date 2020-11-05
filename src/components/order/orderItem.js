@@ -47,21 +47,21 @@ function OrderItem({ order }) {
       <tr className="orderItem">
         <td className="orderItem--name">{order.name}</td>
         <td className="orderItem--order">
-            {menu.map((menuItem) => {
-              return (
-                <React.Fragment key={menuItem.id}>
-                  {Number.parseInt(order.meals[menuItem.id].amount) > 0
-                    ? order.meals[menuItem.id].amount +
-                      "x " +
-                      menuItem.name +
-                      (hasItems(menuItem) ? ", " : "")
-                    : ""}
-                </React.Fragment>
-              );
-            })}
+          {menu.map((menuItem) => {
+            return (
+              <React.Fragment key={menuItem.id}>
+                {Number.parseInt(order.meals[menuItem.id].amount) > 0
+                  ? order.meals[menuItem.id].amount +
+                    "x " +
+                    menuItem.name +
+                    (hasItems(menuItem) ? ", " : "")
+                  : ""}
+              </React.Fragment>
+            );
+          })}
         </td>
 
-        <td>
+        <td style={{ width: "27px" }}>
           <button
             className="orderItem--button-edit"
             onClick={() => editExistingOrder(order, dispatch)}

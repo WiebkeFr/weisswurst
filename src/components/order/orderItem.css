@@ -52,7 +52,7 @@
   box-sizing: border-box;
 }
 
-@media only screen and (max-width: 344px) {
+@media only screen and (max-width: 600px) {
   .orderItem {
     height: unset;
   }
@@ -82,5 +82,11 @@
   }
   .orderItem--button-edit {
     margin-right: 16px;
+  }
+  .orderItem--button-edit {
+    margin-bottom: 16px;
+  }
+  .orderItem--button-delete {
+    margin-bottom: 16px;
   }
 }

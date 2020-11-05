@@ -1,6 +1,6 @@
-import React, {useContext, useReducer} from "react";
+import React, { useContext, useReducer } from "react";
 import { EATING_HABIT } from "./config";
-import {useMenu} from "./menu-context";
+import { useMenu } from "./menu-context";
 
 export const OrderItemsContext = React.createContext({
   orderItems: [],
@@ -98,14 +98,12 @@ const OrderItemsReducer = (state, action) => {
 
 export { OrderItemsReducer };
 
-export function useOrderItems(){
-  return useContext(OrderItemsContext)
+export function useOrderItems() {
+  return useContext(OrderItemsContext);
 }
 
-
-export function OrderItemsProvider(props){
-
-  const menu = useMenu()
+export function OrderItemsProvider(props) {
+  const menu = useMenu();
 
   let initMeals = [];
   for (let i = 0; i < menu.length; i++) {
@@ -120,11 +118,11 @@ export function OrderItemsProvider(props){
   };
 
   const orderItemsInitialState = JSON.parse(localStorage.getItem("OrderItems"));
-  const delivererInitialState = localStorage.getItem("Deliverer")
+  const delivererInitialState = localStorage.getItem("Deliverer");
 
   const initialState = {
     orderItems: orderItemsInitialState ? orderItemsInitialState : [],
-    deliverer: delivererInitialState ? delivererInitialState: "",
+    deliverer: delivererInitialState ? delivererInitialState : "",
     show: false,
     editOrder: INITIAL_ORDER,
     printed: false,
@@ -132,9 +130,9 @@ export function OrderItemsProvider(props){
 
   const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
 
-  return(
-      <OrderItemsContext.Provider value={{state, dispatch}}>
-        {props.children}
-      </OrderItemsContext.Provider>
-  )
+  return (
+    <OrderItemsContext.Provider value={{ state, dispatch }}>
+      {props.children}
+    </OrderItemsContext.Provider>
+  );
 }

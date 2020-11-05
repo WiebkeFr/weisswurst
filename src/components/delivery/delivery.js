@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./delivery.css";
 import SubmitButton from "../submit-button/submit-button";
-import { useOrderItems} from "../../state/orderItems-context";
+import { useOrderItems } from "../../state/orderItems-context";
 import ContinueButton from "../continue-button/continue-button";
 
 function Delivery() {
   const { state, dispatch } = useOrderItems();
-  const initName = localStorage.getItem("Deliverer")
-  const [name, setName] = useState(initName ? initName: "");
+  const initName = localStorage.getItem("Deliverer");
+  const [name, setName] = useState(initName ? initName : "");
 
   const chooseName = (dispatch, orderItems) => {
     const names = orderItems.map((order) => order.name);
@@ -134,7 +134,7 @@ function Delivery() {
             <ContinueButton
               text="Weiter zur Shopping-Liste >"
               onClick={onClick}
-              align="right"
+              style="mobile"
             />
           </div>
         </div>

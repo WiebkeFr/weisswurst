@@ -52,7 +52,7 @@
   color: #ffffff;
 }
 
-@media only screen and (max-width: 344px) {
+@media only screen and (max-width: 600px) {
   .h3--shoppingList {
     font-size: 24px;
   }

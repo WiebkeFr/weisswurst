@@ -7,7 +7,16 @@
 .button--container {
   display: flex;
   justify-content: space-between;
-  height: 34px;
+  height: 1px;
+  background-color: #202840;
+}
+
+hr {
+  color: #202840;
+  width: 100%;
+  border: 1px #202840 solid;
+  height: 0px;
+  position: relative;
 }
 
 .circle {
@@ -43,19 +52,12 @@
   background: url("check.svg") no-repeat #668cff center;
 }
 
-hr {
-  color: #202840;
-  width: 100%;
-  border: 1px #202840 solid;
-  height: 0px;
-  position: relative;
-}
-
 .circle--container {
   width: 100%;
   max-width: 648px;
   display: flex;
   justify-content: space-between;
+  margin-top: -10px;
   position: absolute;
 }
 
@@ -95,12 +97,21 @@ button {
   padding: 0px;
 }
 
-@media only screen and (max-width: 344px) {
+@media only screen and (max-width: 600px) {
   .button--container {
     margin-left: 16px;
     margin-right: 16px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: calc(100% - 32px);
   }
   .circle--container {
-    width: 312px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    margin: auto;
+    margin-top: -10px;
   }
 }

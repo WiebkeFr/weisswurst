@@ -48,9 +48,8 @@
 .container--button-icon {
 }
 
-@media only screen and (max-width: 344px) {
+@media only screen and (max-width: 600px) {
   .submit--button {
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-bottom: 0px;
   }
 }

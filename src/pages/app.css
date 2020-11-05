@@ -3,7 +3,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("CocoGothic"), url("../components/fonts/CocoGothic.woff2") format("woff2"),
+  src: local("CocoGothic"),
+    url("../components/fonts/CocoGothic.woff2") format("woff2"),
     url("../components/fonts/CocoGothic.woff") format("woff"),
     url("../components/fonts/CocoGothic.ttf") format("truetype"),
     url("../components/fonts/CocoGothic.eot") format("embedded-opentype");

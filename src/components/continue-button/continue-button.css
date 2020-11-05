@@ -7,7 +7,7 @@
   width: max-content;
   height: 20px;
   background-color: white;
-  margin-top: 40px;
+  margin-top: 50px;
   margin-bottom: 24px;
   text-align: right;
   border-bottom: solid white 3px;
@@ -16,8 +16,11 @@
   border-bottom: solid #668cff 3px;
 }
 
-@media only screen and (max-width: 344px){
+@media only screen and (max-width: 600px) {
   .continue-button:hover {
     border-bottom: solid #668cff 3px;
+  }
+  .continue-button {
+    margin-top: 24px;
   }
 }

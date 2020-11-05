@@ -68,20 +68,19 @@ function CreateOrder({ initialOrder, orderRef }) {
       dispatch({ type: "RESET_ORDER" });
       dispatch({ type: "TOGGLE_SHOW", orderRef });
     } else {
-      if(nameError || emailError){
+      if (nameError || emailError) {
         window.scrollTo({
           top: 850,
           left: 0,
           behavior: "smooth",
         });
-      }else{
+      } else {
         window.scrollTo({
           top: 1350,
           left: 0,
           behavior: "smooth",
         });
       }
-
     }
   };
 
@@ -178,9 +177,7 @@ function CreateOrder({ initialOrder, orderRef }) {
 
       <Meals order={order} setAmount={setAmount} orderError={error.order} />
       {error.order ? (
-        <p
-          className="input--index-order"
-        >
+        <p className="input--index-order">
           <b>Bestellung</b>: Sie müssen mindestens ein Essen auswählen.
         </p>
       ) : (
@@ -194,7 +191,7 @@ function CreateOrder({ initialOrder, orderRef }) {
           disabled={false}
         />
 
-        <ContinueButton text="Abbrechen" onClick={() => abort(dispatch)}/>
+        <ContinueButton text="Abbrechen" onClick={() => abort(dispatch)} />
       </div>
     </div>
   );

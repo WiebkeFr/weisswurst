@@ -25,7 +25,6 @@ function SliderHeader({ page, setPage }) {
     <OrderItemsContext.Consumer>
       {({ state, dispatch }) => (
         <div className="button--container">
-          <hr />
           <div className="circle--container">
             <button onClick={(event) => onClick(state.orderItems, event)}>
               <div

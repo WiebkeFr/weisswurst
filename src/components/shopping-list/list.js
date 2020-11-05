@@ -126,11 +126,11 @@ function List({ orderItems }) {
                         .replace(".", ",")}{" "}
                       €
                     </td>
-                    <td style={{ verticalAlign: "middle" }}>
-                      <input
-                        className="td--paymentList-checkbox"
-                        type="checkbox"
-                      />
+                    <td style={{ verticalAlign: "middle", width: "20px" }}>
+                      <label className="container-checkbox">
+                        <input type="checkbox" />
+                        <span className="checkmark"></span>
+                      </label>
                     </td>
                   </tr>
                 </React.Fragment>
