@@ -50,8 +50,14 @@ const OrderItemsReducer = (state, action) => {
       const newOrderItems = state.orderItems.filter(
         (orderItem) => orderItem !== action.order
       );
-      localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
-      return { ...state, orderItems: newOrderItems };
+      if(state.deliverer === action.order.name){
+        const newState = {...state, deliverer: ""}
+        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
+        return { ...newState, orderItems: newOrderItems };
+      }else{
+        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
+        return { ...state, orderItems: newOrderItems };
+      }
 
     case "SET_DELIVERER":
       if (action.name === undefined) return state;
