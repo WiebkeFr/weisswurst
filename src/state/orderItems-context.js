@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import { EATING_HABIT } from "./config";
 import { useMenu } from "./menu-context";
+import {getDeliverer, getOrderItems, removeDeliverer, setDeliverer, setOrderItems} from "./storage";
 
 export const OrderItemsContext = React.createContext({
   orderItems: [],
@@ -31,7 +32,7 @@ const OrderItemsReducer = (state, action) => {
           }
           return orderItem;
         });
-        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
+        setOrderItems(newOrderItems)
         return { ...state, orderItems: newOrderItems };
       } else {
         const newItem = {
@@ -42,7 +43,7 @@ const OrderItemsReducer = (state, action) => {
           isPaid: false
         };
         const newOrderItems = [...state.orderItems, newItem];
-        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
+        setOrderItems(newOrderItems);
         return { ...state, orderItems: newOrderItems };
       }
 
@@ -52,17 +53,17 @@ const OrderItemsReducer = (state, action) => {
       );
       if(state.deliverer === action.order.name){
         const newState = {...state, deliverer: ""}
-        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
-        localStorage.removeItem("Deliverer")
+        setOrderItems(newOrderItems);
+        removeDeliverer();
         return { ...newState, orderItems: newOrderItems, printed: false};
       }else{
-        localStorage.setItem("OrderItems", JSON.stringify(newOrderItems));
+        setOrderItems(newOrderItems);
         return { ...state, orderItems: newOrderItems, printed: false};
       }
 
     case "SET_DELIVERER":
       if (action.name === undefined) return state;
-      localStorage.setItem("Deliverer", action.name);
+      setDeliverer(action.name);
       return { ...state, deliverer: action.name };
 
     case "TOGGLE_SHOW":
@@ -110,7 +111,7 @@ const OrderItemsReducer = (state, action) => {
         }
         return orderItem;
       });
-      localStorage.setItem("OrderItems", JSON.stringify(newOrders));
+      setOrderItems(newOrders);
       return { ...state, orderItems: newOrders };
 
     default:
@@ -140,8 +141,8 @@ export function OrderItemsProvider(props) {
     isPaid: false
   };
 
-  const orderItemsInitialState = JSON.parse(localStorage.getItem("OrderItems"));
-  const delivererInitialState = localStorage.getItem("Deliverer");
+  const orderItemsInitialState = getOrderItems();
+  const delivererInitialState = getDeliverer();
 
   const initialState = {
     orderItems: orderItemsInitialState ? orderItemsInitialState : [],

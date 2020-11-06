@@ -71,14 +71,13 @@ function SliderHeader({ page, setPage }) {
                 Wer darf holen?
               </p>
             </button>
-            <button onClick={(event) => onClick(state.orderItems, event)}>
+            <button className="button--right"
+                onClick={(event) => onClick(state.orderItems, event)}>
               <div
                 id="circle-3"
                 className={
-                  state.printed
+                  page === "3"
                     ? "circle-done"
-                    : page === "3"
-                    ? "circle-active"
                     : "circle"
                 }
                 style={{ float: "right" }}
@@ -86,7 +85,7 @@ function SliderHeader({ page, setPage }) {
               <p
                 id="caption-3"
                 className={
-                  page === "3" || state.printed
+                  page === "3"
                     ? "link--caption-active"
                     : "link--caption-inactive"
                 }

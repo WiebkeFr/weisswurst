@@ -6,10 +6,13 @@ import { OrderItemsContext } from "../../../state/orderItems-context";
 import { EATING_HABIT } from "../../../state/config";
 import ContinueButton from "../../continue-button/continue-button";
 
-function CreateOrder({ initialOrder, orderRef }) {
-  const { dispatch } = useContext(OrderItemsContext);
+function CreateOrder({ orderRef }) {
+  const { state, dispatch } = useContext(OrderItemsContext);
+
+  const [edit, setEdit] = useState(state.editOrder.name === "" ? false : true);
+
   const [order, setOrder] = useState({
-    ...initialOrder,
+    ...state.editOrder,
     eatingHabit: EATING_HABIT.OMNIVORE,
   });
   const [error, setError] = useState({
@@ -85,9 +88,12 @@ function CreateOrder({ initialOrder, orderRef }) {
   };
 
   const abort = (dispatch) => {
-    dispatch({ type: "SAVE_ORDER", order: undefined });
-    dispatch({ type: "TOGGLE_SHOW", orderRef });
-    dispatch({ type: "RESET_ORDER" });
+    const abort = window.confirm("Zum Abbrechen des Bestellvorgangs auf OK drücken.");
+    if(abort){
+      dispatch({ type: "SAVE_ORDER", order: undefined });
+      dispatch({ type: "TOGGLE_SHOW", orderRef });
+      dispatch({ type: "RESET_ORDER" });
+    }
   };
 
   return (
@@ -95,7 +101,7 @@ function CreateOrder({ initialOrder, orderRef }) {
       <h2 className="h2--create-order">Neue Bestellungen aufgeben</h2>
       <h3 className="h3--create-order">Für wen ist die Bestellung?</h3>
       <div className="container--input">
-        <div>
+        <div className="inner-container--input">
           <input
             type="text"
             id="name-input"
@@ -116,7 +122,7 @@ function CreateOrder({ initialOrder, orderRef }) {
           )}
         </div>
 
-        <div>
+        <div className="inner-container--input">
           <input
             type="email"
             id="input"
@@ -187,7 +193,7 @@ function CreateOrder({ initialOrder, orderRef }) {
       <div className="container--submitButtons">
         <SubmitButton
           onClick={() => testInput(dispatch)}
-          text="Zur Bestellung hinzufügen"
+          text={edit ? "Bestellung ändern" : "Zur Bestellung hinzufügen"}
           disabled={false}
         />
 

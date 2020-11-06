@@ -3,11 +3,16 @@ import "./delivery.css";
 import SubmitButton from "../submit-button/submit-button";
 import { useOrderItems } from "../../state/orderItems-context";
 import ContinueButton from "../continue-button/continue-button";
+import {getDeliverer} from "../../state/storage";
 
 function Delivery() {
   const { state, dispatch } = useOrderItems();
-  const initName = localStorage.getItem("Deliverer");
+  const initName = getDeliverer();
   const [name, setName] = useState(initName ? initName : "");
+
+  if(getDeliverer === null){
+    setName("");
+  }
 
   const chooseName = (dispatch, orderItems) => {
     const names = orderItems.map((order) => order.name);
@@ -22,7 +27,7 @@ function Delivery() {
 
   return (
     <div>
-      {name === "" ? (
+      {getDeliverer() === "" ? (
         <div>
           <h2 className="h2--delivery">
             Wer darf heute holen? <br /> Drück den "Glücks-Button"

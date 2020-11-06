@@ -2,10 +2,11 @@ import React from "react";
 import { useMenu} from "../../state/menu-context";
 import "./list.css";
 import {useOrderItems} from "../../state/orderItems-context";
+import {getOrderItems} from "../../state/storage";
 
 function List({ orderItems }) {
   if (orderItems === undefined) {
-    orderItems = JSON.parse(localStorage.getItem("OrderItems"));
+    orderItems = getOrderItems();
   }
 
   const menu = useMenu();

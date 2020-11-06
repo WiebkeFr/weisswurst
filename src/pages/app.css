@@ -34,7 +34,7 @@
     url("../components/fonts/CocoGothic-Bold.eot") format("embedded-opentype");
 }
 
-.containerClass {
+.containerClass{
   max-width: 648px;
   margin: auto;
 }
@@ -57,5 +57,17 @@ code {
 @media print {
   .submit--button {
     visibility: hidden;
+  }
+}
+
+@media only screen and (max-width: 660px){
+  .containerClass{
+    padding: 16px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .containerClass{
+    padding: 0px;
   }
 }

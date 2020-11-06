@@ -59,7 +59,6 @@ function Order({ orderRef }) {
           <CreateOrder
             id="createOrder"
             class="createOrder"
-            initialOrder={state.editOrder}
             orderRef={orderRef}
           />
         )}

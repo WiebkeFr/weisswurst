@@ -27,7 +27,6 @@
 .container--input {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: flex-start;
   color: black;
 }
@@ -149,6 +148,20 @@
   .container--input {
     margin-right: 16px;
     margin-left: 16px;
+    flex-direction: column;
+    width: 100%;
+  }
+  .inner-container--input{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+  }
+  .input--normal{
+    width: inherit;
+  }
+  .input--error{
+    width: inherit;
   }
   .container--radioButtons {
     margin-right: 16px;
