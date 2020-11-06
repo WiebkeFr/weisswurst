@@ -9,8 +9,6 @@ import ContinueButton from "../../continue-button/continue-button";
 function CreateOrder({ orderRef }) {
   const { state, dispatch } = useContext(OrderItemsContext);
 
-  const [edit, setEdit] = useState(state.editOrder.name === "" ? false : true);
-
   const [order, setOrder] = useState({
     ...state.editOrder,
     eatingHabit: EATING_HABIT.OMNIVORE,
@@ -193,7 +191,7 @@ function CreateOrder({ orderRef }) {
       <div className="container--submitButtons">
         <SubmitButton
           onClick={() => testInput(dispatch)}
-          text={edit ? "Bestellung ändern" : "Zur Bestellung hinzufügen"}
+          text={state.editOrder.name !== "" ? "Bestellung ändern" : "Zur Bestellung hinzufügen"}
           disabled={false}
         />
 

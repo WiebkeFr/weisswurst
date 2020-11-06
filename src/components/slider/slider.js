@@ -46,7 +46,7 @@ function Slider() {
         {state.orderItems.length !== 0 && (
           <>
             <div className="page" id="slide-2">
-              <Delivery />
+              <Delivery />.
             </div>
             <div className="page" id="slide-3">
               <ShoppingList />

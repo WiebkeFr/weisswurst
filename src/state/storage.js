@@ -1,4 +1,3 @@
-import React from "react"
 
 export const setOrderItems = (OrderItems) => {
     localStorage.setItem("OrderItems", JSON.stringify(OrderItems));

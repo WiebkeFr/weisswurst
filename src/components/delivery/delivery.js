@@ -8,9 +8,10 @@ import {getDeliverer} from "../../state/storage";
 function Delivery() {
   const { state, dispatch } = useOrderItems();
   const initName = getDeliverer();
+
   const [name, setName] = useState(initName ? initName : "");
 
-  if(getDeliverer === null){
+  if(getDeliverer() === null && name !== ""){
     setName("");
   }
 
@@ -27,7 +28,7 @@ function Delivery() {
 
   return (
     <div>
-      {getDeliverer() === "" ? (
+      {name === "" || getDeliverer() === "" ? (
         <div>
           <h2 className="h2--delivery">
             Wer darf heute holen? <br /> Drück den "Glücks-Button"

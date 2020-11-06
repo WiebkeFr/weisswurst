@@ -11,6 +11,7 @@ export const OrderItemsContext = React.createContext({
   printed: false,
 });
 
+
 const OrderItemsReducer = (state, action) => {
   switch (action.type) {
     case "SAVE_ORDER":
@@ -35,8 +36,10 @@ const OrderItemsReducer = (state, action) => {
         setOrderItems(newOrderItems)
         return { ...state, orderItems: newOrderItems };
       } else {
+        let newId = 0;
+        while(state.orderItems.find(x => x.id === newId)) newId++;
         const newItem = {
-          id: state.orderItems.length,
+          id: newId,
           name: action.order.name,
           email: action.order.email,
           meals: action.order.meals,
