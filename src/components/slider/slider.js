@@ -16,17 +16,16 @@ function Slider() {
 
   const handleScroll = () => {
     let id = "slide-" + page;
-    const slide = document.getElementById(id);
-    const data = slide.getBoundingClientRect();
+    const pageData = document.getElementById(id).getBoundingClientRect();
     const slidesData = document
       .getElementById("slides")
       .getBoundingClientRect();
 
-    if (data.x + data.width / 2 <= slidesData.x && page !== "3") {
+    if (pageData.x + pageData.width / 2 <= slidesData.x && page !== "3") {
       const newPage = Number.parseInt(page) + 1;
       setPage(newPage.toString());
     } else {
-      if (data.x >= slidesData.x + data.width / 2) {
+      if (pageData.x >= slidesData.x + pageData.width / 2) {
         const newPage = Number.parseInt(page) - 1;
         setPage(newPage.toString());
       }

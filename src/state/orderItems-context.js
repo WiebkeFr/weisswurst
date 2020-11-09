@@ -9,6 +9,7 @@ export const OrderItemsContext = React.createContext({
   show: false,
   editOrder: {},
   printed: false,
+  delCount: 0
 });
 
 
@@ -36,10 +37,8 @@ const OrderItemsReducer = (state, action) => {
         setOrderItems(newOrderItems)
         return { ...state, orderItems: newOrderItems };
       } else {
-        let newId = 0;
-        while(state.orderItems.find(x => x.id === newId)) newId++;
         const newItem = {
-          id: newId,
+          id: state.orderItems.length + state.delCount,
           name: action.order.name,
           email: action.order.email,
           meals: action.order.meals,
@@ -58,10 +57,12 @@ const OrderItemsReducer = (state, action) => {
         const newState = {...state, deliverer: ""}
         setOrderItems(newOrderItems);
         removeDeliverer();
-        return { ...newState, orderItems: newOrderItems, printed: false};
+        const newDelCount = state.delCount + 1;
+        return { ...newState, orderItems: newOrderItems, printed: false, delCount: newDelCount};
       }else{
         setOrderItems(newOrderItems);
-        return { ...state, orderItems: newOrderItems, printed: false};
+        const newDelCount = state.delCount + 1;
+        return { ...state, orderItems: newOrderItems, printed: false, delCount: newDelCount};
       }
 
     case "SET_DELIVERER":
@@ -74,7 +75,7 @@ const OrderItemsReducer = (state, action) => {
       if (state.orderRef !== undefined) {
       } else {
         window.scrollTo({
-          top: 550,
+          top: 500,
           left: 0,
           behavior: "smooth",
         });
@@ -153,6 +154,7 @@ export function OrderItemsProvider(props) {
     show: false,
     editOrder: INITIAL_ORDER,
     printed: false,
+    delCount: 0
   };
 
   const [state, dispatch] = useReducer(OrderItemsReducer, initialState);
