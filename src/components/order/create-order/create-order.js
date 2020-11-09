@@ -71,7 +71,7 @@ function CreateOrder({ orderRef }) {
     } else {
       if (nameError || emailError) {
         window.scrollTo({
-          top: 750,
+          top: 850,
           left: 0,
           behavior: "smooth",
         });

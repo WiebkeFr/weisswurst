@@ -75,7 +75,7 @@ const OrderItemsReducer = (state, action) => {
       if (state.orderRef !== undefined) {
       } else {
         window.scrollTo({
-          top: 500,
+          top: 550,
           left: 0,
           behavior: "smooth",
         });

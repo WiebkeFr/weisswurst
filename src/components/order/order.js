@@ -34,7 +34,7 @@ function Order({ orderRef }) {
                 >
                   <tbody>
                     {state.orderItems.map((order) => {
-                      return <OrderItem order={order} key={order.name} />;
+                      return <OrderItem order={order} key={order.id} />;
                     })}
                   </tbody>
                 </table>
